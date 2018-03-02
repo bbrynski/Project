@@ -1,0 +1,13 @@
+{
+  "description": "This is a simple example!",
+  "version": "0.1.0",
+  "require": {
+    "smarty/smarty": "3.*",
+    "raveren/kint": "0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}

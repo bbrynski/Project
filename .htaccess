@@ -1,0 +1,90 @@
+#włączenie mod_rewrite
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Klient
+RewriteRule ^Klient/?$ index.php?controller=Klient [L]
+RewriteRule ^Klient/add-form/?$ index.php?controller=Klient&action=addform [L]
+RewriteRule ^Klient/add/?$ index.php?controller=Klient&action=add [L]
+
+RewriteRule ^Klient/edit/(\d+)/?$ index.php?controller=Klient&action=editform&id=$1 [L]
+RewriteRule ^Klient/update/?$ index.php?controller=Klient&action=update [L]
+RewriteRule ^Klient/delete/(\d+)/?$ index.php?controller=Klient&action=delete&id=$1 [L]
+
+#Przesylka
+RewriteRule ^Przesylka/?$ index.php?controller=Przesylka [L]
+RewriteRule ^Przesylka/add-form/?$ index.php?controller=Przesylka&action=addform [L]
+RewriteRule ^Przesylka/add/?$ index.php?controller=Przesylka&action=add [L]
+
+RewriteRule ^Przesylka/edit/(\d+)/?$ index.php?controller=Przesylka&action=editform&id=$1 [L]
+RewriteRule ^Przesylka/update/?$ index.php?controller=Przesylka&action=update [L]
+RewriteRule ^Przesylka/delete/(\d+)/?$ index.php?controller=Przesylka&action=delete&id=$1 [L]
+
+#Klient/Przesylka
+RewriteRule ^Klient/(\d+)/Przesylki/?$ index.php?controller=Przesylka&action=get_Przesylki&id=$1 [L]
+RewriteRule ^Klient/Przesylka/add-form/?$ index.php?controller=Przesylka&action=addform_2 [L]
+RewriteRule ^Klient/Przesylka/add/?$ index.php?controller=Przesylka&action=add [L]
+
+RewriteRule ^Klient/Przesylka/edit/(\d+)/?$ index.php?controller=Przesylka&action=editform_2&id=$1 [L]
+RewriteRule ^Klient/Przesylka/update/?$ index.php?controller=Przesylka&action=update_2 [L]
+RewriteRule ^Klient/Przesylka/delete/(\d+)/?$ index.php?controller=Przesylka&action=delete_2&id=$1 [L]
+
+#Klient/Przesylka/Historia
+RewriteRule ^Klient/Przesylka/Historia/(\d+)/?$ index.php?controller=Historia&action=get_Historia_Przesylki&id=$1 [L]
+RewriteRule ^Klient/Przesylka/Historia/add-form/?$ index.php?controller=Historia&action=addform_2 [L]
+RewriteRule ^Klient/Przesylka/Historia/add/?$ index.php?controller=Historia&action=add_2 [L]
+
+RewriteRule ^Klient/Przesylka/Historia/edit/(\d+)/?$ index.php?controller=Historia&action=editform_2&id=$1 [L]
+RewriteRule ^Klient/Przesylka/Historia/update/?$ index.php?controller=Historia&action=update_2 [L]
+RewriteRule ^Klient/Przesylka/Historia/delete/(\d+)/?$ index.php?controller=Historia&action=delete_2&id=$1 [L]
+
+#Historia
+RewriteRule ^Historia/?$ index.php?controller=Historia [L]
+RewriteRule ^Historia/add-form/?$ index.php?controller=Historia&action=addform [L]
+RewriteRule ^Historia/add/?$ index.php?controller=Historia&action=add [L]
+
+RewriteRule ^Historia/edit/(\d+)/?$ index.php?controller=Historia&action=editform&id=$1 [L]
+RewriteRule ^Historia/update/?$ index.php?controller=Historia&action=update [L]
+RewriteRule ^Historia/delete/(\d+)/?$ index.php?controller=Historia&action=delete&id=$1 [L]
+
+#Status
+RewriteRule ^Status/?$ index.php?controller=Status [L]
+RewriteRule ^Status/add-form/?$ index.php?controller=Status&action=addform [L]
+RewriteRule ^Status/add/?$ index.php?controller=Status&action=add [L]
+
+RewriteRule ^Status/edit/(\d+)/?$ index.php?controller=Status&action=editform&id=$1 [L]
+RewriteRule ^Status/update/?$ index.php?controller=Status&action=update [L]
+RewriteRule ^Status/delete/(\d+)/?$ index.php?controller=Status&action=delete&id=$1 [L]
+
+#Oddzial
+RewriteRule ^Oddzial/?$ index.php?controller=Oddzial [L]
+RewriteRule ^Oddzial/add-form/?$ index.php?controller=Oddzial&action=addform [L]
+RewriteRule ^Oddzial/add/?$ index.php?controller=Oddzial&action=add [L]
+
+RewriteRule ^Oddzial/edit/(\d+)/?$ index.php?controller=Oddzial&action=editform&id=$1 [L]
+RewriteRule ^Oddzial/update/?$ index.php?controller=Oddzial&action=update [L]
+RewriteRule ^Oddzial/delete/(\d+)/?$ index.php?controller=Oddzial&action=delete&id=$1 [L]
+
+#Cennik
+RewriteRule ^Cennik/?$ index.php?controller=Cennik [L]
+RewriteRule ^Cennik/add-form/?$ index.php?controller=Cennik&action=addform [L]
+RewriteRule ^Cennik/add/?$ index.php?controller=Cennik&action=add [L]
+
+RewriteRule ^Cennik/edit/(\d+)/?$ index.php?controller=Cennik&action=editform&id=$1 [L]
+RewriteRule ^Cennik/update/?$ index.php?controller=Cennik&action=update [L]
+RewriteRule ^Cennik/delete/(\d+)/?$ index.php?controller=Cennik&action=delete&id=$1 [L]
+
+#Error
+ErrorDocument 404 http://localhost/Projekt/errors/404.html
+
+#Logowanie
+RewriteRule ^access/logform/?$ index.php?controller=Access&action=logform [L]
+RewriteRule ^access/login/?$ index.php?controller=Access&action=login [L]
+RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
+
+#Rejestracja
+RewriteRule ^access/registration/?$ index.php?controller=Access&action=rejestracja_1 [L]
+
