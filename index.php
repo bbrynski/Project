@@ -8,7 +8,7 @@ Config\Database\DBConnection::setDBConnection(
     DB::$hostname, DB::$databaseType, DB::$port);
 
 
-\Config\Website\Config::$subdir = 'Projekt/';
+\Config\Website\Config::$subdir = 'Projekt_Zespolowy/';
 
 //Inicjalizacja sesji anonimowej
 \Tools\Session::initialize();

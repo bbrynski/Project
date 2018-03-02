@@ -2,6 +2,6 @@
 	namespace Config\Website;
 	
 	class Config{
-		public static $subdir = 'Projekt/';
+		public static $subdir = 'Projekt_Zespolowy/';
 
 	}

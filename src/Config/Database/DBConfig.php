@@ -3,7 +3,7 @@
 
 	class DBConfig{
         //nazwa bazy danych
-        public static $databaseName = 'dominik';
+        public static $databaseName = 'zespolowy';
         //dane dostępowe do bazy danych
         public static $hostname = 'localhost';
         public static $databaseType = 'mysql';

@@ -26,8 +26,6 @@
                             <th>Nazwisko</th>
                             <th></th>
                             <th></th>
-                            <th></th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,10 +37,7 @@
 
 
                                 <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/edit/{$klient['Id_Klient']}">Edytuj</a></td>
-                                <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/delete/{$klient['Id_Klient']}">Usuń</a></td>
-                                <td><a class="btn btn-info" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/{$klient['Id_Klient']}/Przesylki">Przesyłki</a></td>
-                                <td><a data-path="http://{$smarty.server.HTTP_HOST}{$subdir}" data-id="{$klient['Id_Klient']}"  class="btn btn-warning KlientDetails" href="{$klient['Id_Klient']}" data-toggle="modal" data-target="#myModal">Szczegóły</a></td>
-                            </tr>
+                                <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/delete/{$klient['Id_Klient']}">Usuń</a></td> </tr>
                         {/foreach}
                         </tbody>
                     </table>

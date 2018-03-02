@@ -78,7 +78,7 @@ RewriteRule ^Cennik/update/?$ index.php?controller=Cennik&action=update [L]
 RewriteRule ^Cennik/delete/(\d+)/?$ index.php?controller=Cennik&action=delete&id=$1 [L]
 
 #Error
-ErrorDocument 404 http://localhost/Projekt/errors/404.html
+ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 
 #Logowanie
 RewriteRule ^access/logform/?$ index.php?controller=Access&action=logform [L]
