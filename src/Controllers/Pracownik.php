@@ -34,7 +34,7 @@ class Pracownik extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Pracownik');
-        $data = $model->add($_POST['imie'], $_POST['nazwisko'], $_POST['numer'], $_POST['kod'], $_POST['miejscowosc'], $_POST['ulica'], $_POST['nr'], $_POST['email'], $_POST['telefon']);
+        $data = $model->add($_POST['imie'], $_POST['nazwisko'], $_POST['numer'], $_POST['kod'], $_POST['miejscowosc'], $_POST['ulica'], $_POST['nr'], $_POST['telefon']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
@@ -76,7 +76,7 @@ class Pracownik extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Pracownik');
-        $data = $model->update($_POST['id'], $_POST['imie'], $_POST['nazwisko'], $_POST['numer'], $_POST['kod'], $_POST['miejscowosc'], $_POST['ulica'], $_POST['nr'], $_POST['email'], $_POST['telefon']);
+        $data = $model->update($_POST['id'], $_POST['imie'], $_POST['nazwisko'], $_POST['numer'], $_POST['kod'], $_POST['miejscowosc'], $_POST['ulica'], $_POST['nr'], $_POST['telefon']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
