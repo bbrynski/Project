@@ -14,4 +14,5 @@
         //nazwy tabel
         public static $tableKlient = 'Klient';
         public static $tablePracownik = 'Pracownik';
+        public static $tableUzytkownik = 'Uzytkownik';
 	}
