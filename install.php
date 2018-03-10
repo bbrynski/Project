@@ -45,13 +45,95 @@
 	{
 		echo \Config\Database\DBErrorName::$delete_table.DB::$tableKlient;
 	}
-    
-    
 
-    
-    /*
-        tworzenie tabeli uzytkownik
-    */
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableModel.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableModel;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableSilnik.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableSilnik;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableSkrzynia.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableSkrzynia;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableNaped.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableNaped;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableLakier.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableLakier;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableWyposazenie.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableWyposazenie;
+    }
+
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableKola.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableKola;
+    }
+
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableReflektory.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableReflektory;
+    }
+
+
+
+
+
+/*
+    tworzenie tabeli uzytkownik
+*/
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUzytkownik.'` (
 		`'.DB\Uzytkownik::$id_uzytkownik.'` INT NOT NULL AUTO_INCREMENT,
         `'.DB\Uzytkownik::$login.'` VARCHAR(30) NOT NULL UNIQUE,
@@ -94,15 +176,171 @@
 	catch(PDOException $e)
 	{
 		echo \Config\Database\DBErrorName::$create_table.DB::$tableKlient;
-	}	
+	}
+    /**
+    *  Tworzenie tabeli silnik
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableSilnik.'` (
+		    `'.DB\Silnik::$id.'` INT NOT NULL AUTO_INCREMENT,
+		    `'.DB\Silnik::$TypSilnika.'` VARCHAR(40) NOT NULL,
+		    PRIMARY KEY (`'.DB\Silnik::$id.'`)) ENGINE=InnoDB;';
 
-    
-    
-    
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableSilnik;
+    }
 
-    /*
-        wypełnienie tabel klient danymi
-    */  
+    /**
+    *  Tworzenie tabeli skrzynia
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableSkrzynia.'` (
+		        `'.DB\Skrzynia::$id.'` INT NOT NULL AUTO_INCREMENT,
+		        `'.DB\Skrzynia::$TypSkrzyni.'` VARCHAR(20) NOT NULL,
+		        PRIMARY KEY (`'.DB\Skrzynia::$id.'`)) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableSkrzynia;
+    }
+
+    /**
+    *  Tworzenie tabeli naped
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableNaped.'` (
+		            `'.DB\Naped::$id.'` INT NOT NULL AUTO_INCREMENT,
+		            `'.DB\Naped::$nazwaNaped.'` VARCHAR(40) NOT NULL,
+		            PRIMARY KEY (`'.DB\Naped::$id.'`)) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableNaped;
+    }
+
+    /**
+    *  Tworzenie tabeli lakier
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableLakier.'` (
+		                `'.DB\Lakier::$id.'` INT NOT NULL AUTO_INCREMENT,
+		                `'.DB\Lakier::$nazwaLakier.'` VARCHAR(40) NOT NULL,
+		                PRIMARY KEY (`'.DB\Lakier::$id.'`)) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableLakier;
+    }
+
+    /**
+    *  Tworzenie tabeli kola
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableKola.'` (
+		                    `'.DB\Kola::$id.'` INT NOT NULL AUTO_INCREMENT,
+		                    `'.DB\Kola::$wartosc.'` INT NOT NULL,
+		                    PRIMARY KEY (`'.DB\Kola::$id.'`)) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableKola;
+    }
+
+    /**
+    *  Tworzenie tabeli reflektory
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableReflektory.'` (
+		                        `'.DB\Reflektory::$id.'` INT NOT NULL AUTO_INCREMENT,
+		                        `'.DB\Reflektory::$nazwaReflektory.'` VARCHAR(50) NOT NULL,
+		                        PRIMARY KEY (`'.DB\Reflektory::$id.'`)) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableReflektory;
+    }
+
+    /**
+    tworzenie tabeli wyposazenie
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableWyposazenie.'` (
+		    `'.DB\Wyposazenie::$id.'` INT NOT NULL AUTO_INCREMENT,
+            `'.DB\Wyposazenie::$Id_Kola.'` INT NOT NULL,
+            `'.DB\Wyposazenie::$Id_Reflektory.'` INT NOT NULL,
+            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'` BIT NOT NULL,
+            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'` BIT NOT NULL,
+            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'` BIT NOT NULL,
+            `'.DB\Wyposazenie::$SkorzanaTapicerka.'` BIT NOT NULL,
+		    PRIMARY KEY (`'.DB\Wyposazenie::$id.'`),
+		    FOREIGN KEY (`'.DB\Wyposazenie::$Id_Kola.'`) REFERENCES '.DB::$tableKola.'('.DB\Kola::$id.'),
+		    FOREIGN KEY ('.DB\Wyposazenie::$Id_Reflektory.') REFERENCES '.DB::$tableReflektory.'('.DB\Reflektory::$id.')) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableWyposazenie;
+    }
+
+    /**
+    tworzenie tabeli model
+    */
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableModel.'` (
+		        `'.DB\Model::$id.'` INT NOT NULL AUTO_INCREMENT,
+                `'.DB\Model::$nazwaModel.'` VARCHAR(40) NOT NULL,
+                `'.DB\Model::$cena.'` INT NOT NULL,
+                `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
+                `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
+                `'.DB\Model::$Id_Naped.'` INT NOT NULL,
+                `'.DB\Model::$pojemnosc.'` FLOAT NOT NULL,
+                `'.DB\Model::$MaxMoc.'` INT NOT NULL,
+                `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
+                `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
+                `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
+                `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
+		        PRIMARY KEY (`'.DB\Model::$id.'`),
+		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Naped.') REFERENCES '.DB::$tableNaped.'('.DB\Naped::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.')) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableModel;
+    }
+
+
+
+
+/*
+    wypełnienie tabel klient danymi
+*/
     
     $klienci = array();	
 	$klienci[] = array(
@@ -848,6 +1086,250 @@
     {
         echo \Config\Database\DBErrorName::$noadd;
     }
+
+    $silniki = array();
+    $silniki[] = 'benzynowy';
+    $silniki[] = 'Diesel';
+    $silniki[] = 'Elektryczny';
+    $silniki[] = 'Hybrydowy';
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableSilnik.'` (
+                `'.DB\Silnik::$TypSilnika.'`
+                ) 
+                 VALUES(:TypSilnika)');
+    foreach($silniki as $silnik)
+    {
+        $stmt -> bindValue(':TypSilnika', $silnik, PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
+    $skrzynie = array();
+    $skrzynie[] = 'manualna';
+    $skrzynie[] = 'automatyczna';
+    $skrzynie[] = 'pol-automatyczna';
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableSkrzynia.'` (
+                    `'.DB\Skrzynia::$TypSkrzyni.'`
+                    ) 
+                    VALUES(:TypSkrzyni)');
+        foreach($skrzynie as $skrzynia)
+        {
+            $stmt -> bindValue(':TypSkrzyni', $skrzynia, PDO::PARAM_STR);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+    $napedy = array();
+    $napedy[] = 'Tylna os';
+    $napedy[] = 'Przednia os';
+    $napedy[] = '4x4';
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableNaped.'` (
+                        `'.DB\Naped::$nazwaNaped.'`
+                        ) 
+                        VALUES(:nazwaNaped)');
+        foreach($napedy as $naped)
+        {
+            $stmt -> bindValue(':nazwaNaped', $naped, PDO::PARAM_STR);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+    $lakiery = array();
+    $lakiery[] = 'Czarny';
+    $lakiery[] = 'Srebrny';
+    $lakiery[] = 'Bialy';
+    $lakiery[] = 'Czerwony';
+    $lakiery[] = 'Zolty';
+    $lakiery[] = 'Niebieski';
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableLakier.'` (
+                                `'.DB\Lakier::$nazwaLakier.'`
+                                ) 
+                                VALUES(:nazwaLakier)');
+        foreach($lakiery as $lakier)
+        {
+            $stmt -> bindValue(':nazwaLakier', $lakier, PDO::PARAM_STR);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+    $kola = array();
+    $kola[] = 13;
+    $kola[] = 14;
+    $kola[] = 15;
+    $kola[] = 16;
+    $kola[] = 17;
+    $kola[] = 18;
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableKola.'` (
+                                `'.DB\Kola::$wartosc.'`
+                                ) 
+                                VALUES(:wartosc)');
+        foreach($kola as $kolo)
+        {
+            $stmt -> bindValue(':wartosc', $kolo, PDO::PARAM_INT);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+    $reflektory = array();
+    $reflektory[] = 'Sloiki';
+    $reflektory[] = 'Reflektory FF';
+    $reflektory[] = 'Swiatla soczewkowe';
+    $reflektory[] = 'Ksenony';
+    $reflektory[] = 'Swiatla LED';
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableReflektory.'` (
+                                    `'.DB\Reflektory::$nazwaReflektory.'`
+                                    ) 
+                                    VALUES(:nazwaReflektory)');
+        foreach($reflektory as $reflektor)
+        {
+            $stmt -> bindValue(':nazwaReflektory', $reflektor, PDO::PARAM_STR);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+    $wyposazenia = array();
+    $wyposazenia[] = array(
+            'IdKola' => '4',
+            'IdReflektory' => '4',
+            'PodgrzewaneSiedzenia' => '1',
+            'PodgrzewanaSzybaPrzod' => '0',
+            'DodatkowyKompletOpon' => '0',
+            'SkorzanaTapicerka' => '1');
+    $wyposazenia[] = array(
+        'IdKola' => '6',
+        'IdReflektory' => '5',
+        'PodgrzewaneSiedzenia' => '1',
+        'PodgrzewanaSzybaPrzod' => '1',
+        'DodatkowyKompletOpon' => '1',
+        'SkorzanaTapicerka' => '1');
+
+    try
+    {
+        $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableWyposazenie.'` (
+            `'.DB\Wyposazenie::$Id_Kola.'`,
+            `'.DB\Wyposazenie::$Id_Reflektory.'`,
+            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'`,
+            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'`, 
+            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'`,
+            `'.DB\Wyposazenie::$SkorzanaTapicerka.'`) 
+            VALUES(:Id_Kola, :Id_Reflektory, :PodgrzewaneSiedzenia, :PodgrzewanaSzybaPrzod, :DodatkowyKompletOpon, :SkorzanaTapicerka)');
+        foreach($wyposazenia as $wyposazenie)
+        {
+            $stmt -> bindValue(':Id_Kola', $wyposazenie['IdKola'], PDO::PARAM_INT);
+            $stmt -> bindValue(':Id_Reflektory', $wyposazenie['IdReflektory'], PDO::PARAM_INT);
+            $stmt -> bindValue(':PodgrzewaneSiedzenia', $wyposazenie['PodgrzewaneSiedzenia'], PDO::PARAM_INT);
+            $stmt -> bindValue(':PodgrzewanaSzybaPrzod', $wyposazenie['PodgrzewanaSzybaPrzod'], PDO::PARAM_INT);
+            $stmt -> bindValue(':DodatkowyKompletOpon', $wyposazenie['DodatkowyKompletOpon'], PDO::PARAM_INT);
+            $stmt -> bindValue(':SkorzanaTapicerka', $wyposazenie['SkorzanaTapicerka'], PDO::PARAM_INT);
+            $stmt -> execute();
+        }
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$noadd;
+    }
+
+$modele = array();
+$modele[] = array(
+    'nazwaModel' => 'Passat',
+    'Cena' => '300000',
+    'IdSilnik' => '1',
+    'IdSkrzynia' => '1',
+    'IdNaped' => '2',
+    'Pojemnosc' => '1.6',
+    'MaksymalnaMoc' => '133',
+    'Foto' => '',
+    'IdWyposazenie' => '1',
+    'IdLakier' => '2',
+    'LakierNadwozia' => 'Metallic');
+$modele[] = array(
+    'nazwaModel' => 'Jetta',
+    'Cena' => '350000',
+    'IdSilnik' => '2',
+    'IdSkrzynia' => '3',
+    'IdNaped' => '2',
+    'Pojemnosc' => '2.0',
+    'MaksymalnaMoc' => '170',
+    'Foto' => '',
+    'IdWyposazenie' => '2',
+    'IdLakier' => '1',
+    'LakierNadwozia' => 'Matowy');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableModel.'` (
+            `'.DB\Model::$nazwaModel.'`,
+            `'.DB\Model::$cena.'`,
+            `'.DB\Model::$Id_Silnik.'`,
+            `'.DB\Model::$Id_Skrzynia.'`, 
+            `'.DB\Model::$Id_Naped.'`,
+            `'.DB\Model::$pojemnosc.'`,
+            `'.DB\Model::$MaxMoc.'`,
+            `'.DB\Model::$Foto.'`,
+            `'.DB\Model::$Id_Wyposazenie.'`,
+            `'.DB\Model::$Id_Lakier.'`,
+            `'.DB\Model::$LakierNadwozia.'`) 
+            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :pojemnosc, :MaxMoc, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia)');
+    foreach($modele as $model)
+    {
+        $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
+        $stmt -> bindValue(':cena', $model['Cena'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Silnik', $model['IdSilnik'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Skrzynia', $model['IdSkrzynia'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Naped', $model['IdNaped'], PDO::PARAM_INT);
+        $stmt -> bindValue(':pojemnosc', $model['Pojemnosc'], PDO::PARAM_STR);
+        $stmt -> bindValue(':MaxMoc', $model['MaksymalnaMoc'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
+        $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
 
 
     echo "<b>Instalacja aplikacji zakończona!</b>"

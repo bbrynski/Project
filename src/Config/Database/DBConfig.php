@@ -15,4 +15,12 @@
         public static $tableKlient = 'Klient';
         public static $tablePracownik = 'Pracownik';
         public static $tableUzytkownik = 'Uzytkownik';
+        public static $tableSilnik = 'Silnik';
+        public static $tableSkrzynia = 'Skrzynia';
+        public static $tableNaped = 'Naped';
+        public static $tableLakier = 'Lakier';
+        public static $tableKola = 'Kola';
+        public static $tableReflektory = 'Reflektory';
+        public static $tableWyposazenie = 'Wyposazenie';
+        public static $tableModel = 'Model';
 	}
