@@ -19,6 +19,9 @@ RewriteRule ^access/logform/?$ index.php?controller=Access&action=logform [L]
 RewriteRule ^access/login/?$ index.php?controller=Access&action=login [L]
 RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 
+#Samochod
+RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
+
 
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
