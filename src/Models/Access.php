@@ -15,6 +15,12 @@ class Access extends Model {
                 
                 if ($uzytkownik['Haslo'] === $password) {
                     \Tools\Access::login($_POST['login']);
+
+                    $dostep = $uzytkownik['Prawo'];
+
+
+                    // dostęp do prawa
+                    \Tools\Session::set('prawo', $dostep);
                     return $data;
                 }
             }
@@ -26,6 +32,7 @@ class Access extends Model {
     }
     public function logout(){
         \Tools\Access::logout();
+        \Tools\Session::clear('prawo');
     }
 
 

@@ -56,6 +56,7 @@
 		`'.DB\Uzytkownik::$id_uzytkownik.'` INT NOT NULL AUTO_INCREMENT,
         `'.DB\Uzytkownik::$login.'` VARCHAR(30) NOT NULL UNIQUE,
         `'.DB\Uzytkownik::$haslo.'` VARCHAR(32) NOT NULL,
+        `'.DB\Uzytkownik::$prawo.'` VARCHAR(30) NOT NULL,
 		PRIMARY KEY (`'.DB\Uzytkownik::$id_uzytkownik.'`)
 		) ENGINE=InnoDB;';
 	try
@@ -807,19 +808,38 @@
     $uzytkownicy = array();
     $uzytkownicy[] = array(
         'login' => 'dk.kowalski@o2.pl',
-        'haslo' => '81dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed055');
+        'haslo' => '81dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed055',
+        'prawo' => 'admin');
 
+
+    $uzytkownicy[] = array(
+        'login' => 'admin',
+        'haslo' => '81dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed055',
+        'prawo' => 'admin');
+
+    $uzytkownicy[] = array(
+        'login' => 'pracownik',
+        'haslo' => '81dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed05581dc9bdb52d04dc20036dbd8313ed055',
+        'prawo' => 'pracownik');
+
+    /*
+     *  haslo 1234
+     *
+     */
 
     try
     {
         $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUzytkownik.'` (
-            `'.DB\Uzytkownik::$login.'`,
-            `'.DB\Uzytkownik::$haslo.'`) 
-             VALUES(:login, :haslo)');
+                `'.DB\Uzytkownik::$login.'`,
+                `'.DB\Uzytkownik::$haslo.'`,
+                `'.DB\Uzytkownik::$prawo.'`
+                ) 
+                 VALUES(:login, :haslo, :prawo)');
         foreach($uzytkownicy as $uzytkownik)
         {
             $stmt -> bindValue(':login', $uzytkownik['login'], PDO::PARAM_STR);
             $stmt -> bindValue(':haslo', $uzytkownik['haslo'], PDO::PARAM_STR);
+            $stmt -> bindValue(':prawo', $uzytkownik['prawo'], PDO::PARAM_STR);
 
             $stmt -> execute();
         }
@@ -828,9 +848,10 @@
     {
         echo \Config\Database\DBErrorName::$noadd;
     }
-    
-    
+
+
     echo "<b>Instalacja aplikacji zakończona!</b>"
+
 
 
 
@@ -838,6 +859,6 @@
 ?>
 <br>
 <br>
-<a href="http://localhost/Projekt/">Dalej</a>
+<a href="http://localhost/Projekt_Zespolowy/">Dalej</a>
 </body>
 </html>

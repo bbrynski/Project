@@ -5,5 +5,5 @@
         public static $id_uzytkownik = 'Id_Uzytkownika';
         public static $login = 'Login';
         public static $haslo = 'Haslo';
-  
+        public static $prawo = 'Prawo';
     }

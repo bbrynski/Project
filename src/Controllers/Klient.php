@@ -25,8 +25,16 @@
             $accessController = new \Controllers\Access();
             $accessController->islogin();
 
-            $view = $this->getView('Klient');
-			$view->addform();
+            if(\Tools\Session::is('prawo')) {
+                    if (\Tools\Session::get('prawo') == 'admin') {
+                        $view = $this->getView('Klient');
+                        $view->addform();
+                    }
+            }
+            /**
+             *  Jak nie dostpępu i wpisze w url odpowiedni adres przyjazny dostaje pustą stornę
+             *
+             */
         }
         
         public function add(){

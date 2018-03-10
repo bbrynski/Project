@@ -6,7 +6,13 @@
             <div class="d-flex justify-content-center">
                 <h2>Lista Klientów</h2>
             </div>
+
+            {if $smarty.session.prawo == 'admin'}
+
             <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/add-form">Dodaj Klienta</a>
+
+            {/if}
+
             {if isset($message)}
                 <div class="alert alert-success" role="alert">{$message}</div>
             {/if}
@@ -17,6 +23,13 @@
                 {if $klienci|@count === 0}
                     <b>Brak klientów w bazie!</b><br/><br/>
                 {else}
+
+
+
+
+                    <h1>{$smarty.session.prawo}</h1>
+
+
 
                     <table id="data" class="display table table-hover">
                         <thead>
