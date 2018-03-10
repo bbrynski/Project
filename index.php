@@ -12,27 +12,29 @@ Config\Database\DBConnection::setDBConnection(
 
 //Inicjalizacja sesji anonimowej
 \Tools\Session::initialize();
-//Kontroler/akcja/parametr_id
-if(isset($_GET['controller']))
-    $controller = $_GET['controller'];
-else
-    $controller = 'Klient';
-if(isset($_GET['action']))
-    $action = $_GET['action'];
-else
-    $action = 'getAll';
-if(isset($_GET['id']))
-    $id = $_GET['id'];
-else
-    $id = null;
 
-$controller = 'Controllers\\'.$controller;
 
-//tworzymy kontroler
-$mycontroller = new $controller();
-//wykonujemy akcję dla kontrolera
-$mycontroller->$action($id);
 
+    //Kontroler/akcja/parametr_id
+    if(isset($_GET['controller']))
+        $controller = $_GET['controller'];
+    else
+        $controller = 'Klient';
+    if(isset($_GET['action']))
+        $action = $_GET['action'];
+    else
+        $action = 'getAll';
+    if(isset($_GET['id']))
+        $id = $_GET['id'];
+    else
+        $id = null;
+
+    $controller = 'Controllers\\'.$controller;
+
+    //tworzymy kontroler
+    $mycontroller = new $controller();
+    //wykonujemy akcję dla kontrolera
+    $mycontroller->$action($id);
 
 
 

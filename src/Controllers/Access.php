@@ -45,20 +45,4 @@
             }
         }
 
-        public function rejestracja_1(){
-
-            $model1 = $this->getModel('Klient');
-            $klienci = $model1->getAll();
-
-            $data = null;
-            $model = $this->getModel('Access');
-            $data = $model->rejestracja_1($_POST['imie'], $_POST['nazwisko'], $_POST['email'],md5($_POST['haslo']), md5($_POST['haslo2']), $klienci);
-
-            if(!isset($data['error'])) {
-                $this->redirect('access/logform');
-            }
-            else
-                $this->logform($data);
-
-        }
     }
