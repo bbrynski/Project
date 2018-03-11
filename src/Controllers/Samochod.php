@@ -24,7 +24,7 @@ class Samochod extends Controller
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
-        $this->redirect('Klient');
+       // $this->redirect('Klient');
     }
 
     public function getOne($id){
