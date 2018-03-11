@@ -8,23 +8,33 @@ class Samochod extends Controller
 
                 $view = $this->getView('Samochod');
                 $view->addform();
+
+
         }
 
- /*
+
     public function add(){
 
         $accessController = new \Controllers\Access();
         $accessController->islogin();
 
         $model = $this->getModel('Samochod');
-        $data = $model->add($_POST['nazwaModel'], $_POST['Cena'], $_POST['Silnik'], $_POST['Skrzynia'], $_POST['Naped'], $_POST['Pojemnosc'], $_POST['Moc'], $_POST['Foto'],, $_POST['Lakier'], $_POST['LakierNadwozia']);
+        $data = $model->add($_POST['nazwaModel'], $_POST['cena'], $_POST['Id_Silnik'], $_POST['Id_Skrzynia'], $_POST['Id_Naped'], $_POST['pojemnosc'], $_POST['MaxMoc'], $_POST['Id_Lakier'], $_POST['LakierNadwozia'],$_FILES['Foto']['tmp_name']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
         $this->redirect('Klient');
     }
- */
+
+    public function getOne($id){
+        $model=$this->getModel('Samochod');
+        $data=$model->getOne($id);
+        $view = $this->getView('Samochod');
+        d($data);
+        $view->getone($data['samochody'][0]);
+    }
+
 
 
 }
