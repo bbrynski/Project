@@ -21,6 +21,7 @@ RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 
 #Samochod
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
+RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
 
 
 #Error
