@@ -305,6 +305,8 @@
 
     /**
     tworzenie tabeli model
+     * Id_wyposazenie -> zmienione na varchar BB
+     * FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.'),
     */
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableModel.'` (
 		        `'.DB\Model::$id.'` INT NOT NULL AUTO_INCREMENT,
@@ -316,14 +318,13 @@
                 `'.DB\Model::$pojemnosc.'` FLOAT NOT NULL,
                 `'.DB\Model::$MaxMoc.'` INT NOT NULL,
                 `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
-                `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
+                `'.DB\Model::$Id_Wyposazenie.'` VARCHAR(20) NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Naped.') REFERENCES '.DB::$tableNaped.'('.DB\Naped::$id.'),
-		        FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.')) ENGINE=InnoDB;';
 
     try
@@ -1279,7 +1280,7 @@ $modele[] = array(
     'Pojemnosc' => '1.6',
     'MaksymalnaMoc' => '133',
     'Foto' => '',
-    'IdWyposazenie' => '1',
+    'IdWyposazenie' => 'standard',
     'IdLakier' => '2',
     'LakierNadwozia' => 'Metallic');
 $modele[] = array(
@@ -1291,10 +1292,11 @@ $modele[] = array(
     'Pojemnosc' => '2.0',
     'MaksymalnaMoc' => '170',
     'Foto' => '',
-    'IdWyposazenie' => '2',
+    'IdWyposazenie' => 'standard',
     'IdLakier' => '1',
     'LakierNadwozia' => 'Matowy');
 
+//`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
 {
     $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableModel.'` (
@@ -1320,7 +1322,7 @@ try
         $stmt -> bindValue(':pojemnosc', $model['Pojemnosc'], PDO::PARAM_STR);
         $stmt -> bindValue(':MaxMoc', $model['MaksymalnaMoc'], PDO::PARAM_INT);
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
-        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
         $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
         $stmt -> execute();
