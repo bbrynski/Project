@@ -24,7 +24,7 @@ class Samochod extends View
         $this->set('Skrzynia',$skrzynie);
         $this->set('Naped',$napedy);
         $this->set('Lakier',$lakiery);
-        $this->render('SamochodAddForm');
+        $this->render('ModelAddForm');
     }
 
         //$this->render('ModelGetAll');

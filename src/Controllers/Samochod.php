@@ -5,7 +5,8 @@ namespace Controllers;
 class Samochod extends Controller
 {
     public function addform(){
-
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
                 $view = $this->getView('Samochod');
                 $view->addform();
 
