@@ -1,9 +1,7 @@
 
 
 <footer class="footer bg-dark pb-4">
-    <div class="container pt-4">
-        <span class="text-muted">Zaawansowane programowanie aplikacji internetowych - Dominik Kowalski </span>
-    </div>
+
 </footer>
 
 

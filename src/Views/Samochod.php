@@ -7,7 +7,11 @@ class Samochod extends View
 {
 
     public function addform(){
-        $this->render('SamochodAddForm');
+
+        // orginał $this->render('SamochodAddForm');
+
+        $this->render('ModelGetAll');
+
     }
 
 }

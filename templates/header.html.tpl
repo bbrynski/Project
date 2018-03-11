@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/DHL_logo.png"  height="50"  alt="">
+        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Logo_Volkswagen.png" height="70" alt="">
     </a>
 
 
@@ -28,6 +28,16 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
+
+
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form/">Testy strony model</a>
+
+
+
             </li>
 
         </ul>
