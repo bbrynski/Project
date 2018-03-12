@@ -8,7 +8,7 @@
             <!-- Zawartość zakładek -->
             <div class="tab-content">
                 <div class="tab-pane active" id="1przyciskjust">
-                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik/add" method="post">
+                    <form id="add_pracownik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik/add" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputImie">Imie</label>
