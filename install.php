@@ -152,31 +152,57 @@
     
 
 
-    /**
+            /**
         tworzenie tabeli klient
-    */
-    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableKlient.'` (
-		`'.DB\Klient::$id.'` INT NOT NULL AUTO_INCREMENT,
-		`'.DB\Klient::$imie.'` VARCHAR(30) NOT NULL,
-        `'.DB\Klient::$nazwisko.'` VARCHAR(30) NOT NULL,
-        `'.DB\Klient::$firma.'` VARCHAR(50) NULL,
-        `'.DB\Klient::$nip.'` VARCHAR(13) NULL,
-        `'.DB\Klient::$kod.'` VARCHAR(6) NOT NULL,
-        `'.DB\Klient::$miejscowosc.'` VARCHAR(50) NOT NULL,
-        `'.DB\Klient::$ulica.'` VARCHAR(50) NOT NULL,
-        `'.DB\Klient::$nr.'` VARCHAR(10) NOT NULL,
-        `'.DB\Klient::$email.'` VARCHAR(50) NOT NULL UNIQUE,
-        `'.DB\Klient::$telefon.'` VARCHAR(12) NOT NULL,
-		PRIMARY KEY (`'.DB\Klient::$id.'`)) ENGINE=InnoDB;';    
-       
-	try
-	{
-		$pdo->exec($query);
-	}
-	catch(PDOException $e)
-	{
-		echo \Config\Database\DBErrorName::$create_table.DB::$tableKlient;
-	}
+         */
+        $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableKlient.'` (
+                `'.DB\Klient::$id.'` INT NOT NULL AUTO_INCREMENT,
+                `'.DB\Klient::$imie.'` VARCHAR(30) NOT NULL,
+                `'.DB\Klient::$nazwisko.'` VARCHAR(30) NOT NULL,
+                `'.DB\Klient::$firma.'` VARCHAR(50) NULL,
+                `'.DB\Klient::$nip.'` VARCHAR(13) NULL,
+                `'.DB\Klient::$kod.'` VARCHAR(6) NOT NULL,
+                `'.DB\Klient::$miejscowosc.'` VARCHAR(50) NOT NULL,
+                `'.DB\Klient::$ulica.'` VARCHAR(50) NOT NULL,
+                `'.DB\Klient::$nr.'` VARCHAR(10) NOT NULL,
+                `'.DB\Klient::$email.'` VARCHAR(50) NOT NULL UNIQUE,
+                `'.DB\Klient::$telefon.'` VARCHAR(12) NOT NULL,
+                PRIMARY KEY (`'.DB\Klient::$id.'`)) ENGINE=InnoDB;';
+
+        try
+        {
+            $pdo->exec($query);
+        }
+        catch(PDOException $e)
+        {
+            echo \Config\Database\DBErrorName::$create_table.DB::$tableKlient;
+        }
+
+
+        /**
+        tworzenie tabeli pracownik
+         */
+        $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tablePracownik.'` (
+                `'.DB\Pracownik::$id.'` INT NOT NULL AUTO_INCREMENT,
+                `'.DB\Pracownik::$imie.'` VARCHAR(30) NOT NULL,
+                `'.DB\Pracownik::$nazwisko.'` VARCHAR(30) NOT NULL,
+                `'.DB\Pracownik::$numer.'` FLOAT NOT NULL,
+                `'.DB\Pracownik::$kod.'` VARCHAR(6) NOT NULL,
+                `'.DB\Pracownik::$miejscowosc.'` VARCHAR(50) NOT NULL,
+                `'.DB\Pracownik::$ulica.'` VARCHAR(50) NOT NULL,
+                `'.DB\Pracownik::$nr.'` VARCHAR(10) NOT NULL,
+                `'.DB\Pracownik::$telefon.'` VARCHAR(12) NOT NULL,
+                PRIMARY KEY (`'.DB\Pracownik::$id.'`)) ENGINE=InnoDB;';
+
+        try
+        {
+            $pdo->exec($query);
+        }
+        catch(PDOException $e)
+        {
+            echo \Config\Database\DBErrorName::$create_table.DB::$tablePracownik;
+        }
+
     /**
     *  Tworzenie tabeli silnik
     */

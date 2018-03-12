@@ -79,7 +79,7 @@
 
                 $stmt->bindValue(':imie', $imie, PDO::PARAM_STR);
                 $stmt->bindValue(':nazwisko', $nazwisko, PDO::PARAM_STR); 
-                $stmt->bindValue(':firma', $numer, PDO::PARAM_STR);
+                $stmt->bindValue(':numer', $numer, PDO::PARAM_STR);
                 $stmt->bindValue(':kod', $kod, PDO::PARAM_STR);
                 $stmt->bindValue(':miejscowosc', $miejscowosc, PDO::PARAM_STR); 
                 $stmt->bindValue(':ulica', $ulica, PDO::PARAM_STR); 
