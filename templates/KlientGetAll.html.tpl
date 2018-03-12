@@ -23,14 +23,7 @@
                 {if $klienci|@count === 0}
                     <b>Brak klientów w bazie!</b><br/><br/>
                 {else}
-
-
-
-
-                    <h1>{$smarty.session.prawo}</h1>
-
-
-
+                    
                     <table id="data" class="display table table-hover">
                         <thead>
                         <tr>

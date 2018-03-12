@@ -23,6 +23,10 @@ RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
 RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
 
+#Pracownik
+RewriteRule ^Pracownik/?$ index.php?controller=Pracownik [L]
+RewriteRule ^Pracownik/add-form/?$ index.php?controller=Pracownik&action=addform [L]
+RewriteRule ^Pracownik/add/?$ index.php?controller=Pracownik&action=add [L]
 
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html

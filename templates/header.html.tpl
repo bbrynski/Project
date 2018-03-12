@@ -28,8 +28,10 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
+            </li>
 
-
+            <li class="nav-item">
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik/add-form">Pracownicy</a>
             </li>
 
 
