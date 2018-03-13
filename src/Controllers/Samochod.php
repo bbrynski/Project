@@ -20,12 +20,15 @@ class Samochod extends Controller
         $accessController->islogin();
 
         $model = $this->getModel('Samochod');
+
+        if(!empty($_FILES['Foto']['tmp_name']) && file_exists($_FILES['Foto']['tmp_name'])){}
+
         $data = $model->add($_POST['nazwaModel'], $_POST['cena'], $_POST['Id_Silnik'], $_POST['Id_Skrzynia'], $_POST['Id_Naped'], $_POST['pojemnosc'], $_POST['MaxMoc'], $_POST['Id_Lakier'], $_POST['LakierNadwozia'],$_FILES['Foto']['tmp_name']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
-       // $this->redirect('Klient');
+        $this->redirect('Klient');
     }
 
     public function getOne($id){

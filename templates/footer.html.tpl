@@ -23,11 +23,15 @@
 
 <!-- Walidacja -->
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/jquery.validate.min.js"></script>
+<script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/additional-methods.min.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_klient.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_klient_2.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_klient_3.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_model.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_pracownik.js"></script>
+
+
+
 
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_res.js"></script>
 
