@@ -1,27 +1,36 @@
 $(document).ready(function() {
 
     $.validator.addMethod('cenaformat', function (value, element) {
-        return /^\d{2,3}(\ \d{3})?$/.test(value);
+        return /^\d{5,6}?$/.test(value);
     }, 'Podany format jest nieprawidłowy');
 
     $.validator.addMethod('pojemnoscformat', function (value, element) {
         return /^\d{1}(\.\d{1})?$/.test(value);
     }, 'Podany format jest nieprawidłowy');
 
-
     $('#addModel').validate({
         rules: {
             //atrybut name: {reguły}
             nazwaModel: {
-
                 required: true,
                 minlength: 3,
                 maxlength: 40
-
             },
             cena: {
                 required: true,
                 cenaformat:true
+            },
+            Id_Skrzynia: {
+                required: true
+            },
+            Id_Naped: {
+                required: true
+            },
+            Id_Silnik: {
+                required: true
+            },
+            LakierNadwozia: {
+                required: true
             },
             pojemnosc: {
                 required: true,
@@ -30,6 +39,10 @@ $(document).ready(function() {
             MaxMoc: {
                 required: true,
                 maxlength: 3
+            },
+            zdjecie:{
+                required: true,
+                extension: "jpg,jpeg,png"
             }
         },
 
@@ -47,6 +60,13 @@ $(document).ready(function() {
                 required: 'Pole wymagane'
             },
             cena:{
+                required: 'Pole wymagane'
+            },
+            zdjecie:{
+                required: 'Pole wymagane',
+                extension: 'Plik musi być w odpowiednim formacie'
+            },
+            LakierNadwozia:{
                 required: 'Pole wymagane'
             }
         },

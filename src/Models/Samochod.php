@@ -20,9 +20,7 @@ class Samochod extends Model
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
-
         $image=base64_encode(file_get_contents(addslashes($img)));
-
         $data = array();
         try	{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableModel.'`
@@ -40,7 +38,6 @@ class Samochod extends Model
                     `'.\Config\Database\DBConfig\Model::$LakierNadwozia.'`
                     
                 ) VALUES (:nazwaModel, :cena,:Id_Silnik,:Id_Skrzynia,:Id_Naped,:pojemnosc,:MaxMoc,:Foto, :Id_Wyposazenie,:Id_Lakier,:LakierNadwozia)');
-
             $stmt->bindValue(':nazwaModel', $nazwaModel, PDO::PARAM_STR);
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':Id_Silnik', $silnik, PDO::PARAM_INT);
@@ -52,9 +49,7 @@ class Samochod extends Model
             $stmt->bindValue(':Id_Wyposazenie', "standard", PDO::PARAM_STR);
             $stmt->bindValue(':Id_Lakier', $kolor, PDO::PARAM_INT);
             $stmt->bindValue(':LakierNadwozia', $typLakier, PDO::PARAM_STR);
-
             $result = $stmt->execute();
-
             if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$noadd;
             else
