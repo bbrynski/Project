@@ -11,6 +11,28 @@ use \PDO;
 
 class Samochod extends Model
 {
+    public function getAll(){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        $data = array();
+        $data['samochody'] = array();
+        try	{
+            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'`');
+            $samochody = $stmt->fetchAll();
+            $stmt->closeCursor();
+            if($samochody && !empty($samochody))
+                $data['samochody'] = $samochody;
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
+
     public function add($nazwaModel, $cena,$silnik,$skrzynia,$naped,$pojemnosc,$moc,$kolor,$typLakier,$img){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;

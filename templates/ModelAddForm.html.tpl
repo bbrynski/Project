@@ -31,7 +31,7 @@
             <label for="name">Maksymalna Moc:</label><input type="text" class="form-control" name="MaxMoc" >
         </div>
         <div class="form-group">
-            <label for="name">Foto:</label><input type="file" class="form-control" name="zdjecie" >
+            <label for="name">Foto:</label><input type="file" class="form-control" name="Foto" >
         </div>
         <div class="form-group">
             <label for="name">Lakier</label>

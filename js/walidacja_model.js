@@ -39,10 +39,6 @@ $(document).ready(function() {
             MaxMoc: {
                 required: true,
                 maxlength: 3
-            },
-            zdjecie:{
-                required: true,
-                extension: "jpg,jpeg,png"
             }
         },
 
