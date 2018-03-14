@@ -20,6 +20,11 @@
         <h1 class="text-center">Passat</h1>
     </div>
 </div>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
+    </div>
+
 </div>
 
 

@@ -20,6 +20,7 @@ RewriteRule ^access/login/?$ index.php?controller=Access&action=login [L]
 RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 
 #Samochod
+RewriteRule ^Samochod/?$ index.php?controller=Samochod [L]
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
 RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
 

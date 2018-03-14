@@ -31,12 +31,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik/add-form">Pracownicy</a>
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form/">Testy strony model</a>
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Model</a>
 
 
 

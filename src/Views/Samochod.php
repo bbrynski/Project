@@ -6,6 +6,13 @@ namespace Views;
 class Samochod extends View
 {
 
+    public function getAll($data = null){
+
+        $this->render('ModelGetAll');
+    }
+
+
+
     public function addform(){
 
         $model_silnik = $this->getModel('Silnik');

@@ -4,6 +4,20 @@ namespace Controllers;
 
 class Samochod extends Controller
 {
+
+    public function getAll(){
+        $view = $this->getView('Samochod');
+        $data = null;
+        if(\Tools\Session::is('message'))
+            $data['message'] = \Tools\Session::get('message');
+        if(\Tools\Session::is('error'))
+            $data['error'] = \Tools\Session::get('error');
+        $view->getAll($data);
+        \Tools\Session::clear('message');
+        \Tools\Session::clear('error');
+    }
+
+
     public function addform(){
         $accessController = new \Controllers\Access();
         $accessController->islogin();

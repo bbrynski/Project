@@ -2,7 +2,7 @@
 namespace Config\Database\DBConfig;
 
 class Pracownik {
-    public static $id = 'Id_Klient';
+    public static $id = 'Id_Pracownik';
     public static $imie = 'Imie';
     public static $nazwisko = 'Nazwisko';
     public static $numer = 'numer';

@@ -3,7 +3,13 @@
 	
     class Klient extends Controller 
     {
+
+
 		public function getAll(){
+
+            $accessController = new \Controllers\Access();
+            $accessController->islogin();
+
 			$view = $this->getView('Klient');
             $data = null;
             if(\Tools\Session::is('message'))
