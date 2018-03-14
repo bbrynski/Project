@@ -11,7 +11,7 @@
 
 <div class="container-fluid mt-5">
 <!-- Zawartość kontenera -->
-<h2 class="text-center">Lista Kotłów</h2>
+<h2 class="text-center">Lista Pracowników</h2>
 {if isset($message)}
     <div class="alert alert-success" role="alert">{$message}</div>
 {/if}
@@ -55,7 +55,7 @@
 
 <!-- Wyśrodkowanie -->
 <div class="d-flex justify-content-center">
-    <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Kociol/add-form">+</a>
+    <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik/add-form">+</a>
 </div>
 
 </div>
