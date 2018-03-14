@@ -43,7 +43,7 @@ class Samochod extends Controller
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
 
-        $this->redirect('Klient');
+        $this->redirect('Samochod');
     }
 
     public function getOne($id){

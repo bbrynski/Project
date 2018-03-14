@@ -2,7 +2,7 @@
 
 <div class="container-fluid mt-5">
     <!-- Zawartość kontenera -->
-    <h2 class="text-center">Dostępne Modele Samochodów</h2>
+    <h2 class="text-center mb-5">Dostępne Modele Samochodów</h2>
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
     {/if}
@@ -24,8 +24,9 @@
                     <div class="col-sm-6">
                         <img src="data:image;base64,{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$samochod['nazwaModel']}</h1>
-
-
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">Wybierz</a>
+                        </div>
                     </div>
 
 

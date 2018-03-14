@@ -25,6 +25,16 @@
         usunięcie starych tabel    
     */
 
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tablePracownik.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tablePracownik;
+    }
+
     
     $query = 'DROP TABLE IF EXISTS `'.DB::$tableUzytkownik.'`';
 	try
