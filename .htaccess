@@ -24,10 +24,26 @@ RewriteRule ^Samochod/?$ index.php?controller=Samochod [L]
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
 RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
 
+#Silnik
+RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
+
+#Skrzynia
+RewriteRule ^Skrzynia/(\d+)/?$ index.php?controller=Skrzynia&action=getAll&id=$1 [L]
+
+#Lakier
+RewriteRule ^Lakier/(\d+)/?$ index.php?controller=Lakier&action=getAll&id=$1 [L]
+
+#Podsumowanie
+RewriteRule ^Podsumowanie/(\d+)/?$ index.php?controller=Podsumowanie&action=getAll&id=$1 [L]
+
 #Pracownik
 RewriteRule ^Pracownik/?$ index.php?controller=Pracownik [L]
 RewriteRule ^Pracownik/add-form/?$ index.php?controller=Pracownik&action=addform [L]
 RewriteRule ^Pracownik/add/?$ index.php?controller=Pracownik&action=add [L]
+
+RewriteRule ^Pracownik/edit/(\d+)/?$ index.php?controller=Pracownik&action=editform&id=$1 [L]
+RewriteRule ^Pracownik/update/?$ index.php?controller=Pracownik&action=update [L]
+RewriteRule ^Pracownik/delete/(\d+)/?$ index.php?controller=Pracownik&action=delete&id=$1 [L]
 
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html

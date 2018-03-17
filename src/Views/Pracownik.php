@@ -34,7 +34,7 @@
             $this->set('id', $pracownik[\Config\Database\DBConfig\Pracownik::$id]);
             $this->set('imie', $pracownik[\Config\Database\DBConfig\Pracownik::$imie]);
             $this->set('nazwisko', $pracownik[\Config\Database\DBConfig\Pracownik::$nazwisko]);
-            $this->set('firma', $pracownik[\Config\Database\DBConfig\Pracownik::$numer]);
+            $this->set('numer', $pracownik[\Config\Database\DBConfig\Pracownik::$numer]);
             $this->set('kod', $pracownik[\Config\Database\DBConfig\Pracownik::$kod]);
             $this->set('miejscowosc', $pracownik[\Config\Database\DBConfig\Pracownik::$miejscowosc]);
             $this->set('ulica', $pracownik[\Config\Database\DBConfig\Pracownik::$ulica]);

@@ -1,28 +1,32 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5" xmlns="http://www.w3.org/1999/html">
     <!-- Zawartość kontenera -->
-    <h2 class="text-center mb-5">Dostępne Modele Samochodów</h2>
+    <h2 class="text-center mb-5">Dostępne Silniki</h2>
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
     {/if}
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    {if isset($samochody)}
-        {if $samochody|@count === 0}
+    {if isset($silniki)}
+        {if $silniki|@count === 0}
             <div class="alert alert-primary" role="alert">
-                Brak Modeli Samochodów w Bazie
+                Brak Silników w Bazie
             </div>
         {else}
 
     <div class="container">
+
+
+            <h1 {$smarty.session.idmodel}</h1>
+
             <div class="row">
-                {foreach $samochody as $key => $samochod}
+                {foreach $silniki as $key => $silnik}
+
                     <div class="col-sm-6">
-                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/{$samochod['IdModel']}">
-                        <img src="data:image;base64,{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
-                        <h1 class="text-center">{$samochod['nazwaModel']}</h1>
+                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$silnik['IdSilnik']}">
+                            <h2 class="text-center">{$silnik['TypSilnika']}</h2>
                         </a>
                     </div>
                 {/foreach}

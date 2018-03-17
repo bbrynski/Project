@@ -33,7 +33,7 @@
                 return $data;
             }
             $data = array();
-            $data['pracownik'] = array();
+            $data['Pracownik'] = array();
             try	{
                 $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tablePracownik.'` WHERE  `'.\Config\Database\DBConfig\Pracownik::$id.'`=:id');
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -127,7 +127,7 @@
             return $data;
 		}  
         
-        public function update($id, $imie, $nazwisko, $firma, $nip, $kod, $miejscowosc, $ulica, $nr, $email, $telefon){
+        public function update($id, $imie, $nazwisko, $numer, $kod, $miejscowosc, $ulica, $nr, $telefon){
             $data = array();
             if($this->pdo === null){
                 $data['error'] = \Config\Database\DBErrorName::$connection;
@@ -141,13 +141,11 @@
                 $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tablePracownik.'` SET
                     `'.\Config\Database\DBConfig\Pracownik::$imie.'`=:imie,
                     `'.\Config\Database\DBConfig\Pracownik::$nazwisko.'`=:nazwisko,
-                    `'.\Config\Database\DBConfig\Pracownik::$firma.'`=:firma,
-                    `'.\Config\Database\DBConfig\Pracownik::$nip.'`=:nip,
+                    `'.\Config\Database\DBConfig\Pracownik::$numer.'`=:numer,
                     `'.\Config\Database\DBConfig\Pracownik::$kod.'`=:kod,
                     `'.\Config\Database\DBConfig\Pracownik::$miejscowosc.'`=:miejscowosc,
                     `'.\Config\Database\DBConfig\Pracownik::$ulica.'`=:ulica,
                     `'.\Config\Database\DBConfig\Pracownik::$nr.'`=:nr,
-                    `'.\Config\Database\DBConfig\Pracownik::$email.'`=:email,
                     `'.\Config\Database\DBConfig\Pracownik::$telefon.'`=:telefon
                 
                  WHERE `'.\Config\Database\DBConfig\Pracownik::$id.'`=:id');
@@ -155,13 +153,11 @@
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
                 $stmt->bindValue(':imie', $imie, PDO::PARAM_STR);
                 $stmt->bindValue(':nazwisko', $nazwisko, PDO::PARAM_STR); 
-                $stmt->bindValue(':firma', $firma, PDO::PARAM_STR); 
-                $stmt->bindValue(':nip', $nip, PDO::PARAM_STR); 
+                $stmt->bindValue(':numer', $numer, PDO::PARAM_STR);
                 $stmt->bindValue(':kod', $kod, PDO::PARAM_STR);
                 $stmt->bindValue(':miejscowosc', $miejscowosc, PDO::PARAM_STR); 
                 $stmt->bindValue(':ulica', $ulica, PDO::PARAM_STR); 
-                $stmt->bindValue(':nr', $nr, PDO::PARAM_STR); 
-                $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+                $stmt->bindValue(':nr', $nr, PDO::PARAM_STR);
                 $stmt->bindValue(':telefon', $telefon, PDO::PARAM_STR); 
                 
                 $result = $stmt->execute(); 

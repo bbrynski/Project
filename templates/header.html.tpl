@@ -2,7 +2,7 @@
 <html lang="pl">
 
 <head>
-    <title>Dominik Kowalski</title>
+    <title>Volkswagen</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/bootstrap.min.css" rel="stylesheet">
