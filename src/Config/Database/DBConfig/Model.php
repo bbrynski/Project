@@ -9,8 +9,6 @@
         public static $Id_Silnik = 'IdSilnik';
         public static $Id_Skrzynia = 'IdSkrzynia';
         public static $Id_Naped = 'IdNaped';
-        public static $pojemnosc = 'Pojemnosc';
-        public static $MaxMoc = 'MaksymalnaMoc';
         public static $Foto = 'Foto';
         public static $Id_Wyposazenie = 'IdWyposazenie';
         public static $Id_Lakier = 'IdLakier';

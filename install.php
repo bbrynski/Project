@@ -219,6 +219,8 @@
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableSilnik.'` (
 		    `'.DB\Silnik::$id.'` INT NOT NULL AUTO_INCREMENT,
 		    `'.DB\Silnik::$TypSilnika.'` VARCHAR(40) NOT NULL,
+		    `'.DB\Silnik::$pojemnosc.'` FLOAT NOT NULL,
+            `'.DB\Silnik::$MaxMoc.'` INT NOT NULL,
 		    PRIMARY KEY (`'.DB\Silnik::$id.'`)) ENGINE=InnoDB;';
 
     try
@@ -351,8 +353,6 @@
                 `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
-                `'.DB\Model::$pojemnosc.'` FLOAT NOT NULL,
-                `'.DB\Model::$MaxMoc.'` INT NOT NULL,
                 `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
                 `'.DB\Model::$Id_Wyposazenie.'` VARCHAR(20) NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
@@ -1125,19 +1125,35 @@
     }
 
     $silniki = array();
-    $silniki[] = 'benzynowy';
-    $silniki[] = 'Diesel';
-    $silniki[] = 'Elektryczny';
-    $silniki[] = 'Hybrydowy';
+    $silniki[] = array(
+            'TypSilnika' => 'benzynowy',
+            'Pojemnosc' => '1.6',
+            'MaksymalnaMoc' => '133');
+    $silniki[] = array(
+            'TypSilnika' => 'Diesel',
+            'Pojemnosc' => '2.0',
+            'MaksymalnaMoc' => '170');
+    $silniki[] = array(
+            'TypSilnika' => 'Elektryczny',
+            'Pojemnosc' => '1.2',
+            'MaksymalnaMoc' => '120');
+    $silniki[] = array(
+            'TypSilnika' => 'Hybrydowy',
+            'Pojemnosc' => '1.5',
+            'MaksymalnaMoc' => '150');
 try
 {
     $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableSilnik.'` (
-                `'.DB\Silnik::$TypSilnika.'`
+                `'.DB\Silnik::$TypSilnika.'`,
+                `'.DB\Silnik::$pojemnosc.'`,
+                `'.DB\Silnik::$MaxMoc.'`
                 ) 
-                 VALUES(:TypSilnika)');
+                 VALUES(:TypSilnika, :pojemnosc , :MaxMoc)');
     foreach($silniki as $silnik)
     {
-        $stmt -> bindValue(':TypSilnika', $silnik, PDO::PARAM_STR);
+        $stmt -> bindValue(':TypSilnika', $silnik['TypSilnika'], PDO::PARAM_STR);
+        $stmt -> bindValue(':pojemnosc', $silnik['Pojemnosc'], PDO::PARAM_STR);
+        $stmt -> bindValue(':MaxMoc', $silnik['MaksymalnaMoc'], PDO::PARAM_INT);
         $stmt -> execute();
     }
 }
@@ -1313,8 +1329,6 @@ $modele[] = array(
     'IdSilnik' => '1',
     'IdSkrzynia' => '1',
     'IdNaped' => '2',
-    'Pojemnosc' => '1.6',
-    'MaksymalnaMoc' => '133',
     'Foto' => '',
     'IdWyposazenie' => 'standard',
     'IdLakier' => '2',
@@ -1325,8 +1339,6 @@ $modele[] = array(
     'IdSilnik' => '2',
     'IdSkrzynia' => '3',
     'IdNaped' => '2',
-    'Pojemnosc' => '2.0',
-    'MaksymalnaMoc' => '170',
     'Foto' => '',
     'IdWyposazenie' => 'standard',
     'IdLakier' => '1',
@@ -1341,13 +1353,11 @@ try
             `'.DB\Model::$Id_Silnik.'`,
             `'.DB\Model::$Id_Skrzynia.'`, 
             `'.DB\Model::$Id_Naped.'`,
-            `'.DB\Model::$pojemnosc.'`,
-            `'.DB\Model::$MaxMoc.'`,
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
             `'.DB\Model::$LakierNadwozia.'`) 
-            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :pojemnosc, :MaxMoc, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia)');
+            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia)');
     foreach($modele as $model)
     {
         $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
@@ -1355,8 +1365,6 @@ try
         $stmt -> bindValue(':Id_Silnik', $model['IdSilnik'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Skrzynia', $model['IdSkrzynia'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Naped', $model['IdNaped'], PDO::PARAM_INT);
-        $stmt -> bindValue(':pojemnosc', $model['Pojemnosc'], PDO::PARAM_STR);
-        $stmt -> bindValue(':MaxMoc', $model['MaksymalnaMoc'], PDO::PARAM_INT);
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
