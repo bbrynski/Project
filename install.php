@@ -25,6 +25,16 @@
         usunięcie starych tabel    
     */
 
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableZamowienie;
+    }
+
     $query = 'DROP TABLE IF EXISTS `'.DB::$tablePracownik.'`';
     try
     {
@@ -370,6 +380,31 @@
     catch(PDOException $e)
     {
         echo \Config\Database\DBErrorName::$create_table.DB::$tableModel;
+    }
+
+    /**
+    * Stworzenie tabeli zamowienie
+    */
+
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableZamowienie.'` (
+		            `'.DB\Zamowienie::$id.'` INT NOT NULL AUTO_INCREMENT,
+                    `'.DB\Zamowienie::$Id_Klient.'` INT NOT NULL,
+                    `'.DB\Zamowienie::$Id_Pracownik.'` INT NOT NULL,
+                    `'.DB\Zamowienie::$Id_Model.'` INT NOT NULL,
+                    `'.DB\Zamowienie::$DataZamow.'` DATE NOT NULL,
+                    `'.DB\Zamowienie::$NumerZamowienia.'` VARCHAR(6) NOT NULL,
+		            PRIMARY KEY (`'.DB\Zamowienie::$id.'`),
+		            FOREIGN KEY (`'.DB\Zamowienie::$Id_Klient.'`) REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
+		            FOREIGN KEY ('.DB\Zamowienie::$Id_Pracownik.') REFERENCES '.DB::$tablePracownik.'('.DB\Pracownik::$id.'),
+		            FOREIGN KEY ('.DB\Zamowienie::$Id_Model.') REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableZamowienie;
     }
 
 
@@ -1077,6 +1112,58 @@
 		echo \Config\Database\DBErrorName::$noadd;
 	}
 
+	$pracownicy = array();
+$pracownicy[] = array(
+    'imie' => 'Michal',
+    'nazwisko' => 'Pazdan',
+    'numer' => '25',
+    'kod' => '98-235',
+    'miejscowosc' => 'Blaszki',
+    'ulica' => 'Pulaskiego',
+    'nr' => '25',
+    'telefon' => '325-692-014');
+$pracownicy[] = array(
+    'imie' => 'Marta',
+    'nazwisko' => 'Lubinska',
+    'numer' => '20',
+    'kod' => '98-200',
+    'miejscowosc' => 'Sieradz',
+    'ulica' => 'Korwina',
+    'nr' => '25b',
+    'telefon' => '500-125-900');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tablePracownik.'` (
+                `'.DB\Pracownik::$imie.'`,
+                `'.DB\Pracownik::$nazwisko.'`,
+                `'.DB\Pracownik::$numer.'`,
+                `'.DB\Pracownik::$kod.'`,
+                `'.DB\Pracownik::$miejscowosc.'`,
+                `'.DB\Pracownik::$ulica.'`,
+                `'.DB\Pracownik::$nr.'`,
+                `'.DB\Pracownik::$telefon.'`
+                ) 
+                 VALUES(:imie , :nazwisko, :numer, :kod, :miejscowosc, :ulica, :nr, :telefon)');
+    foreach($pracownicy as $pracownik)
+    {
+        $stmt -> bindValue(':imie', $pracownik['imie'], PDO::PARAM_STR);
+        $stmt -> bindValue(':nazwisko', $pracownik['nazwisko'], PDO::PARAM_STR);
+        $stmt -> bindValue(':numer', $pracownik['numer'], PDO::PARAM_STR);
+        $stmt -> bindValue(':kod', $pracownik['kod'], PDO::PARAM_STR);
+        $stmt -> bindValue(':miejscowosc', $pracownik['miejscowosc'], PDO::PARAM_STR);
+        $stmt -> bindValue(':ulica', $pracownik['ulica'], PDO::PARAM_STR);
+        $stmt -> bindValue(':nr', $pracownik['nr'], PDO::PARAM_STR);
+        $stmt -> bindValue(':telefon', $pracownik['telefon'], PDO::PARAM_STR);
+
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
     
 
 
@@ -1369,6 +1456,45 @@ try
         $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
         $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
+$zamowienia = array();
+$zamowienia[] = array(
+    'Id_Klient' => '1',
+    'Id_Pracownik' => '1',
+    'IdModel' => '1',
+    'Data_Zamowienia' => '2018-03-19',
+    'NumerZamowienia' => 'pBlW9e');
+$zamowienia[] = array(
+    'Id_Klient' => '3',
+    'Id_Pracownik' => '2',
+    'IdModel' => '2',
+    'Data_Zamowienia' => '2018-02-27',
+    'NumerZamowienia' => 'E52dRk');
+
+//`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableZamowienie.'` (
+            `'.DB\Zamowienie::$Id_Klient.'`,
+            `'.DB\Zamowienie::$Id_Pracownik.'`,
+            `'.DB\Zamowienie::$Id_Model.'`,
+            `'.DB\Zamowienie::$DataZamow.'`, 
+            `'.DB\Zamowienie::$NumerZamowienia.'`) 
+            VALUES(:Id_Klient, :Id_Pracownik, :Id_Model, :DataZamow, :NumerZamowienia)');
+    foreach($zamowienia as $zamowienie)
+    {
+        $stmt -> bindValue(':Id_Klient', $zamowienie['Id_Klient'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Pracownik', $zamowienie['Id_Pracownik'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Id_Model', $zamowienie['IdModel'], PDO::PARAM_INT);
+        $stmt -> bindValue(':DataZamow', $zamowienie['Data_Zamowienia'], PDO::PARAM_STR);
+        $stmt -> bindValue(':NumerZamowienia', $zamowienie['NumerZamowienia'], PDO::PARAM_STR);
         $stmt -> execute();
     }
 }
