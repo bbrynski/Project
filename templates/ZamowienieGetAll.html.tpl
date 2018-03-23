@@ -27,7 +27,7 @@
                     <table id="data" class="display table table-hover">
                         <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>id</th>
                             <th>Id_Klient</th>
                             <th>Id_Pracownik</th>
                             <th>Id_Model</th>
@@ -43,7 +43,6 @@
                                 <td>{$zamowienie['Id_Klient']}</td>
                                 <td>{$zamowienie['Imie']} </td>
                                 <td>{$zamowienie['Nazwisko']}</td>
-
 
                                 <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/edit/{$klient['Id_Klient']}">Edytuj</a></td>
                                 <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/delete/{$klient['Id_Klient']}">Usuń</a></td> </tr>

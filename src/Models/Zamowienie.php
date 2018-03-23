@@ -32,6 +32,7 @@ class Zamowienie extends Model{
                 $data['zamowienia']=$zamowienia;
             else
                 $data['zamowienia'] = array();
+
         }//try
         catch(\PDOException $e) {
             $data['error']=\Config\Database\DBErrorName::$query;
@@ -93,7 +94,7 @@ class Zamowienie extends Model{
             $stmt->bindValue(':Id_Pracownik', $Id_Pracownik, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
-            $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_STR);
+            $stmt->bindValue(':NumerZamowienia', rand()*1000, PDO::PARAM_STR);
             $result = $stmt->execute();
             if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$noadd;
