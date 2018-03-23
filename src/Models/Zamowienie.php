@@ -1,0 +1,185 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Damian
+ * Date: 2018-03-20
+ * Time: 11:00
+ */
+
+namespace Models;
+use \PDO;
+
+class Zamowienie extends Model{
+    public function getAll(){
+        if($this->pdo ===null){
+            $data['error']= \config\Database\DBErrorName::$connection;
+            return $data;
+        }//if
+        $data['zamowienia']=array();
+        try{
+            $stmt = $this->pdo->query('SELECT * FROM '.\Config\Database\DBConfig::$tableZamowienie.' 
+				INNER JOIN '.\Config\Database\DBConfig::$tableKlient.'
+				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Klient. ' = ' .\Config\Database\DBConfig::$tableKlient.'.'.\Config\Database\DBConfig\Klient::$id.'
+				INNER JOIN '.\Config\Database\DBConfig::$tablePracownik.'
+				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik. ' = ' .\Config\Database\DBConfig::$tablePracownik.'.'.\Config\Database\DBConfig\Pracownik::$id.'
+            INNER JOIN '.\Config\Database\DBConfig::$tableModel.'
+				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Model. ' = ' .\Config\Database\DBConfig::$tableModel.'.'.\Config\Database\DBConfig\Model::$id);
+
+
+            $zamowienia = $stmt->fetchAll();
+            $stmt->closeCursor();
+            if($zamowienia && ! empty($zamowienia))
+                $data['zamowienia']=$zamowienia;
+            else
+                $data['zamowienia'] = array();
+        }//try
+        catch(\PDOException $e) {
+            $data['error']=\Config\Database\DBErrorName::$query;
+        }//catch
+        return $data;
+    }//getAll
+
+    public function getOne($id){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null){
+            $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            return $data;
+        }
+        $data = array();
+        $data['zamowienia'] = array();
+        try	{
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienie');
+            $stmt->bindValue(':IdZamowienie', $id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            $zamowienia = $stmt->fetchAll();
+            $stmt->closeCursor();
+            if($zamowienia && !empty($zamowienia))
+                $data['zamowienia'] = $zamowienia;
+            else
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+        }
+        catch(\PDOException $e)	{
+            var_dump($e);
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+    public function add($id,$Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$NumerZamowienia){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null||$Id_Klient === null||$Id_Pracownik === null||$Id_Model === null||$DataZamow === null||$NumerZamowienia === null){
+            $data['error'] = \Config\Database\DBErrorName::$empty;
+            return $data;
+        }
+        $data = array();
+        try	{
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableZamowienie.'` (
+                `' .\Config\Database\DBConfig\Zamowienie::$id.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$Id_Model.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$DataZamow.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`
+                ) VALUES (:id,:Id_Klient,:Id_Pracownik,:Id_Model,:DataZamow,:NumerZamowienia)');
+
+            $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+            $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
+            $stmt->bindValue(':Id_Pracownik', $Id_Pracownik, PDO::PARAM_INT);
+            $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
+            $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
+            $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_STR);
+            $result = $stmt->execute();
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$noadd;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$addok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }     //add
+
+
+    public function delete($id){
+        $data = array();
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null){
+            $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            return $data;
+        }
+        try	{
+            $stmt = $this->pdo->prepare('DELETE FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienia');
+            $stmt->bindValue(':IdZamowienie', $id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$deleteok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
+    public function update($id,$Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$NumerZamowienia){
+        $data = array();
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null || $Id_Klient === null|| $Id_Pracownik === null|| $Id_Model === null|| $DataZamow === null|| $NumerZamowienia === null){
+            $data['error'] = \Config\Database\DBErrorName::$empty;
+            return $data;
+        }
+        try	{
+            $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableZamowienie.'` SET
+                `'.\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`=:Id_Klient, 
+                `'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`=:Id_Pracownik,
+                `'.\Config\Database\DBConfig\Zamowienie::$Id_Model.'`=:Id_Model,
+                `'.\Config\Database\DBConfig\Zamowienie::$DataZamow.'`=:DataZamow, 
+                `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia
+                
+                
+                WHERE `'
+                .\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienie');
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
+            $stmt->bindValue(':Id_Pracownik', $Id_Pracownik, PDO::PARAM_INT);
+            $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
+            $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
+            $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_STR);
+
+
+            $result = $stmt->execute();
+            $rows = $stmt->rowCount();
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$updateok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
+
+}
+
+

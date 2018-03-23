@@ -24,6 +24,11 @@ RewriteRule ^Samochod/?$ index.php?controller=Samochod [L]
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
 RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
 
+#Zamowienie
+RewriteRule ^Zamowienie/?$ index.php?controller=Zamowienie [L]
+RewriteRule ^Zamowienie/add-form/?$ index.php?controller=Zamowienie&action=addform [L]
+RewriteRule ^Zamowienie/wstaw/?$ index.php?controller=Zamowienie&action=add [L]
+
 #Silnik
 RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
 
