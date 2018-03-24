@@ -47,8 +47,8 @@
                                 <td>{$zamowienie['Data_Zamowienia']} </td>
                                 <td>{$zamowienie['NumerZamowienia']} </td>
 
-                                <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/edit/{$klient['Id_Klient']}">Edytuj</a></td>
-                                <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/delete/{$klient['Id_Klient']}">Usuń</a></td> </tr>
+                                <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/edit-form/{$zamowienie['IdZamowienie']}">Edytuj</a></td>
+                                <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/delete/{$zamowienie['IdZamowienie']}">Usuń</a></td> </tr>
                         {/foreach}
                         </tbody>
                     </table>
