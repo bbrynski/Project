@@ -9,7 +9,7 @@
 
             {if $smarty.session.prawo == 'admin'}
 
-            <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/add-form">Dodaj Klienta</a>
+            <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
 
             {/if}
 
@@ -27,7 +27,7 @@
                     <table id="data" class="display table table-hover">
                         <thead>
                         <tr>
-                            <th>id</th>
+                            <th>IdZamowienia</th>
                             <th>Id_Klient</th>
                             <th>Id_Pracownik</th>
                             <th>Id_Model</th>
@@ -40,9 +40,12 @@
                         <tbody>
                         {foreach $zamowienia as $key => $zamowienie}
                             <tr>
+                                <td>{$zamowienie['IdZamowienie']} </td>
                                 <td>{$zamowienie['Id_Klient']}</td>
-                                <td>{$zamowienie['Imie']} </td>
-                                <td>{$zamowienie['Nazwisko']}</td>
+                                <td>{$zamowienie['Id_Pracownik']} </td>
+                                <td>{$zamowienie['IdModel']} </td>
+                                <td>{$zamowienie['Data_Zamowienia']} </td>
+                                <td>{$zamowienie['NumerZamowienia']} </td>
 
                                 <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/edit/{$klient['Id_Klient']}">Edytuj</a></td>
                                 <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/delete/{$klient['Id_Klient']}">Usuń</a></td> </tr>
