@@ -282,6 +282,7 @@
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableLakier.'` (
 		                `'.DB\Lakier::$id.'` INT NOT NULL AUTO_INCREMENT,
 		                `'.DB\Lakier::$nazwaLakier.'` VARCHAR(40) NOT NULL,
+		                `'.DB\Lakier::$Foto.'` MEDIUMBLOB NULL,
 		                PRIMARY KEY (`'.DB\Lakier::$id.'`)) ENGINE=InnoDB;';
 
     try
@@ -364,14 +365,15 @@
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
                 `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
-                `'.DB\Model::$Id_Wyposazenie.'` VARCHAR(20) NOT NULL,
+                `'.DB\Model::$Id_Wyposazenie.'` INT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Naped.') REFERENCES '.DB::$tableNaped.'('.DB\Naped::$id.'),
-		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.')) ENGINE=InnoDB;';
+		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.')) ENGINE=InnoDB;';
 
     try
     {
@@ -1294,22 +1296,36 @@ catch(PDOException $e)
     }
 
     $lakiery = array();
-    $lakiery[] = 'Czarny';
-    $lakiery[] = 'Srebrny';
-    $lakiery[] = 'Bialy';
-    $lakiery[] = 'Czerwony';
-    $lakiery[] = 'Zolty';
-    $lakiery[] = 'Niebieski';
+    $lakiery[] = array(
+            'nazwaLakier' => 'Czarny',
+            'Foto' => '');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Srebrny',
+            'Foto' => '');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Bialy',
+            'Foto' => '');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Czerwony',
+            'Foto' => '');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Zolty',
+            'Foto' => '');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Niebieski',
+            'Foto' => '');
 
     try
     {
         $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableLakier.'` (
-                                `'.DB\Lakier::$nazwaLakier.'`
+                                `'.DB\Lakier::$nazwaLakier.'`,
+                                `'.DB\Lakier::$Foto.'`
                                 ) 
-                                VALUES(:nazwaLakier)');
+                                VALUES(:nazwaLakier, :Foto)');
         foreach($lakiery as $lakier)
         {
-            $stmt -> bindValue(':nazwaLakier', $lakier, PDO::PARAM_STR);
+            $stmt -> bindValue(':nazwaLakier', $lakier['nazwaLakier'], PDO::PARAM_STR);
+            $stmt -> bindValue(':Foto', $lakier['Foto'], PDO::PARAM_STR);
             $stmt -> execute();
         }
     }
@@ -1417,7 +1433,7 @@ $modele[] = array(
     'IdSkrzynia' => '1',
     'IdNaped' => '2',
     'Foto' => '',
-    'IdWyposazenie' => 'standard',
+    'IdWyposazenie' => '1',
     'IdLakier' => '2',
     'LakierNadwozia' => 'Metallic');
 $modele[] = array(
@@ -1427,7 +1443,7 @@ $modele[] = array(
     'IdSkrzynia' => '3',
     'IdNaped' => '2',
     'Foto' => '',
-    'IdWyposazenie' => 'standard',
+    'IdWyposazenie' => '2',
     'IdLakier' => '1',
     'LakierNadwozia' => 'Matowy');
 
@@ -1453,7 +1469,7 @@ try
         $stmt -> bindValue(':Id_Skrzynia', $model['IdSkrzynia'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Naped', $model['IdNaped'], PDO::PARAM_INT);
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
-        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
         $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
         $stmt -> execute();

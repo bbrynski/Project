@@ -5,4 +5,5 @@
     class Lakier{
         public static $id = 'IdLakier';
         public static $nazwaLakier = 'nazwaLakier';
+        public static $Foto = 'Foto';
     }
