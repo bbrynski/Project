@@ -99,7 +99,7 @@ class Samochod extends Model
             $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableModel.'` WHERE  `'.\Config\Database\DBConfig\Model::$id.'`=:id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $result = $stmt->execute();
-            $samochody = $stmt->fetchAll();
+            $samochody = $stmt->fetch();
             $stmt->closeCursor();
             if($samochody && !empty($samochody))
                 $data['samochody'] = $samochody;

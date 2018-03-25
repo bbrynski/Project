@@ -54,6 +54,11 @@ class Samochod extends Controller
         $view->getone($data['samochody'][0]);
     }
 
+    public function DostepnoscModelu($id){
+        $model=$this->getModel('Samochod');
+        $data=$model->getOne($id);
+        echo json_encode($data['samochody']);
+    }
 
 
 }

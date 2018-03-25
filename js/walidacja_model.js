@@ -8,6 +8,25 @@ $(document).ready(function() {
         return /^\d{1}(\.\d{1})?$/.test(value);
     }, 'Podany format jest nieprawidłowy');
 
+    $(".DostepnoscModelu").on('click', function(e)
+    {
+        var path = $(this).attr('href');
+        $.ajax({
+            type     : "GET",
+            url      : path,
+            dataType: "json",
+            //pomyślne wysłanie danych do skryptu
+            success : function(r) {
+                var div = $('#szczegoly').empty();
+                div.append("Model: ");
+                div.append(r.nazwaModel);
+                div.append("<br/>Dostepne sztuki: ");
+                div.append(r.DostepneSztuki);
+            }
+        });
+        return false;
+    });
+
     $('#addModel').validate({
         rules: {
             //atrybut name: {reguły}

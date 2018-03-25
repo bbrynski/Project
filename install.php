@@ -368,6 +368,7 @@
                 `'.DB\Model::$Id_Wyposazenie.'` INT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
+                `'.DB\Model::$DostepneSztuki.'` INT NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
@@ -1435,7 +1436,8 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '1',
     'IdLakier' => '2',
-    'LakierNadwozia' => 'Metallic');
+    'LakierNadwozia' => 'Metallic',
+    'DostepneSztuki' => '4');
 $modele[] = array(
     'nazwaModel' => 'Jetta',
     'Cena' => '350000',
@@ -1445,7 +1447,8 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '2',
     'IdLakier' => '1',
-    'LakierNadwozia' => 'Matowy');
+    'LakierNadwozia' => 'Matowy',
+    'DostepneSztuki' => '2');
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1459,8 +1462,9 @@ try
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
-            `'.DB\Model::$LakierNadwozia.'`) 
-            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia)');
+            `'.DB\Model::$LakierNadwozia.'`,
+            `'.DB\Model::$DostepneSztuki.'`) 
+            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia, :DostepneSztuki)');
     foreach($modele as $model)
     {
         $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
@@ -1472,6 +1476,7 @@ try
         $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
         $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
+        $stmt -> bindValue(':DostepneSztuki', $model['DostepneSztuki'], PDO::PARAM_STR);
         $stmt -> execute();
     }
 }

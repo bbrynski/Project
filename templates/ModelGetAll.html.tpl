@@ -24,9 +24,13 @@
                         <img src="data:image;base64,{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$samochod['nazwaModel']}</h1>
                         </a>
+                        <a type="button" class="btn btn-info DostepnoscModelu" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/Dostepnosc/{$samochod['IdModel']}">Dostepnosc</a>
                     </div>
                 {/foreach}
             </div>
+        <div class="col-md-3" id="szczegoly">
+
+        </div>
 
         {/if}
     {/if}
