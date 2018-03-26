@@ -31,6 +31,10 @@ RewriteRule ^Zamowienie/add-form/?$ index.php?controller=Zamowienie&action=addfo
 RewriteRule ^Zamowienie/edit-form/(\d+)/?$ index.php?controller=Zamowienie&action=editform&id=$1 [L]
 RewriteRule ^Zamowienie/wstaw/?$ index.php?controller=Zamowienie&action=add [L]
 RewriteRule ^Zamowienie/delete/(\d+)/?$ index.php?controller=Zamowienie&action=delete&id=$1 [L]
+
+RewriteRule ^Zamowienie/status/?$ index.php?controller=Zamowienie&action=sprawdzStatus [L]
+RewriteRule ^Zamowienie/sprawdz/?$ index.php?controller=Zamowienie&action=sprawdz [L]
+
 #Silnik
 RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
 

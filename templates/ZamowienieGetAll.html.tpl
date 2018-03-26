@@ -7,6 +7,7 @@
                 <h2>Lista Zamowien</h2>
             </div>
 
+
             {if $smarty.session.prawo == 'admin'}
 
             <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
@@ -24,7 +25,7 @@
                     <b>Brak zamowien w bazie!</b><br/><br/>
                 {else}
                     
-                    <table id="data" class="display table table-hover">
+                    <table id="data" class=" table table-hover">
                         <thead>
                         <tr>
                             <th>IdZamowienia</th>
@@ -33,6 +34,7 @@
                             <th>Id_Model</th>
                             <th>DataZamow</th>
                             <th>NumerZamowienia</th>
+                            <th>Status</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -46,6 +48,7 @@
                                 <td>{$zamowienie['IdModel']} </td>
                                 <td>{$zamowienie['Data_Zamowienia']} </td>
                                 <td>{$zamowienie['NumerZamowienia']} </td>
+                                <td>{$zamowienie['Statuszamowienia']} </td>
 
                                 <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/edit-form/{$zamowienie['IdZamowienie']}">Edytuj</a></td>
                                 <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/delete/{$zamowienie['IdZamowienie']}">Usuń</a></td> </tr>

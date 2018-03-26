@@ -52,8 +52,8 @@ class Zamowienie extends Model{
         $data = array();
         $data['zamowienia'] = array();
         try	{
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienie');
-            $stmt->bindValue(':IdZamowienie', $id, PDO::PARAM_INT);
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienie');
+            $stmt->bindValue(':NumerZamowienia', $id, PDO::PARAM_INT);
             $result = $stmt->execute();
             $zamowienia = $stmt->fetchAll();
             $stmt->closeCursor();
@@ -69,32 +69,32 @@ class Zamowienie extends Model{
         return $data;
     }
 
-    public function add($id,$Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$NumerZamowienia){
+    public function add($Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$StatusZamowienia){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id === null||$Id_Klient === null||$Id_Pracownik === null||$Id_Model === null||$DataZamow === null||$NumerZamowienia === null){
+        if($Id_Klient === null||$Id_Pracownik === null||$Id_Model === null||$DataZamow === null || $StatusZamowienia === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
         $data = array();
         try	{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableZamowienie.'` (
-                `' .\Config\Database\DBConfig\Zamowienie::$id.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$Id_Model.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$DataZamow.'`,
-                `' .\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`
-                ) VALUES (:id,:Id_Klient,:Id_Pracownik,:Id_Model,:DataZamow,:NumerZamowienia)');
+                `' .\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`
+                ) VALUES (:Id_Klient,:Id_Pracownik,:Id_Model,:DataZamow,:NumerZamowienia, :StatusZamowienia)');
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_STR);
             $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Pracownik', $Id_Pracownik, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
             $stmt->bindValue(':NumerZamowienia', rand()*1000, PDO::PARAM_STR);
+            $stmt->bindValue(':StatusZamowienia', $StatusZamowienia, PDO::PARAM_STR);
             $result = $stmt->execute();
             if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$noadd;
@@ -136,13 +136,13 @@ class Zamowienie extends Model{
     }
 
 
-    public function update($id,$Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$NumerZamowienia){
+    public function update($id,$Id_Klient,$Id_Pracownik,$Id_Model,$DataZamow,$NumerZamowienia, $StatusZamowienia){
         $data = array();
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id === null || $Id_Klient === null|| $Id_Pracownik === null|| $Id_Model === null|| $DataZamow === null|| $NumerZamowienia === null){
+        if($id === null || $Id_Klient === null|| $Id_Pracownik === null|| $Id_Model === null|| $DataZamow === null|| $NumerZamowienia === null || $StatusZamowienia === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
@@ -153,6 +153,7 @@ class Zamowienie extends Model{
                 `'.\Config\Database\DBConfig\Zamowienie::$Id_Model.'`=:Id_Model,
                 `'.\Config\Database\DBConfig\Zamowienie::$DataZamow.'`=:DataZamow, 
                 `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia
+                `'.\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`=:StatusZamowienia
                 
                 
                 WHERE `'
@@ -163,6 +164,7 @@ class Zamowienie extends Model{
             $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
             $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_STR);
+            $stmt->bindValue(':StatusZamowienia', $StatusZamowienia, PDO::PARAM_STR);
 
 
             $result = $stmt->execute();

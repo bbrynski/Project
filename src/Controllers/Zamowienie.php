@@ -23,19 +23,34 @@ class Zamowienie extends Controller{
             \Tools\Session::clear('error');
         }
 
+        public function sprawdzStatus(){
+            $view =$this ->getView('Zamowienie');
+            $view->Status();
+        }
+
+    public function sprawdz(){
+        $model = $this->getModel('Zamowienie');
+        $data = $model->getOne($_POST['NumerZamowienia']);
+        echo json_encode($data['zamowienia']);
+
+    }
+
         public function addform(){
             $view = $this->getView('Zamowienie');
             $view->addform();
         }
-        public function add(){
+
+        public function add()
+        {
             $model = $this->getModel('Zamowienie');
-            $data = $model->add($_POST['Id_Klient'],$_POST['Id_Pracownik'],$_POST['IdModel'],$_POST['Data_Zamowienia'],$_POST['NumerZamowienia']);
+            $data = $model->add($_POST['Id_Klient'],$_POST['Id_Pracownik'],$_POST['IdModel'],$_POST['Data_Zamowienia'], $_POST['Statuszamowienia']);
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);
             if(isset($data['message']))
                 \Tools\Session::set('message', $data['message']);
-            $this->redirect('Zamowienie/');
+            $this->redirect('Zamowienie');
         }
+
     public function delete($id){
 
         $model=$this->getModel('Zamowienie');
@@ -60,7 +75,7 @@ class Zamowienie extends Controller{
     public function update(){
 
         $model=$this->getModel('Zamowienie');
-        $data = $model->update($_POST['id'], $_POST['Id_Klient'],$_POST['Id_Pracownik'],$_POST['IdModel'],$_POST['Data_Zamowienia'],$_POST['NumerZamowienia']);
+        $data = $model->update($_POST['id'], $_POST['Id_Klient'],$_POST['Id_Pracownik'],$_POST['IdModel'],$_POST['Data_Zamowienia'],$_POST['NumerZamowienia'], $_POST['Statuszamowienia']);
 
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);

@@ -9,7 +9,7 @@
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/jquery-ui.min.css" rel="stylesheet">
     <!-- DataTables Table plug-in for jQuery -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/moje.css" rel="stylesheet">
+    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/footer.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,18 +34,18 @@
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Model</a>
-
-
-
             </li>
-
 
             <li class="nav-item">
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie">Zamowienie</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/status">Sprawdź Zamówienie</a>
+            </li>
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

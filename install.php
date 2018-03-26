@@ -396,6 +396,7 @@
                     `'.DB\Zamowienie::$Id_Model.'` INT NOT NULL,
                     `'.DB\Zamowienie::$DataZamow.'` DATE NOT NULL,
                     `'.DB\Zamowienie::$NumerZamowienia.'` VARCHAR(6) NOT NULL,
+                    `'.DB\Zamowienie::$StatusZamowienia.'` VARCHAR(30) NOT NULL,
 		            PRIMARY KEY (`'.DB\Zamowienie::$id.'`),
 		            FOREIGN KEY (`'.DB\Zamowienie::$Id_Klient.'`) REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
 		            FOREIGN KEY ('.DB\Zamowienie::$Id_Pracownik.') REFERENCES '.DB::$tablePracownik.'('.DB\Pracownik::$id.'),
@@ -1491,13 +1492,15 @@ $zamowienia[] = array(
     'Id_Pracownik' => '1',
     'IdModel' => '1',
     'Data_Zamowienia' => '2018-03-19',
-    'NumerZamowienia' => 'pBlW9e');
+    'NumerZamowienia' => 'pBlW9e',
+    'StatusZamowienia' => 'W realizacji');
 $zamowienia[] = array(
     'Id_Klient' => '3',
     'Id_Pracownik' => '2',
     'IdModel' => '2',
     'Data_Zamowienia' => '2018-02-27',
-    'NumerZamowienia' => 'E52dRk');
+    'NumerZamowienia' => 'E52dRk',
+    'StatusZamowienia' => 'Gotowe do odbioru');
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1507,8 +1510,11 @@ try
             `'.DB\Zamowienie::$Id_Pracownik.'`,
             `'.DB\Zamowienie::$Id_Model.'`,
             `'.DB\Zamowienie::$DataZamow.'`, 
-            `'.DB\Zamowienie::$NumerZamowienia.'`) 
-            VALUES(:Id_Klient, :Id_Pracownik, :Id_Model, :DataZamow, :NumerZamowienia)');
+            `'.DB\Zamowienie::$NumerZamowienia.'`,
+            `'.DB\Zamowienie::$StatusZamowienia.'`
+            
+            ) 
+            VALUES(:Id_Klient, :Id_Pracownik, :Id_Model, :DataZamow, :NumerZamowienia, :StatusZamowienia)');
     foreach($zamowienia as $zamowienie)
     {
         $stmt -> bindValue(':Id_Klient', $zamowienie['Id_Klient'], PDO::PARAM_INT);
@@ -1516,6 +1522,7 @@ try
         $stmt -> bindValue(':Id_Model', $zamowienie['IdModel'], PDO::PARAM_INT);
         $stmt -> bindValue(':DataZamow', $zamowienie['Data_Zamowienia'], PDO::PARAM_STR);
         $stmt -> bindValue(':NumerZamowienia', $zamowienie['NumerZamowienia'], PDO::PARAM_STR);
+        $stmt -> bindValue(':StatusZamowienia', $zamowienie['StatusZamowienia'], PDO::PARAM_STR);
         $stmt -> execute();
     }
 }

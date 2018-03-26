@@ -24,12 +24,17 @@ class Zamowienie extends View
         $this->set('customScript', array('datatables.min','table'));
         $this->render('ZamowienieGetAll');
     }
+
+    public function Status()
+    {
+        $this->render('ZamowienieStatus');
+    }
+
     public function addform(){
-        $this->set('customScript','Zamowienie');
 
         $model = $this->getModel('Klient');
         $data = $model->getAll();
-        $this->set('$klienci', $data['klienci']);
+        $this->set('klienci', $data['klienci']);
 
         $model = $this->getModel('Pracownik');
         $data = $model->getAll();
@@ -38,6 +43,7 @@ class Zamowienie extends View
         $model = $this->getModel('Samochod');
         $data = $model->getAll();
         $this->set('samochody', $data['samochody']);
+
         $this->render('ZamowienieAddForm');
     }
 
@@ -48,6 +54,7 @@ class Zamowienie extends View
         $this->set('Id_Model', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$Id_Model]);
         $this->set('DataZamow', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$DataZamow]);
         $this->set('NumerZamowienia', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$NumerZamowienia]);
+        $this->set('StatusZamowienia', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$StatusZamowienia]);
 
 
         $this->set('$klienci', $this->getModel('Klient')->getAll()['$klienci']);
