@@ -91,5 +91,19 @@ class Session{
         session_regenerate_id();
         self::set(self::$startTime, time());
         self::set(self::$reqCount, 1);
+
+
+        self::clear('idmodel');
+        self::clear('idnaped');
+        self::clear('nazwaModel');
+        self::clear('idlakier');
+        self::clear('idsilnik');
+        self::clear('idreflektory');
+        self::clear('idkola');
+        self::clear('idskrzynia');
+        self::clear('kompletOpon');
+        self::clear('podgrzewanaSzybaPrzod');
+        self::clear('podgrzewaneSiedzenia');
+        self::clear('skorzanaTapicerka');
     }
 }

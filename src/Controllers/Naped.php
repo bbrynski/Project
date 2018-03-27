@@ -2,19 +2,14 @@
 namespace Controllers;
 
 
-class Silnik extends Controller
+class Naped extends Controller
 {
 
     public function getAll($id){
 
-        \Tools\Session::set('idmodel', $id);
-        $model = $this->getModel('Samochod');
-        $data = $model->getOne($id);
-        $data=$data['samochody'];
+        \Tools\Session::set('idlakier', $id);
 
-        \Tools\Session::set('nazwaModel', $data[0]['nazwaModel']);
-
-        $view = $this->getView('Silnik');
+        $view = $this->getView('Naped');
         $data = null;
         if(\Tools\Session::is('message'))
             $data['message'] = \Tools\Session::get('message');

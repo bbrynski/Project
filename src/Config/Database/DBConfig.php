@@ -24,4 +24,5 @@
         public static $tableWyposazenie = 'Wyposazenie';
         public static $tableModel = 'Model';
         public static $tableZamowienie = 'Zamowienie';
+        public static $tableKonfigurator = 'Konfigurator';
 	}
