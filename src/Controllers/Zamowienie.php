@@ -28,12 +28,13 @@ class Zamowienie extends Controller{
             $view->Status();
         }
 
-    public function sprawdz(){
-        $model = $this->getModel('Zamowienie');
-        $data = $model->getOne($_POST['NumerZamowienia']);
-        echo json_encode($data['zamowienia']);
+        public function sprawdz(){
 
-    }
+            $view = $this->getView('Zamowienie');
+            $view->sprawdz($_POST['NumerZamowienia']);
+
+
+        }
 
         public function addform(){
             $view = $this->getView('Zamowienie');
@@ -83,8 +84,4 @@ class Zamowienie extends Controller{
             \Tools\Session::set('message', $data['message']);
         $this->redirect('Zamowienie/');
     }
-
-}
-{
-
 }

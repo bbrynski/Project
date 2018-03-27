@@ -40,30 +40,31 @@ class Zamowienie extends Model{
         return $data;
     }//getAll
 
-    public function getOne($id){
+    public function getOne($NumerZamowienia){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id === null){
+        if($NumerZamowienia === null){
             $data['error'] = \Config\Database\DBErrorName::$nomatch;
             return $data;
         }
+
+
         $data = array();
-        $data['zamowienia'] = array();
+        $data['Zamowienie'] = array();
         try	{
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienie');
-            $stmt->bindValue(':NumerZamowienia', $id, PDO::PARAM_INT);
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia');
+            $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_INT);
             $result = $stmt->execute();
-            $zamowienia = $stmt->fetchAll();
+            $Zamowienie = $stmt->fetchAll();
             $stmt->closeCursor();
-            if($zamowienia && !empty($zamowienia))
-                $data['zamowienia'] = $zamowienia;
+            if($Zamowienie && !empty($Zamowienie))
+                $data['Zamowienie'] = $Zamowienie;
             else
                 $data['error'] = \Config\Database\DBErrorName::$nomatch;
         }
         catch(\PDOException $e)	{
-            var_dump($e);
             $data['error'] = \Config\Database\DBErrorName::$query;
         }
         return $data;

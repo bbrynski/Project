@@ -30,6 +30,17 @@ class Zamowienie extends View
         $this->render('ZamowienieStatus');
     }
 
+    public function sprawdz($numer)
+    {
+        $model = $this->getModel('Zamowienie');
+        $data = $model->getOne($numer);
+        $this->set('Zamowienie', $data['Zamowienie']);
+
+
+        $this->render('Status');
+    }
+
+
     public function addform(){
 
         $model = $this->getModel('Klient');
