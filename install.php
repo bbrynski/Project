@@ -381,12 +381,10 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
                 `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
-                `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
-                `'.DB\Model::$Id_Wyposazenie.'` INT NULL,
+                `'.DB\Model::$Foto.'` VARCHAR(30) NULL,
+                `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
-                `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
-                `'.DB\Model::$DostepneSztuki.'` INT NOT NULL,
-
+                `'.DB\Model::$Konfigurator.'` BIT NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
@@ -1475,12 +1473,8 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '1',
     'IdLakier' => '2',
-<<<<<<< HEAD
-    'LakierNadwozia' => 'Metallic',
-    'DostepneSztuki' => '4');
-=======
     'Konfigurator' => 0);
->>>>>>> Konfigurator
+
 $modele[] = array(
     'nazwaModel' => 'Jetta',
     'Cena' => '350000',
@@ -1490,12 +1484,7 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '2',
     'IdLakier' => '1',
-<<<<<<< HEAD
-    'LakierNadwozia' => 'Matowy',
-    'DostepneSztuki' => '2');
-=======
     'Konfigurator' => 0);
->>>>>>> Konfigurator
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1509,14 +1498,8 @@ try
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
-<<<<<<< HEAD
-            `'.DB\Model::$LakierNadwozia.'`,
-            `'.DB\Model::$DostepneSztuki.'`) 
-            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia, :DostepneSztuki)');
-=======
             `'.DB\Model::$Konfigurator.'`) 
             VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :Konfigurator)');
->>>>>>> Konfigurator
     foreach($modele as $model)
     {
         $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
@@ -1527,12 +1510,8 @@ try
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
-<<<<<<< HEAD
-        $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
-        $stmt -> bindValue(':DostepneSztuki', $model['DostepneSztuki'], PDO::PARAM_STR);
-=======
         $stmt -> bindValue(':Konfigurator', $model['Konfigurator'], PDO::PARAM_INT);
->>>>>>> Konfigurator
+
         $stmt -> execute();
     }
 }

@@ -53,10 +53,31 @@ class Samochod extends Controller
         $view->getone($data['samochody'][0]);
     }
 
+    public function addConfig(){
+        $model = $this->getModel('Samochod');
+        $data = $model->addConfig();
 
-    public function DostepnoscModelu($id){
-        $model=$this->getModel('Samochod');
-        $data=$model->getOne($id);
-        echo json_encode($data['samochody']);
+        \Tools\Session::clear('idmodel');
+        \Tools\Session::clear('idnaped');
+        \Tools\Session::clear('nazwaModel');
+        \Tools\Session::clear('idlakier');
+        \Tools\Session::clear('idsilnik');
+        \Tools\Session::clear('idreflektory');
+        \Tools\Session::clear('idkola');
+        \Tools\Session::clear('idskrzynia');
+        \Tools\Session::clear('kompletOpon');
+        \Tools\Session::clear('podgrzewanaSzybaPrzod');
+        \Tools\Session::clear('podgrzewaneSiedzenia');
+        \Tools\Session::clear('skorzanaTapicerka');
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+
+
+        $this->redirect('Samochod');
     }
+
 }
