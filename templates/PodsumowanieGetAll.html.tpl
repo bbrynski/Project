@@ -3,14 +3,21 @@
 <div class="container-fluid mt-5" xmlns="http://www.w3.org/1999/html">
     <!-- Zawartość kontenera -->
     <h2 class="text-center mb-5">Podsumowanie</h2>
-    {if isset($message)}
-        <div class="alert alert-success" role="alert">{$message}</div>
-    {/if}
+
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
 
+    {if isset($smarty.session.numer)}
+        <div class="alert alert-success" role="alert">
+            Numer konfiguracji:{$smarty.session.numer}
+
+        </div>
+
+
+
+{else}
     <!-- Wyśrodkowanie -->
     <div class="d-flex justify-content-center">
 
@@ -72,14 +79,15 @@
 
 
     </div>
-
+    {/if}
 
     <div class="d-flex justify-content-center">
         <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Nowa Konfiguracja</a>
+        {if !isset($smarty.session.numer)}
         <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/zapisz">Zapisz konfiguracje</a>
+        {/if}
     </div>
 
-</div>
 </div>
 
 

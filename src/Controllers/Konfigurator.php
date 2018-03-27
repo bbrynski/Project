@@ -13,6 +13,8 @@ class Konfigurator extends Controller
         $model_konfigurator= $this->getModel('Konfigurator');
         $data = $model_konfigurator->addConfig($id);
 
+        \Tools\Session::set('numer', $data['numer']);
+
         \Tools\Session::clear('idmodel');
         \Tools\Session::clear('idnaped');
         \Tools\Session::clear('nazwaModel');
@@ -33,7 +35,7 @@ class Konfigurator extends Controller
 
 
 
-        $this->redirect('Samochod');
+        $this->redirect('Podsumowanie');
     }
 
     public function loadConfig($numer){

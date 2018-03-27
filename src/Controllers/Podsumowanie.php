@@ -7,8 +7,10 @@ class Podsumowanie extends Controller
 
     public function getAll(){
 
-        \Tools\Session::set('idreflektory', $_POST['reflektory']);
-        \Tools\Session::set('idkola', $_POST['kola']);
+        if(isset($_POST['reflektory']) && isset($_POST['kola'])) {
+            \Tools\Session::set('idreflektory', $_POST['reflektory']);
+            \Tools\Session::set('idkola', $_POST['kola']);
+        }
 
         $wyposazenie = array();
         if(!empty($_POST['opcje'])) {

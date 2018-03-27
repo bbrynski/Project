@@ -105,5 +105,6 @@ class Session{
         self::clear('podgrzewanaSzybaPrzod');
         self::clear('podgrzewaneSiedzenia');
         self::clear('skorzanaTapicerka');
+        self::clear('numer');
     }
 }

@@ -40,6 +40,9 @@ class Konfigurator extends Model
             }
         }
 
+        //numer konfiguratora
+        $data['numer']=$numer;
+
 
         try	{
 

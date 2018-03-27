@@ -20,7 +20,7 @@ class Reflektor extends View
         $data = $model->getAllForSelect();
         $this->set('kola', $data);
 
-        d($data);
+
         if(isset($data['error']))
             $this->set('error', $data['error']);
         $this->render('ReflektoryGetAll');

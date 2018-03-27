@@ -11,7 +11,6 @@ class Podsumowanie extends View
         if(isset($data['error']))
             $this->set('error',$data['error']);
 
-        d($data);
         $this->set('opcje', $data['wyposazenie']);
 
         $model = $this->getModel('Samochod');
@@ -43,7 +42,6 @@ class Podsumowanie extends View
         $data = $model->getAll();
         $this->set('napedy', $data['napedy']);
 
-        d( \Tools\Session::get('nazwaModel'));
 
         if(isset($data['error']))
             $this->set('error', $data['error']);

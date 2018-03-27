@@ -17,7 +17,6 @@ class Silnik extends View
         $model = $this->getModel('Samochod');
         $data = $model->getOne(1);
         $data=$data['samochody'];
-        d($data[0]['nazwaModel']);
         if(isset($data['error']))
             $this->set('error', $data['error']);
         $this->render('SilnikGetAll');

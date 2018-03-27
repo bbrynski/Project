@@ -13,7 +13,7 @@ class Skrzynia extends View
         $model = $this->getModel('Skrzynia');
         $data = $model->getAll();
         $this->set('skrzynie', $data['skrzynie']);
-        d($data);
+
         if(isset($data['error']))
             $this->set('error', $data['error']);
         $this->render('SkrzyniaGetAll');
