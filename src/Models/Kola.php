@@ -9,7 +9,7 @@
 namespace Models;
 
 
-class Silnik extends Model
+class Kola extends Model
 {
     public function getAll(){
         if($this->pdo === null){
@@ -17,13 +17,13 @@ class Silnik extends Model
             return $data;
         }
         $data = array();
-        $data['silniki'] = array();
+        $data['kola'] = array();
         try	{
-            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableSilnik.'`');
-            $silniki = $stmt->fetchAll();
+            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableKola.'`');
+            $kola = $stmt->fetchAll();
             $stmt->closeCursor();
-            if($silniki && !empty($silniki))
-                $data['silniki'] = $silniki;
+            if($kola && !empty($kola))
+                $data['kola'] = $kola;
         }
         catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;
@@ -32,16 +32,13 @@ class Silnik extends Model
     }
     public function getAllForSelect(){
         $data = $this->getAll();
-        $silniki = array();
+        $kola = array();
 
         if(!isset($data['error']))
+            foreach($data['kola'] as $kolo)
+                $kola[$kolo[\Config\Database\DBConfig\Kola::$id]] = $kolo[\Config\Database\DBConfig\Kola::$wartosc];
 
-            foreach($data['silniki'] as $silnik) {
-                $opcja = $silnik['TypSilnika'] . ' ' . $silnik['Pojemnosc'] . 'L ' . $silnik['MaksymalnaMoc'] . 'KM';
-                $silniki[$silnik[\Config\Database\DBConfig\Silnik::$id]] = $opcja;
-            }
-
-        return $silniki;
+        return $kola;
     }
 
 }

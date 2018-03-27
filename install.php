@@ -25,7 +25,18 @@
         usunięcie starych tabel    
     */
 
-    $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableKonfigurator.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableReflektory;
+}
+
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
     try
     {
         $pdo->exec($query);
@@ -146,6 +157,11 @@
     {
         echo \Config\Database\DBErrorName::$delete_table.DB::$tableReflektory;
     }
+
+
+
+
+
 
 
 
@@ -335,10 +351,10 @@
 		    `'.DB\Wyposazenie::$id.'` INT NOT NULL AUTO_INCREMENT,
             `'.DB\Wyposazenie::$Id_Kola.'` INT NOT NULL,
             `'.DB\Wyposazenie::$Id_Reflektory.'` INT NOT NULL,
-            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$SkorzanaTapicerka.'` BIT NOT NULL,
+            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'` BIT NULL,
+            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'` BIT NULL,
+            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'` BIT NULL,
+            `'.DB\Wyposazenie::$SkorzanaTapicerka.'` BIT NULL,
 		    PRIMARY KEY (`'.DB\Wyposazenie::$id.'`),
 		    FOREIGN KEY (`'.DB\Wyposazenie::$Id_Kola.'`) REFERENCES '.DB::$tableKola.'('.DB\Kola::$id.'),
 		    FOREIGN KEY ('.DB\Wyposazenie::$Id_Reflektory.') REFERENCES '.DB::$tableReflektory.'('.DB\Reflektory::$id.')) ENGINE=InnoDB;';
@@ -356,11 +372,12 @@
     tworzenie tabeli model
      * Id_wyposazenie -> zmienione na varchar BB
      * FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.'),
+     * 25.03 dodanie pola konfigurator i klucz obcy do wyposazenia BB
     */
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableModel.'` (
 		        `'.DB\Model::$id.'` INT NOT NULL AUTO_INCREMENT,
                 `'.DB\Model::$nazwaModel.'` VARCHAR(40) NOT NULL,
-                `'.DB\Model::$cena.'` INT NOT NULL,
+                `'.DB\Model::$cena.'` INT NULL,
                 `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
@@ -369,6 +386,7 @@
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
                 `'.DB\Model::$DostepneSztuki.'` INT NOT NULL,
+
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
@@ -411,6 +429,26 @@
         echo \Config\Database\DBErrorName::$create_table.DB::$tableZamowienie;
     }
 
+
+
+/*
+    tworzenie tabeli konfigurator
+*/
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableKonfigurator.'` (
+		`'.DB\Konfigurator::$id.'` INT NOT NULL AUTO_INCREMENT,
+        `'.DB\Konfigurator::$idModel.'` INT NOT NULL,
+        `'.DB\Konfigurator::$numer.'` VARCHAR(5) NOT NULL,
+		PRIMARY KEY (`'.DB\Konfigurator::$id.'`),
+		FOREIGN KEY (`'.DB\Konfigurator::$idModel.'`) REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')
+		) ENGINE=InnoDB;';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableKonfigurator;
+}
 
 
 
@@ -1389,17 +1427,17 @@ catch(PDOException $e)
     $wyposazenia[] = array(
             'IdKola' => '4',
             'IdReflektory' => '4',
-            'PodgrzewaneSiedzenia' => '1',
-            'PodgrzewanaSzybaPrzod' => '0',
-            'DodatkowyKompletOpon' => '0',
-            'SkorzanaTapicerka' => '1');
+            'PodgrzewaneSiedzenia' => 0,
+            'PodgrzewanaSzybaPrzod' => 0,
+            'DodatkowyKompletOpon' => 0,
+            'SkorzanaTapicerka' => 0);
     $wyposazenia[] = array(
         'IdKola' => '6',
         'IdReflektory' => '5',
-        'PodgrzewaneSiedzenia' => '1',
-        'PodgrzewanaSzybaPrzod' => '1',
-        'DodatkowyKompletOpon' => '1',
-        'SkorzanaTapicerka' => '1');
+        'PodgrzewaneSiedzenia' => 0,
+        'PodgrzewanaSzybaPrzod' => 0,
+        'DodatkowyKompletOpon' => 0,
+        'SkorzanaTapicerka' => 0);
 
     try
     {
@@ -1437,8 +1475,12 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '1',
     'IdLakier' => '2',
+<<<<<<< HEAD
     'LakierNadwozia' => 'Metallic',
     'DostepneSztuki' => '4');
+=======
+    'Konfigurator' => 0);
+>>>>>>> Konfigurator
 $modele[] = array(
     'nazwaModel' => 'Jetta',
     'Cena' => '350000',
@@ -1448,8 +1490,12 @@ $modele[] = array(
     'Foto' => '',
     'IdWyposazenie' => '2',
     'IdLakier' => '1',
+<<<<<<< HEAD
     'LakierNadwozia' => 'Matowy',
     'DostepneSztuki' => '2');
+=======
+    'Konfigurator' => 0);
+>>>>>>> Konfigurator
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1463,9 +1509,14 @@ try
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
+<<<<<<< HEAD
             `'.DB\Model::$LakierNadwozia.'`,
             `'.DB\Model::$DostepneSztuki.'`) 
             VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia, :DostepneSztuki)');
+=======
+            `'.DB\Model::$Konfigurator.'`) 
+            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :Konfigurator)');
+>>>>>>> Konfigurator
     foreach($modele as $model)
     {
         $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
@@ -1476,8 +1527,12 @@ try
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
         $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
+<<<<<<< HEAD
         $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
         $stmt -> bindValue(':DostepneSztuki', $model['DostepneSztuki'], PDO::PARAM_STR);
+=======
+        $stmt -> bindValue(':Konfigurator', $model['Konfigurator'], PDO::PARAM_INT);
+>>>>>>> Konfigurator
         $stmt -> execute();
     }
 }
