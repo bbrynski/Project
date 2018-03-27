@@ -37,16 +37,16 @@ class Samochod extends Model
 
 
 
-    public function add($nazwaModel, $cena,$silnik,$skrzynia,$naped,$pojemnosc,$moc,$kolor,$typLakier,$img){
+    public function add($nazwaModel, $cena,$silnik,$skrzynia,$naped,$kolor,$img){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($nazwaModel==null && $cena==null && $silnik==null && $skrzynia==null && $naped==null && $pojemnosc==null && $moc==null && $kolor==null && $typLakier==null){
+        if($nazwaModel==null && $cena==null && $silnik==null && $skrzynia==null && $naped==null && $kolor==null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
-        $image=base64_encode(file_get_contents(addslashes($img)));
+        //$image=base64_encode(file_get_contents(addslashes($img)));
         $data = array();
         try	{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableModel.'`
@@ -56,25 +56,19 @@ class Samochod extends Model
                     `'.\Config\Database\DBConfig\Model::$Id_Silnik.'`,
                     `'.\Config\Database\DBConfig\Model::$Id_Skrzynia.'`,
                     `'.\Config\Database\DBConfig\Model::$Id_Naped.'`,
-                    `'.\Config\Database\DBConfig\Model::$pojemnosc.'`,
-                    `'.\Config\Database\DBConfig\Model::$MaxMoc.'`,
                     `'.\Config\Database\DBConfig\Model::$Foto.'`,
                     `'.\Config\Database\DBConfig\Model::$Id_Wyposazenie.'`,
-                    `'.\Config\Database\DBConfig\Model::$Id_Lakier.'`,
-                    `'.\Config\Database\DBConfig\Model::$LakierNadwozia.'`
+                    `'.\Config\Database\DBConfig\Model::$Id_Lakier.'`
                     
-                ) VALUES (:nazwaModel, :cena,:Id_Silnik,:Id_Skrzynia,:Id_Naped,:pojemnosc,:MaxMoc,:Foto, :Id_Wyposazenie,:Id_Lakier,:LakierNadwozia)');
+                ) VALUES (:nazwaModel, :cena,:Id_Silnik,:Id_Skrzynia,:Id_Naped,:Foto, :Id_Wyposazenie,:Id_Lakier)');
             $stmt->bindValue(':nazwaModel', $nazwaModel, PDO::PARAM_STR);
             $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
             $stmt->bindValue(':Id_Silnik', $silnik, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Skrzynia', $skrzynia, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Naped', $naped, PDO::PARAM_INT);
-            $stmt->bindValue(':pojemnosc', $pojemnosc, PDO::PARAM_STR);
-            $stmt->bindValue(':MaxMoc', $moc, PDO::PARAM_INT);
-            $stmt->bindValue(':Foto', $image, PDO::PARAM_STR);
-            $stmt->bindValue(':Id_Wyposazenie', "standard", PDO::PARAM_STR);
+            $stmt->bindValue(':Foto', $img, PDO::PARAM_STR);
+            $stmt->bindValue(':Id_Wyposazenie', 1, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Lakier', $kolor, PDO::PARAM_INT);
-            $stmt->bindValue(':LakierNadwozia', $typLakier, PDO::PARAM_STR);
             $result = $stmt->execute();
             if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$noadd;

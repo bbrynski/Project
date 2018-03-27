@@ -380,7 +380,7 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
                 `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
-                `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
+                `'.DB\Model::$Foto.'` VARCHAR(30) NULL,
                 `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$Konfigurator.'` BIT NOT NULL,

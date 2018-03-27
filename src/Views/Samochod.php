@@ -16,6 +16,9 @@ class Samochod extends View
         $this->set('samochody', $data['samochody']);
         if(isset($data['error']))
             $this->set('error', $data['error']);
+
+        $this->set('sciezka',\Config\Website\Config::$subdirimage);
+
         $this->render('ModelGetAll');
     }
 
@@ -33,12 +36,12 @@ class Samochod extends View
         $lakiery=$model_lakier->getAllForSelect();
         if(isset($_FILES['Foto']['name'])) {
             $zmienna = $_FILES['Foto']['name'];
-            d($zmienna);
         }
         $this->set('Silnik',$silniki);
         $this->set('Skrzynia',$skrzynie);
         $this->set('Naped',$napedy);
         $this->set('Lakier',$lakiery);
+
         $this->render('ModelAddForm');
     }
 

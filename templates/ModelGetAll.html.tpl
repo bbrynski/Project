@@ -21,7 +21,7 @@
                 {foreach $samochody as $key => $samochod}
                     <div class="col-sm-6">
                         <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/{$samochod['IdModel']}">
-                        <img src="data:image;base64,{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
+                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$samochod['nazwaModel']}</h1>
                         </a>
                     </div>
