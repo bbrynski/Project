@@ -1,5 +1,5 @@
 {include file="header.html.tpl"}
-<div class="container">
+<div class="container mb-5">
     <div class="page-header m-4">
         <h1>Dodaj Zamówienie</h1>
     </div>

@@ -2,7 +2,7 @@
 
 <div class="container-fluid mt-5">
     <!-- Zawartość kontenera -->
-    <h2 class="text-center mb-5">Status Zamówienia Samochodów</h2>
+    <h2 class="text-center mb-5">Status Zamówienia Samochodu</h2>
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
     {/if}
@@ -16,13 +16,19 @@
     </div>
     {else}
 
-    <div class="container">
-
+        <!-- Wyśrodkowanie -->
+        <div class="d-flex justify-content-center">
             {foreach $Zamowienie as $key => $zam}
                 <div class="col-sm-6">
-                        <h1 class="text-center">{$zam['Statuszamowienia']}</h1>
+                    <center><h2>Numer: {$numer}</h2></center>
+                    <h2 class="text-center">{$zam['Statuszamowienia']}</h2>
                 </div>
             {/foreach}
+        </div>
+
+
+
+
 
 
 
@@ -30,7 +36,7 @@
         {/if}
 
 
-    </div>
+
 </div>
 
 

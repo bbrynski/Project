@@ -36,6 +36,8 @@ class Zamowienie extends View
         $data = $model->getOne($numer);
         $this->set('Zamowienie', $data['Zamowienie']);
 
+        $this->set('numer', $numer);
+
 
         $this->render('Status');
     }
