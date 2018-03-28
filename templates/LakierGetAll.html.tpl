@@ -24,6 +24,7 @@
                     <div class="col-sm-6">
                         <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Naped/{$lakier['IdLakier']}">
                             <h2 class="text-center">{$lakier['nazwaLakier']}</h2>
+                            <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$lakier['Foto']}" class="img-fluid" alt="Responsive image"></center>
                         </a>
                     </div>
                 {/foreach}
@@ -33,7 +34,7 @@
     {/if}
 
     <!-- Wyśrodkowanie -->
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center m-5">
         <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
     </div>
 

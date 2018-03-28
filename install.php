@@ -298,7 +298,7 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableLakier.'` (
 		                `'.DB\Lakier::$id.'` INT NOT NULL AUTO_INCREMENT,
 		                `'.DB\Lakier::$nazwaLakier.'` VARCHAR(40) NOT NULL,
-		                `'.DB\Lakier::$Foto.'` MEDIUMBLOB NULL,
+		                `'.DB\Lakier::$Foto.'` VARCHAR(30) NULL,
 		                PRIMARY KEY (`'.DB\Lakier::$id.'`)) ENGINE=InnoDB;';
 
     try
@@ -1336,22 +1336,26 @@ catch(PDOException $e)
     $lakiery = array();
     $lakiery[] = array(
             'nazwaLakier' => 'Czarny',
-            'Foto' => '');
+            'Foto' => 'Czarny.jpg');
     $lakiery[] = array(
             'nazwaLakier' => 'Srebrny',
-            'Foto' => '');
+            'Foto' => 'Srebrny.jpg');
     $lakiery[] = array(
-            'nazwaLakier' => 'Bialy',
-            'Foto' => '');
+            'nazwaLakier' => 'Biały',
+            'Foto' => 'Biały.jpg');
     $lakiery[] = array(
             'nazwaLakier' => 'Czerwony',
-            'Foto' => '');
+            'Foto' => 'Czerwony.jpg');
     $lakiery[] = array(
-            'nazwaLakier' => 'Zolty',
-            'Foto' => '');
+            'nazwaLakier' => 'Beżowy',
+            'Foto' => 'Beżowy.jpg');
     $lakiery[] = array(
             'nazwaLakier' => 'Niebieski',
-            'Foto' => '');
+            'Foto' => 'Niebieski.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Brązowy',
+            'Foto' => 'Brązowy.jpg');
+
 
     try
     {
