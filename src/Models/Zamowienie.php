@@ -121,8 +121,8 @@ class Zamowienie extends Model{
             return $data;
         }
         try	{
-            $stmt = $this->pdo->prepare('DELETE FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienia');
-            $stmt->bindValue(':IdZamowienie', $id, PDO::PARAM_INT);
+            $stmt = $this->pdo->prepare('DELETE FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:id');
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $result = $stmt->execute();
             if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$nomatch;

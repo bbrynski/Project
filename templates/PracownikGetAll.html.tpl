@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Dominik
- * Date: 12.03.2018
- * Time: 16:46
- */
-
-
 {include file="header.html.tpl"}
 
 <div class="container-fluid mt-5">

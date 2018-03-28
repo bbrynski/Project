@@ -1524,6 +1524,7 @@ catch(PDOException $e)
     echo \Config\Database\DBErrorName::$noadd;
 }
 
+/*
 $zamowienia = array();
 $zamowienia[] = array(
     'Id_Klient' => '1',
@@ -1568,6 +1569,8 @@ catch(PDOException $e)
 {
     echo \Config\Database\DBErrorName::$noadd;
 }
+
+*/
 
 
     echo "<b>Instalacja aplikacji zakończona!</b>"

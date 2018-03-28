@@ -37,7 +37,7 @@
             <label for="name">Data:</label> <input type="text" class="form-control" name="Data_Zamowienia" >
         </div>
         <div class="form-group">
-            <label for="name">Statuszamowienia:</label><input type="text" class="form-control" name="Statuszamowienia" >
+            <label for="name">Status zamowienia:</label><input type="text" class="form-control" name="Statuszamowienia" >
         </div>
 
 
