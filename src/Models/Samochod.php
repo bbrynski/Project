@@ -19,7 +19,7 @@ class Samochod extends Model
         $data = array();
         $data['samochody'] = array();
         //$data['query'] = 'SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=:id';
-        d($data);
+        //d($data);
         try	{
             $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=0'); //pobranie do oferty a nie konfigurator
             //$stmt->bindValue(':id', $id, PDO::PARAM_INT);

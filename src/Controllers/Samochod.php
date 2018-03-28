@@ -16,7 +16,7 @@ class Samochod extends Controller
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
 
-        d(\Tools\Session::get('idmodel'));
+
     }
 
 
