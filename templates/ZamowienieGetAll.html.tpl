@@ -1,29 +1,20 @@
 {include file="header.html.tpl"}
 
-<div class="container mt-4 mb-4">
-    <div class="row justify-content-around">
-        <div class="col-10 align-self-center">
-            <div class="d-flex justify-content-center">
-                <h2>Lista Zamowien</h2>
+<div class="container-fluid mt-5">
+    <!-- Zawartość kontenera -->
+    <h2 class="text-center">Zamówienia</h2>
+    {if isset($message)}
+        <div class="alert alert-success" role="alert">{$message}</div>
+    {/if}
+    {if isset($error)}
+        <div class="alert alert-danger" role="alert">{$error}</div>
+    {/if}
+    {if isset($zamowienia)}
+        {if $zamowienia|@count === 0}
+            <div class="alert alert-primary" role="alert">
+                Brak zamowień
             </div>
-
-
-            {if $smarty.session.prawo == 'admin'}
-
-            <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
-
-            {/if}
-
-            {if isset($message)}
-                <div class="alert alert-success" role="alert">{$message}</div>
-            {/if}
-            {if isset($error)}
-                <div class="alert alert-danger" role="alert">{$error}</div>
-            {/if}
-            {if isset($zamowienia)}
-                {if $zamowienia|@count === 0}
-                    <b>Brak zamowien w bazie!</b><br/><br/>
-                {else}
+        {else}
                     
                     <table id="data" class=" table table-hover">
                         <thead>
@@ -94,9 +85,12 @@
                     </div>
                 {/if}
             {/if}
-            {if isset($error)}
-                <strong>{$error}</strong>
-            {/if}
+
+    <!-- Wyśrodkowanie -->
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
+    </div>
+
 
         </div>
     </div>
