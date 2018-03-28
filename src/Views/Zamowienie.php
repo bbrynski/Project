@@ -21,7 +21,23 @@ class Zamowienie extends View
         $this->set('zamowienia', $data['zamowienia']);
         if(isset($data['error']))
             $this->set('error', $data['error']);
+        
         $this->set('customScript', array('datatables.min','table'));
+        
+        $model = $this->getModel('Klient');
+        $data = $model->getAll();
+        $this->set('klienci', $data['klienci']);
+       
+    
+        $model = $this->getModel('Pracownik');
+        $data = $model->getAll();
+        $this->set('pracownicy', $data['pracownicy']);
+        
+        $model = $this->getModel('Samochod');
+        $data = $model->getAll();
+        $this->set('samochody', $data['samochody']);
+        
+        
         $this->render('ZamowienieGetAll');
     }
 
