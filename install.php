@@ -385,6 +385,7 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
                 `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
                 `'.DB\Model::$Konfigurator.'` BIT NOT NULL,
+                `'.DB\Model::$DostepneSztuki.'` INT NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),

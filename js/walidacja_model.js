@@ -17,6 +17,9 @@ $(document).ready(function() {
             dataType: "json",
             //pomyślne wysłanie danych do skryptu
             success : function(r) {
+
+
+
                 var div = $('#szczegoly').empty();
                 div.append("Model: ");
                 div.append(r.nazwaModel);

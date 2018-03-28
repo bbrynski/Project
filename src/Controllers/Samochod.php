@@ -2,10 +2,15 @@
 namespace Controllers;
 
 
+use Tools\Session;
+
 class Samochod extends Controller
 {
 
     public function getAll(){
+
+        \Tools\Session::regenerate();
+
         $view = $this->getView('Samochod');
         $data = null;
         if(\Tools\Session::is('message'))
@@ -78,6 +83,12 @@ class Samochod extends Controller
 
 
         $this->redirect('Samochod');
+    }
+
+    public function DostepnoscModelu($id){
+        $model=$this->getModel('Samochod');
+        $data=$model->getOne($id);
+        echo json_encode($data['samochody']);
     }
 
 }
