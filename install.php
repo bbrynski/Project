@@ -1402,8 +1402,8 @@ catch(PDOException $e)
     }
 
     $reflektory = array();
-    $reflektory[] = 'Sloiki';
-    $reflektory[] = 'Reflektory FF';
+    $reflektory[] = 'Halogeny';
+    $reflektory[] = 'Światla soczewkowe';
     $reflektory[] = 'Swiatla soczewkowe';
     $reflektory[] = 'Ksenony';
     $reflektory[] = 'Swiatla LED';
@@ -1470,22 +1470,22 @@ catch(PDOException $e)
 $modele = array();
 $modele[] = array(
     'nazwaModel' => 'Passat',
-    'Cena' => '300000',
+    'Cena' => '99000',
     'IdSilnik' => '1',
     'IdSkrzynia' => '1',
     'IdNaped' => '2',
-    'Foto' => '',
+    'Foto' => 'passat.png',
     'IdWyposazenie' => '1',
     'IdLakier' => '2',
     'Konfigurator' => 0);
 
 $modele[] = array(
-    'nazwaModel' => 'Jetta',
-    'Cena' => '350000',
+    'nazwaModel' => 'Polo',
+    'Cena' => '59000',
     'IdSilnik' => '2',
     'IdSkrzynia' => '3',
     'IdNaped' => '2',
-    'Foto' => '',
+    'Foto' => 'polo.png',
     'IdWyposazenie' => '2',
     'IdLakier' => '1',
     'Konfigurator' => 0);
