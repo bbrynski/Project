@@ -9,7 +9,7 @@
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/jquery-ui.min.css" rel="stylesheet">
     <!-- DataTables Table plug-in for jQuery -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/footer.css" rel="stylesheet">
+    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/style.css" rel="stylesheet">
 </head>
 
 <body>

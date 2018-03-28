@@ -25,7 +25,7 @@
 
             {if {$samochod['IdModel']} == {$smarty.session.idmodel}}
             <div class="col-sm-6">
-                    <img src="data:image;base64,{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
+                    <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['Foto']}" class="img-fluid" alt="Responsive image"></center>
                     <h1 class="text-center">{$samochod['nazwaModel']}</h1>
 
             {/if}

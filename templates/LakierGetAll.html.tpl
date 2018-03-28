@@ -23,8 +23,9 @@
 
                     <div class="col-sm-6">
                         <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Naped/{$lakier['IdLakier']}">
-                            <h2 class="text-center">{$lakier['nazwaLakier']}</h2>
+
                             <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$lakier['Foto']}" class="img-fluid" alt="Responsive image"></center>
+                            <h2 class="text-center">{$lakier['nazwaLakier']}</h2>
                         </a>
                     </div>
                 {/foreach}
