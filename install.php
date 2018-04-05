@@ -32,7 +32,27 @@ try
 }
 catch(PDOException $e)
 {
-    echo \Config\Database\DBErrorName::$delete_table.DB::$tableReflektory;
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableKonfigurator;
+}
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableUslugiKlient.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableUslugiKlient;
+}
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableUslugi.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableUslugi;
 }
 
 
@@ -77,6 +97,16 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
 		echo \Config\Database\DBErrorName::$delete_table.DB::$tableKlient;
 	}
 
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableParking.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableParking;
+    }
+
     $query = 'DROP TABLE IF EXISTS `'.DB::$tableModel.'`';
     try
     {
@@ -86,6 +116,7 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
     {
         echo \Config\Database\DBErrorName::$delete_table.DB::$tableModel;
     }
+
 
     $query = 'DROP TABLE IF EXISTS `'.DB::$tableSilnik.'`';
     try
@@ -164,7 +195,22 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
 
 
 
+/**
+ *  Tworzenie tabeli uslugi
+ */
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugi.'` (
+		        `'.DB\Uslugi::$id.'` INT NOT NULL AUTO_INCREMENT,
+		        `'.DB\Uslugi::$nazwaUsluga.'` VARCHAR(40) NOT NULL,
+		        PRIMARY KEY (`'.DB\Uslugi::$id.'`)) ENGINE=InnoDB;';
 
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableUslugi;
+}
 
 
 /*
@@ -185,6 +231,8 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
 	{
 		echo \Config\Database\DBErrorName::$create_table.DB::$tableUzytkownik;
 	}
+
+
     
 
 
@@ -400,6 +448,42 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
     catch(PDOException $e)
     {
         echo \Config\Database\DBErrorName::$create_table.DB::$tableModel;
+    }
+
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugiKlient.'` (
+		        `'.DB\UslugiKlient::$id.'` INT NOT NULL AUTO_INCREMENT,
+		        `'.DB\UslugiKlient::$Id_Uslugi.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$Id_Klient.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$Id_Model.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$opis.'` VARCHAR(100) NOT NULL,
+		        PRIMARY KEY (`'.DB\UslugiKlient::$id.'`),
+		        FOREIGN KEY (`'.DB\UslugiKlient::$Id_Uslugi.'`) REFERENCES '.DB::$tableUslugi.'('.DB\Uslugi::$id.'),
+		        FOREIGN KEY ('.DB\UslugiKlient::$Id_Klient.') REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
+		        FOREIGN KEY (`'.DB\UslugiKlient::$Id_Model.'`) REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')) ENGINE=InnoDB;';
+
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableUslugiKlient;
+}
+
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableParking.'` (
+		                `'.DB\Parking::$id.'` INT NOT NULL AUTO_INCREMENT,
+                        `'.DB\Parking::$Id_Model.'` INT NOT NULL,
+                        `'.DB\Parking::$DostepneSztuki.'` INT NOT NULL,
+		                PRIMARY KEY (`'.DB\Parking::$id.'`),
+		                FOREIGN KEY ('.DB\Parking::$Id_Model.') REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableParking;
     }
 
     /**
@@ -1290,6 +1374,31 @@ catch(PDOException $e)
     echo \Config\Database\DBErrorName::$noadd;
 }
 
+$uslugi = array();
+$uslugi[] = 'Przeglad okresowy';
+$uslugi[] = 'Wymiana oleju';
+$uslugi[] = 'Wywazenie kol';
+$uslugi[] = 'Myjnia automatyczna';
+$uslugi[] = 'Zmiana opon na letnie/zimowe';
+$uslugi[] = 'Nabicie klimatyzacji';
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUslugi.'` (
+                    `'.DB\Uslugi::$nazwaUsluga.'`
+                    ) 
+                    VALUES(:nazwaUsluga)');
+    foreach($uslugi as $usluga)
+    {
+        $stmt -> bindValue(':nazwaUsluga', $usluga, PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
     $skrzynie = array();
     $skrzynie[] = 'manualna';
     $skrzynie[] = 'automatyczna';
@@ -1525,6 +1634,65 @@ catch(PDOException $e)
     echo \Config\Database\DBErrorName::$noadd;
 }
 
+$uslugiklienci = array();
+$uslugiklienci[] = array(
+    'IdUslugi' => '1',
+    'IdKlient' => '20',
+    'IdModel' => '1',
+    'opis' => 'Okresowy przeglad sprawnosci pojazdu marki VolksWagen');
+$uslugiklienci[] = array(
+    'IdUslugi' => '2',
+    'IdKlient' => '10',
+    'IdModel' => '2',
+    'opis' => 'Wymiana oleju + wymiana filtru oleju');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUslugiKlient.'` (
+            `'.DB\UslugiKlient::$Id_Uslugi.'`,
+            `'.DB\UslugiKlient::$Id_Klient.'`,
+            `'.DB\UslugiKlient::$Id_Model.'`,
+            `'.DB\UslugiKlient::$opis.'`) 
+            VALUES(:IdUslugi, :IdKlient, :IdModel, :opis)');
+    foreach($uslugiklienci as $uslugaklient)
+    {
+        $stmt -> bindValue(':IdUslugi', $uslugaklient['IdUslugi'], PDO::PARAM_INT);
+        $stmt -> bindValue(':IdKlient', $uslugaklient['IdKlient'], PDO::PARAM_INT);
+        $stmt -> bindValue(':IdModel', $uslugaklient['IdModel'], PDO::PARAM_INT);
+        $stmt -> bindValue(':opis', $uslugaklient['opis'], PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
+$parkingi = array();
+$parkingi[] = array(
+        'IdModel' => '1',
+    'DostepneSztuki' => '4');
+$parkingi[] = array(
+    'IdModel' => '2',
+    'DostepneSztuki' => '2');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableParking.'` (
+            `'.DB\Parking::$Id_Model.'`,
+            `'.DB\Parking::$DostepneSztuki.'`) 
+            VALUES(:IdModel, :DostepneSztuki)');
+    foreach($parkingi as $parking)
+    {
+        $stmt -> bindValue(':IdModel', $parking['IdModel'], PDO::PARAM_INT);
+        $stmt -> bindValue(':DostepneSztuki', $parking['DostepneSztuki'], PDO::PARAM_INT);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
 /*
 $zamowienia = array();
 $zamowienia[] = array(

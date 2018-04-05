@@ -25,4 +25,7 @@
         public static $tableModel = 'Model';
         public static $tableZamowienie = 'Zamowienie';
         public static $tableKonfigurator = 'Konfigurator';
+        public static $tableParking = 'Parking';
+        public static $tableUslugi = 'Uslugi';
+        public static $tableUslugiKlient = 'UslugiKlient';
 	}
