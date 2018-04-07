@@ -58,6 +58,7 @@ RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
 #Konfigurator
 RewriteRule ^Konfigurator/zapisz/?$ index.php?controller=Konfigurator&action=addConfig [L]
 RewriteRule ^Konfigurator/?$ index.php?controller=Konfigurator&action=loadConfig [L]
+RewriteRule ^Konfigurator/wczytaj?$ index.php?controller=Konfigurator&action=getConfig [L]
 
 #Pracownik
 RewriteRule ^Pracownik/?$ index.php?controller=Pracownik [L]

@@ -9,6 +9,7 @@ class Samochod extends Controller
 
     public function getAll(){
 
+        // pozniej trzeba cos zmienic zeby
         \Tools\Session::regenerate();
 
         $view = $this->getView('Samochod');

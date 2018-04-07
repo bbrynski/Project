@@ -11,11 +11,16 @@ class Podsumowanie extends View
         if(isset($data['error']))
             $this->set('error',$data['error']);
 
+        if(isset($data['wyposazenie']))
         $this->set('opcje', $data['wyposazenie']);
 
         $model = $this->getModel('Samochod');
-        $data = $model->getAll();
+        if(isset($data['konfigurator']))
+            $data = $model->getAll(1);
+        else
+            $data = $model->getAll();
         $this->set('samochody', $data['samochody']);
+
 
         $model = $this->getModel('Silnik');
         $data = $model->getAll();

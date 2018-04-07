@@ -11,7 +11,7 @@ use \PDO;
 
 class Samochod extends Model
 {
-    public function getAll(){
+    public function getAll($id=0){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
@@ -21,9 +21,11 @@ class Samochod extends Model
         //$data['query'] = 'SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=:id';
         //d($data);
         try	{
-            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=0'); //pobranie do oferty a nie konfigurator
-            //$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            //$result = $stmt->execute();
+            //$stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=0'); //pobranie do oferty a nie konfigurator
+            $query= 'SELECT * FROM '.\Config\Database\DBConfig::$tableModel.' WHERE '.\Config\Database\DBConfig\Model::$Konfigurator.'='.$id;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $result = $stmt->execute();
             $samochody = $stmt->fetchAll();
             $stmt->closeCursor();
             if($samochody && !empty($samochody))
@@ -110,7 +112,7 @@ class Samochod extends Model
         return $data;
     }
 
-    public function addConfig(){
+    public function addConfig($idModel){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
@@ -119,8 +121,13 @@ class Samochod extends Model
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
+
+        $model=$this->getOne($idModel);
+        $model=$model['samochody'];
+
+
         $data = array();
-        $foto=null;
+        $foto=$model['Foto'];
         try	{
 
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableWyposazenie.'` (`'.\Config\Database\DBConfig\Wyposazenie::$Id_Kola.'`,`'.\Config\Database\DBConfig\Wyposazenie::$Id_Reflektory.'`,`'.\Config\Database\DBConfig\Wyposazenie::$PodgrzewaneSiedzenia.'`,`'.\Config\Database\DBConfig\Wyposazenie::$PodgrzewanaSzybaPrzod.'`,`'.\Config\Database\DBConfig\Wyposazenie::$DodatkowyKompletOpon.'`,`'.\Config\Database\DBConfig\Wyposazenie::$SkorzanaTapicerka.'`) VALUES(:Kola, :Reflektory, :Siedzenia, :SzybaPrzod, :Opony, :Tapicerka)');

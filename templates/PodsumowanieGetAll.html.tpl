@@ -67,10 +67,11 @@
                     {/if}
                 {/foreach}
 
+                {if isset($opcje)}
                 {foreach $opcje as $item}
                         <h2 class="text-center">{$item}</h2>
                 {/foreach}
-
+                {/if}
 
 
 
