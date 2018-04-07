@@ -23,6 +23,7 @@
             return $data;
         }
 
+
         public function getOne($id){
             if($this->pdo === null){
                 $data['error'] = \Config\Database\DBErrorName::$connection;

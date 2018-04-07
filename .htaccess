@@ -23,6 +23,8 @@ RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 RewriteRule ^Samochod/?$ index.php?controller=Samochod [L]
 RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
 RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
+RewriteRule ^Samochod/Dostepnosc/(\d+)/?$ index.php?controller=Samochod&action=DostepnoscModelu&id=$1 [L]
+
 
 #Zamowienie
 RewriteRule ^Zamowienie/?$ index.php?controller=Zamowienie [L]
@@ -30,6 +32,11 @@ RewriteRule ^Zamowienie/add-form/?$ index.php?controller=Zamowienie&action=addfo
 RewriteRule ^Zamowienie/edit-form/(\d+)/?$ index.php?controller=Zamowienie&action=editform&id=$1 [L]
 RewriteRule ^Zamowienie/wstaw/?$ index.php?controller=Zamowienie&action=add [L]
 RewriteRule ^Zamowienie/delete/(\d+)/?$ index.php?controller=Zamowienie&action=delete&id=$1 [L]
+
+RewriteRule ^Zamowienie/status/?$ index.php?controller=Zamowienie&action=sprawdzStatus [L]
+
+RewriteRule ^Zamowienie/sprawdz/?$ index.php?controller=Zamowienie&action=sprawdz [L]
+
 #Silnik
 RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
 
@@ -39,8 +46,18 @@ RewriteRule ^Skrzynia/(\d+)/?$ index.php?controller=Skrzynia&action=getAll&id=$1
 #Lakier
 RewriteRule ^Lakier/(\d+)/?$ index.php?controller=Lakier&action=getAll&id=$1 [L]
 
+#Naped
+RewriteRule ^Naped/(\d+)/?$ index.php?controller=Naped&action=getAll&id=$1 [L]
+
+#Reflektory
+RewriteRule ^Reflektory/(\d+)/?$ index.php?controller=Reflektor&action=getAll&id=$1 [L]
+
 #Podsumowanie
-RewriteRule ^Podsumowanie/(\d+)/?$ index.php?controller=Podsumowanie&action=getAll&id=$1 [L]
+RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
+
+#Konfigurator
+RewriteRule ^Konfigurator/zapisz/?$ index.php?controller=Konfigurator&action=addConfig [L]
+RewriteRule ^Konfigurator/?$ index.php?controller=Konfigurator&action=loadConfig [L]
 
 #Pracownik
 RewriteRule ^Pracownik/?$ index.php?controller=Pracownik [L]

@@ -8,6 +8,13 @@ class Silnik extends Controller
     public function getAll($id){
 
         \Tools\Session::set('idmodel', $id);
+        \Tools\Session::clear('numer');
+        $model = $this->getModel('Samochod');
+        $data = $model->getOne($id);
+        $data=$data['samochody'];
+
+        \Tools\Session::set('nazwaModel', $data['nazwaModel']);
+
 
         $view = $this->getView('Silnik');
         $data = null;

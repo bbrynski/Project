@@ -8,4 +8,5 @@ namespace Config\Database\DBConfig;
         public static $Id_Model = 'IdModel';
         public static $DataZamow = 'Data_Zamowienia';
         public static $NumerZamowienia = 'NumerZamowienia';
+        public static $StatusZamowienia = 'Statuszamowienia';
     }

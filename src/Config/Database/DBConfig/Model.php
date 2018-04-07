@@ -13,4 +13,7 @@
         public static $Id_Wyposazenie = 'IdWyposazenie';
         public static $Id_Lakier = 'IdLakier';
         public static $LakierNadwozia = 'LakierNadwozia';
+        public static $Konfigurator = 'Konfigurator';
+        public static $DostepneSztuki = 'DostepneSztuki';
+
     }

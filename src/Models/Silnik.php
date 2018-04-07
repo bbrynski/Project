@@ -35,8 +35,11 @@ class Silnik extends Model
         $silniki = array();
 
         if(!isset($data['error']))
-            foreach($data['silniki'] as $silnik)
-                $silniki[$silnik[\Config\Database\DBConfig\Silnik::$id]] = $silnik[\Config\Database\DBConfig\Silnik::$TypSilnika];
+
+            foreach($data['silniki'] as $silnik) {
+                $opcja = $silnik['TypSilnika'] . ' ' . $silnik['Pojemnosc'] . 'L ' . $silnik['MaksymalnaMoc'] . 'KM';
+                $silniki[$silnik[\Config\Database\DBConfig\Silnik::$id]] = $opcja;
+            }
 
         return $silniki;
     }

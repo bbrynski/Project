@@ -22,7 +22,9 @@
                 {foreach $lakiery as $key => $lakier}
 
                     <div class="col-sm-6">
-                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie/{$lakier['IdLakier']}">
+                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Naped/{$lakier['IdLakier']}">
+
+                            <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$lakier['Foto']}" class="img-fluid" alt="Responsive image"></center>
                             <h2 class="text-center">{$lakier['nazwaLakier']}</h2>
                         </a>
                     </div>
@@ -33,7 +35,7 @@
     {/if}
 
     <!-- Wyśrodkowanie -->
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center m-5">
         <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
     </div>
 

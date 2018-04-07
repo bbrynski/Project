@@ -1,30 +1,22 @@
 {include file="header.html.tpl"}
 
-<div class="container mt-4 mb-4">
-    <div class="row justify-content-around">
-        <div class="col-10 align-self-center">
-            <div class="d-flex justify-content-center">
-                <h2>Lista Zamowien</h2>
+<div class="container-fluid mt-5">
+    <!-- Zawartość kontenera -->
+    <h2 class="text-center">Zamówienia</h2>
+    {if isset($message)}
+        <div class="alert alert-success" role="alert">{$message}</div>
+    {/if}
+    {if isset($error)}
+        <div class="alert alert-danger" role="alert">{$error}</div>
+    {/if}
+    {if isset($zamowienia)}
+        {if $zamowienia|@count === 0}
+            <div class="alert alert-primary" role="alert">
+                Brak zamowień
             </div>
-
-            {if $smarty.session.prawo == 'admin'}
-
-            <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
-
-            {/if}
-
-            {if isset($message)}
-                <div class="alert alert-success" role="alert">{$message}</div>
-            {/if}
-            {if isset($error)}
-                <div class="alert alert-danger" role="alert">{$error}</div>
-            {/if}
-            {if isset($zamowienia)}
-                {if $zamowienia|@count === 0}
-                    <b>Brak zamowien w bazie!</b><br/><br/>
-                {else}
+        {else}
                     
-                    <table id="data" class="display table table-hover">
+                    <table id="data" class=" table table-hover">
                         <thead>
                         <tr>
                             <th>IdZamowienia</th>
@@ -33,6 +25,7 @@
                             <th>Id_Model</th>
                             <th>DataZamow</th>
                             <th>NumerZamowienia</th>
+                            <th>Status</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -41,11 +34,26 @@
                         {foreach $zamowienia as $key => $zamowienie}
                             <tr>
                                 <td>{$zamowienie['IdZamowienie']} </td>
-                                <td>{$zamowienie['Id_Klient']}</td>
-                                <td>{$zamowienie['Id_Pracownik']} </td>
-                                <td>{$zamowienie['IdModel']} </td>
+                                {foreach $klienci as $key => $klient}
+                                {if {$zamowienie['Id_Klient']}=={$klient['Id_Klient']}}
+                                <td>{$klient['Imie']} {$klient['Nazwisko']} </td>
+                                {/if}
+                                {/foreach}
+                                 {foreach $pracownicy as $key => $pracownik}
+                                {if {$zamowienie['Id_Pracownik']}=={$pracownik['Id_Pracownik']}}
+                                <td>{$pracownik['Imie']} {$pracownik['Nazwisko']} </td>
+                                {/if}
+                                {/foreach}
+                                 {foreach $samochody as $key => $samochod}
+                                {if {$zamowienie['IdModel']}=={$samochod['IdModel']}}
+                                <td>{$samochod['nazwaModel']}  </td>
+                                {/if}
+                                {/foreach}
+                                
+                               
                                 <td>{$zamowienie['Data_Zamowienia']} </td>
                                 <td>{$zamowienie['NumerZamowienia']} </td>
+                                <td>{$zamowienie['Statuszamowienia']} </td>
 
                                 <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/edit-form/{$zamowienie['IdZamowienie']}">Edytuj</a></td>
                                 <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/delete/{$zamowienie['IdZamowienie']}">Usuń</a></td> </tr>
@@ -77,9 +85,12 @@
                     </div>
                 {/if}
             {/if}
-            {if isset($error)}
-                <strong>{$error}</strong>
-            {/if}
+
+    <!-- Wyśrodkowanie -->
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success mb-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Dodaj Zamowienie</a>
+    </div>
+
 
         </div>
     </div>

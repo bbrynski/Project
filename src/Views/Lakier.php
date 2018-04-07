@@ -15,6 +15,9 @@ class Lakier extends View
         $this->set('lakiery', $data['lakiery']);
         if(isset($data['error']))
             $this->set('error', $data['error']);
+
+        $this->set('sciezka',\Config\Website\Config::$subdirimage);
+
         $this->render('LakierGetAll');
     }
 }

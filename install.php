@@ -25,7 +25,38 @@
         usunięcie starych tabel    
     */
 
-    $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableKonfigurator.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableKonfigurator;
+}
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableUslugiKlient.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableUslugiKlient;
+}
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableUslugi.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableUslugi;
+}
+
+
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
     try
     {
         $pdo->exec($query);
@@ -66,6 +97,16 @@
 		echo \Config\Database\DBErrorName::$delete_table.DB::$tableKlient;
 	}
 
+    $query = 'DROP TABLE IF EXISTS `'.DB::$tableParking.'`';
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$delete_table.DB::$tableParking;
+    }
+
     $query = 'DROP TABLE IF EXISTS `'.DB::$tableModel.'`';
     try
     {
@@ -75,6 +116,7 @@
     {
         echo \Config\Database\DBErrorName::$delete_table.DB::$tableModel;
     }
+
 
     $query = 'DROP TABLE IF EXISTS `'.DB::$tableSilnik.'`';
     try
@@ -151,6 +193,26 @@
 
 
 
+
+
+/**
+ *  Tworzenie tabeli uslugi
+ */
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugi.'` (
+		        `'.DB\Uslugi::$id.'` INT NOT NULL AUTO_INCREMENT,
+		        `'.DB\Uslugi::$nazwaUsluga.'` VARCHAR(40) NOT NULL,
+		        PRIMARY KEY (`'.DB\Uslugi::$id.'`)) ENGINE=InnoDB;';
+
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableUslugi;
+}
+
+
 /*
     tworzenie tabeli uzytkownik
 */
@@ -169,6 +231,8 @@
 	{
 		echo \Config\Database\DBErrorName::$create_table.DB::$tableUzytkownik;
 	}
+
+
     
 
 
@@ -282,6 +346,7 @@
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableLakier.'` (
 		                `'.DB\Lakier::$id.'` INT NOT NULL AUTO_INCREMENT,
 		                `'.DB\Lakier::$nazwaLakier.'` VARCHAR(40) NOT NULL,
+		                `'.DB\Lakier::$Foto.'` VARCHAR(30) NULL,
 		                PRIMARY KEY (`'.DB\Lakier::$id.'`)) ENGINE=InnoDB;';
 
     try
@@ -334,10 +399,10 @@
 		    `'.DB\Wyposazenie::$id.'` INT NOT NULL AUTO_INCREMENT,
             `'.DB\Wyposazenie::$Id_Kola.'` INT NOT NULL,
             `'.DB\Wyposazenie::$Id_Reflektory.'` INT NOT NULL,
-            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'` BIT NOT NULL,
-            `'.DB\Wyposazenie::$SkorzanaTapicerka.'` BIT NOT NULL,
+            `'.DB\Wyposazenie::$PodgrzewaneSiedzenia.'` BIT NULL,
+            `'.DB\Wyposazenie::$PodgrzewanaSzybaPrzod.'` BIT NULL,
+            `'.DB\Wyposazenie::$DodatkowyKompletOpon.'` BIT NULL,
+            `'.DB\Wyposazenie::$SkorzanaTapicerka.'` BIT NULL,
 		    PRIMARY KEY (`'.DB\Wyposazenie::$id.'`),
 		    FOREIGN KEY (`'.DB\Wyposazenie::$Id_Kola.'`) REFERENCES '.DB::$tableKola.'('.DB\Kola::$id.'),
 		    FOREIGN KEY ('.DB\Wyposazenie::$Id_Reflektory.') REFERENCES '.DB::$tableReflektory.'('.DB\Reflektory::$id.')) ENGINE=InnoDB;';
@@ -355,23 +420,26 @@
     tworzenie tabeli model
      * Id_wyposazenie -> zmienione na varchar BB
      * FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.'),
+     * 25.03 dodanie pola konfigurator i klucz obcy do wyposazenia BB
     */
     $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableModel.'` (
 		        `'.DB\Model::$id.'` INT NOT NULL AUTO_INCREMENT,
                 `'.DB\Model::$nazwaModel.'` VARCHAR(40) NOT NULL,
-                `'.DB\Model::$cena.'` INT NOT NULL,
+                `'.DB\Model::$cena.'` INT NULL,
                 `'.DB\Model::$Id_Silnik.'` INT NOT NULL,
                 `'.DB\Model::$Id_Skrzynia.'` INT NOT NULL,
                 `'.DB\Model::$Id_Naped.'` INT NOT NULL,
-                `'.DB\Model::$Foto.'` MEDIUMBLOB NULL,
-                `'.DB\Model::$Id_Wyposazenie.'` VARCHAR(20) NOT NULL,
+                `'.DB\Model::$Foto.'` VARCHAR(30) NULL,
+                `'.DB\Model::$Id_Wyposazenie.'` INT NOT NULL,
                 `'.DB\Model::$Id_Lakier.'` INT NOT NULL,
-                `'.DB\Model::$LakierNadwozia.'` VARCHAR(20) NOT NULL,
+                `'.DB\Model::$Konfigurator.'` BIT NOT NULL,
+                `'.DB\Model::$DostepneSztuki.'` INT NOT NULL,
 		        PRIMARY KEY (`'.DB\Model::$id.'`),
 		        FOREIGN KEY (`'.DB\Model::$Id_Silnik.'`) REFERENCES '.DB::$tableSilnik.'('.DB\Silnik::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Skrzynia.') REFERENCES '.DB::$tableSkrzynia.'('.DB\Skrzynia::$id.'),
 		        FOREIGN KEY ('.DB\Model::$Id_Naped.') REFERENCES '.DB::$tableNaped.'('.DB\Naped::$id.'),
-		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.')) ENGINE=InnoDB;';
+		        FOREIGN KEY ('.DB\Model::$Id_Lakier.') REFERENCES '.DB::$tableLakier.'('.DB\Lakier::$id.'),
+		        FOREIGN KEY ('.DB\Model::$Id_Wyposazenie.') REFERENCES '.DB::$tableWyposazenie.'('.DB\Wyposazenie::$id.')) ENGINE=InnoDB;';
 
     try
     {
@@ -380,6 +448,42 @@
     catch(PDOException $e)
     {
         echo \Config\Database\DBErrorName::$create_table.DB::$tableModel;
+    }
+
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugiKlient.'` (
+		        `'.DB\UslugiKlient::$id.'` INT NOT NULL AUTO_INCREMENT,
+		        `'.DB\UslugiKlient::$Id_Uslugi.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$Id_Klient.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$Id_Model.'` INT NOT NULL,
+		        `'.DB\UslugiKlient::$opis.'` VARCHAR(100) NOT NULL,
+		        PRIMARY KEY (`'.DB\UslugiKlient::$id.'`),
+		        FOREIGN KEY (`'.DB\UslugiKlient::$Id_Uslugi.'`) REFERENCES '.DB::$tableUslugi.'('.DB\Uslugi::$id.'),
+		        FOREIGN KEY ('.DB\UslugiKlient::$Id_Klient.') REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
+		        FOREIGN KEY (`'.DB\UslugiKlient::$Id_Model.'`) REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')) ENGINE=InnoDB;';
+
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableUslugiKlient;
+}
+
+    $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableParking.'` (
+		                `'.DB\Parking::$id.'` INT NOT NULL AUTO_INCREMENT,
+                        `'.DB\Parking::$Id_Model.'` INT NOT NULL,
+                        `'.DB\Parking::$DostepneSztuki.'` INT NOT NULL,
+		                PRIMARY KEY (`'.DB\Parking::$id.'`),
+		                FOREIGN KEY ('.DB\Parking::$Id_Model.') REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')) ENGINE=InnoDB;';
+
+    try
+    {
+        $pdo->exec($query);
+    }
+    catch(PDOException $e)
+    {
+        echo \Config\Database\DBErrorName::$create_table.DB::$tableParking;
     }
 
     /**
@@ -393,6 +497,7 @@
                     `'.DB\Zamowienie::$Id_Model.'` INT NOT NULL,
                     `'.DB\Zamowienie::$DataZamow.'` DATE NOT NULL,
                     `'.DB\Zamowienie::$NumerZamowienia.'` VARCHAR(6) NOT NULL,
+                    `'.DB\Zamowienie::$StatusZamowienia.'` VARCHAR(30) NOT NULL,
 		            PRIMARY KEY (`'.DB\Zamowienie::$id.'`),
 		            FOREIGN KEY (`'.DB\Zamowienie::$Id_Klient.'`) REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
 		            FOREIGN KEY ('.DB\Zamowienie::$Id_Pracownik.') REFERENCES '.DB::$tablePracownik.'('.DB\Pracownik::$id.'),
@@ -407,6 +512,26 @@
         echo \Config\Database\DBErrorName::$create_table.DB::$tableZamowienie;
     }
 
+
+
+/*
+    tworzenie tabeli konfigurator
+*/
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableKonfigurator.'` (
+		`'.DB\Konfigurator::$id.'` INT NOT NULL AUTO_INCREMENT,
+        `'.DB\Konfigurator::$idModel.'` INT NOT NULL,
+        `'.DB\Konfigurator::$numer.'` VARCHAR(5) NOT NULL,
+		PRIMARY KEY (`'.DB\Konfigurator::$id.'`),
+		FOREIGN KEY (`'.DB\Konfigurator::$idModel.'`) REFERENCES '.DB::$tableModel.'('.DB\Model::$id.')
+		) ENGINE=InnoDB;';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableKonfigurator;
+}
 
 
 
@@ -1249,6 +1374,31 @@ catch(PDOException $e)
     echo \Config\Database\DBErrorName::$noadd;
 }
 
+$uslugi = array();
+$uslugi[] = 'Przeglad okresowy';
+$uslugi[] = 'Wymiana oleju';
+$uslugi[] = 'Wywazenie kol';
+$uslugi[] = 'Myjnia automatyczna';
+$uslugi[] = 'Zmiana opon na letnie/zimowe';
+$uslugi[] = 'Nabicie klimatyzacji';
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUslugi.'` (
+                    `'.DB\Uslugi::$nazwaUsluga.'`
+                    ) 
+                    VALUES(:nazwaUsluga)');
+    foreach($uslugi as $usluga)
+    {
+        $stmt -> bindValue(':nazwaUsluga', $usluga, PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
     $skrzynie = array();
     $skrzynie[] = 'manualna';
     $skrzynie[] = 'automatyczna';
@@ -1294,22 +1444,40 @@ catch(PDOException $e)
     }
 
     $lakiery = array();
-    $lakiery[] = 'Czarny';
-    $lakiery[] = 'Srebrny';
-    $lakiery[] = 'Bialy';
-    $lakiery[] = 'Czerwony';
-    $lakiery[] = 'Zolty';
-    $lakiery[] = 'Niebieski';
+    $lakiery[] = array(
+            'nazwaLakier' => 'Czarny',
+            'Foto' => 'Czarny.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Srebrny',
+            'Foto' => 'Srebrny.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Biały',
+            'Foto' => 'Biały.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Czerwony',
+            'Foto' => 'Czerwony.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Beżowy',
+            'Foto' => 'Beżowy.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Niebieski',
+            'Foto' => 'Niebieski.jpg');
+    $lakiery[] = array(
+            'nazwaLakier' => 'Brązowy',
+            'Foto' => 'Brązowy.jpg');
+
 
     try
     {
         $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableLakier.'` (
-                                `'.DB\Lakier::$nazwaLakier.'`
+                                `'.DB\Lakier::$nazwaLakier.'`,
+                                `'.DB\Lakier::$Foto.'`
                                 ) 
-                                VALUES(:nazwaLakier)');
+                                VALUES(:nazwaLakier, :Foto)');
         foreach($lakiery as $lakier)
         {
-            $stmt -> bindValue(':nazwaLakier', $lakier, PDO::PARAM_STR);
+            $stmt -> bindValue(':nazwaLakier', $lakier['nazwaLakier'], PDO::PARAM_STR);
+            $stmt -> bindValue(':Foto', $lakier['Foto'], PDO::PARAM_STR);
             $stmt -> execute();
         }
     }
@@ -1344,8 +1512,8 @@ catch(PDOException $e)
     }
 
     $reflektory = array();
-    $reflektory[] = 'Sloiki';
-    $reflektory[] = 'Reflektory FF';
+    $reflektory[] = 'Halogeny';
+    $reflektory[] = 'Światla soczewkowe';
     $reflektory[] = 'Swiatla soczewkowe';
     $reflektory[] = 'Ksenony';
     $reflektory[] = 'Swiatla LED';
@@ -1371,17 +1539,17 @@ catch(PDOException $e)
     $wyposazenia[] = array(
             'IdKola' => '4',
             'IdReflektory' => '4',
-            'PodgrzewaneSiedzenia' => '1',
-            'PodgrzewanaSzybaPrzod' => '0',
-            'DodatkowyKompletOpon' => '0',
-            'SkorzanaTapicerka' => '1');
+            'PodgrzewaneSiedzenia' => 0,
+            'PodgrzewanaSzybaPrzod' => 0,
+            'DodatkowyKompletOpon' => 0,
+            'SkorzanaTapicerka' => 0);
     $wyposazenia[] = array(
         'IdKola' => '6',
         'IdReflektory' => '5',
-        'PodgrzewaneSiedzenia' => '1',
-        'PodgrzewanaSzybaPrzod' => '1',
-        'DodatkowyKompletOpon' => '1',
-        'SkorzanaTapicerka' => '1');
+        'PodgrzewaneSiedzenia' => 0,
+        'PodgrzewanaSzybaPrzod' => 0,
+        'DodatkowyKompletOpon' => 0,
+        'SkorzanaTapicerka' => 0);
 
     try
     {
@@ -1412,24 +1580,25 @@ catch(PDOException $e)
 $modele = array();
 $modele[] = array(
     'nazwaModel' => 'Passat',
-    'Cena' => '300000',
+    'Cena' => '99000',
     'IdSilnik' => '1',
     'IdSkrzynia' => '1',
     'IdNaped' => '2',
-    'Foto' => '',
-    'IdWyposazenie' => 'standard',
+    'Foto' => 'passat.png',
+    'IdWyposazenie' => '1',
     'IdLakier' => '2',
-    'LakierNadwozia' => 'Metallic');
+    'Konfigurator' => 0);
+
 $modele[] = array(
-    'nazwaModel' => 'Jetta',
-    'Cena' => '350000',
+    'nazwaModel' => 'Polo',
+    'Cena' => '59000',
     'IdSilnik' => '2',
     'IdSkrzynia' => '3',
     'IdNaped' => '2',
-    'Foto' => '',
-    'IdWyposazenie' => 'standard',
+    'Foto' => 'polo.png',
+    'IdWyposazenie' => '2',
     'IdLakier' => '1',
-    'LakierNadwozia' => 'Matowy');
+    'Konfigurator' => 0);
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1443,8 +1612,8 @@ try
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
-            `'.DB\Model::$LakierNadwozia.'`) 
-            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :LakierNadwozia)');
+            `'.DB\Model::$Konfigurator.'`) 
+            VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :Konfigurator)');
     foreach($modele as $model)
     {
         $stmt -> bindValue(':nazwaModel', $model['nazwaModel'], PDO::PARAM_STR);
@@ -1453,9 +1622,10 @@ try
         $stmt -> bindValue(':Id_Skrzynia', $model['IdSkrzynia'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Naped', $model['IdNaped'], PDO::PARAM_INT);
         $stmt -> bindValue(':Foto', $model['Foto'], PDO::PARAM_STR);
-        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Id_Wyposazenie', $model['IdWyposazenie'], PDO::PARAM_INT);
         $stmt -> bindValue(':Id_Lakier', $model['IdLakier'], PDO::PARAM_INT);
-        $stmt -> bindValue(':LakierNadwozia', $model['LakierNadwozia'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Konfigurator', $model['Konfigurator'], PDO::PARAM_INT);
+
         $stmt -> execute();
     }
 }
@@ -1464,19 +1634,81 @@ catch(PDOException $e)
     echo \Config\Database\DBErrorName::$noadd;
 }
 
+$uslugiklienci = array();
+$uslugiklienci[] = array(
+    'IdUslugi' => '1',
+    'IdKlient' => '20',
+    'IdModel' => '1',
+    'opis' => 'Okresowy przeglad sprawnosci pojazdu marki VolksWagen');
+$uslugiklienci[] = array(
+    'IdUslugi' => '2',
+    'IdKlient' => '10',
+    'IdModel' => '2',
+    'opis' => 'Wymiana oleju + wymiana filtru oleju');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUslugiKlient.'` (
+            `'.DB\UslugiKlient::$Id_Uslugi.'`,
+            `'.DB\UslugiKlient::$Id_Klient.'`,
+            `'.DB\UslugiKlient::$Id_Model.'`,
+            `'.DB\UslugiKlient::$opis.'`) 
+            VALUES(:IdUslugi, :IdKlient, :IdModel, :opis)');
+    foreach($uslugiklienci as $uslugaklient)
+    {
+        $stmt -> bindValue(':IdUslugi', $uslugaklient['IdUslugi'], PDO::PARAM_INT);
+        $stmt -> bindValue(':IdKlient', $uslugaklient['IdKlient'], PDO::PARAM_INT);
+        $stmt -> bindValue(':IdModel', $uslugaklient['IdModel'], PDO::PARAM_INT);
+        $stmt -> bindValue(':opis', $uslugaklient['opis'], PDO::PARAM_STR);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
+$parkingi = array();
+$parkingi[] = array(
+        'IdModel' => '1',
+    'DostepneSztuki' => '4');
+$parkingi[] = array(
+    'IdModel' => '2',
+    'DostepneSztuki' => '2');
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableParking.'` (
+            `'.DB\Parking::$Id_Model.'`,
+            `'.DB\Parking::$DostepneSztuki.'`) 
+            VALUES(:IdModel, :DostepneSztuki)');
+    foreach($parkingi as $parking)
+    {
+        $stmt -> bindValue(':IdModel', $parking['IdModel'], PDO::PARAM_INT);
+        $stmt -> bindValue(':DostepneSztuki', $parking['DostepneSztuki'], PDO::PARAM_INT);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+/*
 $zamowienia = array();
 $zamowienia[] = array(
     'Id_Klient' => '1',
     'Id_Pracownik' => '1',
     'IdModel' => '1',
     'Data_Zamowienia' => '2018-03-19',
-    'NumerZamowienia' => 'pBlW9e');
+    'NumerZamowienia' => 'pBlW9e',
+    'StatusZamowienia' => 'W realizacji');
 $zamowienia[] = array(
     'Id_Klient' => '3',
     'Id_Pracownik' => '2',
     'IdModel' => '2',
     'Data_Zamowienia' => '2018-02-27',
-    'NumerZamowienia' => 'E52dRk');
+    'NumerZamowienia' => 'E52dRk',
+    'StatusZamowienia' => 'Gotowe do odbioru');
 
 //`'.DB\Model::$Id_Wyposazenie.'`, -> pozniej okreslenie wybierania + co wchodzi w sklad standardu -BB
 try
@@ -1486,8 +1718,11 @@ try
             `'.DB\Zamowienie::$Id_Pracownik.'`,
             `'.DB\Zamowienie::$Id_Model.'`,
             `'.DB\Zamowienie::$DataZamow.'`, 
-            `'.DB\Zamowienie::$NumerZamowienia.'`) 
-            VALUES(:Id_Klient, :Id_Pracownik, :Id_Model, :DataZamow, :NumerZamowienia)');
+            `'.DB\Zamowienie::$NumerZamowienia.'`,
+            `'.DB\Zamowienie::$StatusZamowienia.'`
+            
+            ) 
+            VALUES(:Id_Klient, :Id_Pracownik, :Id_Model, :DataZamow, :NumerZamowienia, :StatusZamowienia)');
     foreach($zamowienia as $zamowienie)
     {
         $stmt -> bindValue(':Id_Klient', $zamowienie['Id_Klient'], PDO::PARAM_INT);
@@ -1495,6 +1730,7 @@ try
         $stmt -> bindValue(':Id_Model', $zamowienie['IdModel'], PDO::PARAM_INT);
         $stmt -> bindValue(':DataZamow', $zamowienie['Data_Zamowienia'], PDO::PARAM_STR);
         $stmt -> bindValue(':NumerZamowienia', $zamowienie['NumerZamowienia'], PDO::PARAM_STR);
+        $stmt -> bindValue(':StatusZamowienia', $zamowienie['StatusZamowienia'], PDO::PARAM_STR);
         $stmt -> execute();
     }
 }
@@ -1502,6 +1738,8 @@ catch(PDOException $e)
 {
     echo \Config\Database\DBErrorName::$noadd;
 }
+
+*/
 
 
     echo "<b>Instalacja aplikacji zakończona!</b>"

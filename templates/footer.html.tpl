@@ -1,7 +1,7 @@
 
 
-<footer class="footer bg-dark pb-4">
-
+<footer class="footer bg-dark">
+    <p></p>
 </footer>
 
 

@@ -11,6 +11,8 @@ class Podsumowanie extends View
         if(isset($data['error']))
             $this->set('error',$data['error']);
 
+        $this->set('opcje', $data['wyposazenie']);
+
         $model = $this->getModel('Samochod');
         $data = $model->getAll();
         $this->set('samochody', $data['samochody']);
@@ -24,8 +26,28 @@ class Podsumowanie extends View
         $this->set('skrzynie', $data['skrzynie']);
 
 
+        $model = $this->getModel('Lakier');
+        $data = $model->getAll();
+        $this->set('lakiery', $data['lakiery']);
+
+        $model = $this->getModel('Reflektor');
+        $data = $model->getAll();
+        $this->set('reflektory', $data['reflektory']);
+
+        $model = $this->getModel('Kola');
+        $data = $model->getAll();
+        $this->set('kola', $data['kola']);
+
+        $model = $this->getModel('Naped');
+        $data = $model->getAll();
+        $this->set('napedy', $data['napedy']);
+
+
         if(isset($data['error']))
             $this->set('error', $data['error']);
+
+        $this->set('sciezka',\Config\Website\Config::$subdirimage);
+
         $this->render('PodsumowanieGetAll');
     }
 }

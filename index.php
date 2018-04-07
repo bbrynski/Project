@@ -10,6 +10,7 @@ Config\Database\DBConnection::setDBConnection(
 
 \Config\Website\Config::$subdir = 'Projekt_Zespolowy/';
 
+
 //Inicjalizacja sesji anonimowej
 \Tools\Session::initialize();
 
