@@ -45,11 +45,12 @@ class Zamowienie extends Controller{
         {
             $model = $this->getModel('Zamowienie');
             $data = $model->add($_POST['Id_Klient'],$_POST['Id_Pracownik'],$_POST['IdModel'],$_POST['Data_Zamowienia'], $_POST['Statuszamowienia']);
-            d($_POST['IdModel']);
+
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);
             if(isset($data['message']))
                 \Tools\Session::set('message', $data['message']);
+            \Tools\Access::clearAll();
             $this->redirect('Zamowienie');
         }
 

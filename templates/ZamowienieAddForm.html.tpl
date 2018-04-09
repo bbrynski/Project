@@ -27,9 +27,9 @@
         <div class="form-group">
             <label for="name">Model</label>
             <select disabled
-                {if isset($model)}
+                {if isset($idmodel)}
                     class="form-control" id="IdModel" name="IdModel">
-                    <option value="$model"> cos z konfi</option>
+                    <option value="$idmodel"> {$model['nazwaModel']}</option>
                 {else}
                 class="form-control" id="IdModel" name="IdModel">
                 {foreach $samochody as $key => $samochod}

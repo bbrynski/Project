@@ -34,7 +34,7 @@ class Zamowienie extends View
         $this->set('pracownicy', $data['pracownicy']);
         
         $model = $this->getModel('Samochod');
-        $data = $model->getAll(3);
+        $data = $model->getAll(3);  //opcja 3 - pobranie wszystkich modeli konfiguratora i salonu
         $this->set('samochody', $data['samochody']);
         
         
@@ -75,14 +75,16 @@ class Zamowienie extends View
         $this->set('samochody', $data['samochody']);
 
 
+
+
         $v= \Tools\Access::get('idmodel');
         if(isset($v)){
-            $this->set('model', $v);
+            $this->set('idmodel', $v);
         }
 
+        $data = $model->getOne($v);
+        $this->set('model', $data['samochody']);
 
-        d(\Tools\Access::get('idmodel'));
-        d(\Tools\Access::get('user'));
         $this->render('ZamowienieAddForm');
     }
 
