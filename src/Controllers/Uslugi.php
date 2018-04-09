@@ -34,7 +34,7 @@ class Uslugi extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Uslugi');
-        $data = $model->add($_POST['nazwaUsluga']);
+        $data = $model->add($_POST['nazwaUsluga'], $_POST['Cena']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
@@ -68,7 +68,7 @@ class Uslugi extends Controller
             $this->redirect('Uslugi');
         }
         $view = $this->getView('Uslugi');
-        $view->editform($data['Uslugi']);
+        $view->editform($data['uslugi']);
     }
 
     public function update(){
@@ -76,7 +76,7 @@ class Uslugi extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Uslugi');
-        $data = $model->update($_POST['nazwaUsluga']);
+        $data = $model->update($_POST['id'], $_POST['nazwaUsluga'], $_POST['Cena']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))

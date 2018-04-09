@@ -33,7 +33,7 @@ class Uslugi extends Model {
             return $data;
         }
         $data = array();
-        $data['$uslugi'] = array();
+        $data['uslugi'] = array();
         try	{
             $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableUslugi.'` WHERE  `'.\Config\Database\DBConfig\Uslugi::$id.'`=:id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -53,12 +53,12 @@ class Uslugi extends Model {
 
 
 
-    public function add($nazwaUsluga){
+    public function add($nazwaUsluga, $Cena){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($nazwaUsluga === null ){
+        if($nazwaUsluga === null || $Cena === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
@@ -66,11 +66,13 @@ class Uslugi extends Model {
         try	{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableUslugi.'` 
                 (
-                    `'.\Config\Database\DBConfig\Uslugi::$nazwaUsluga.'`
+                    `'.\Config\Database\DBConfig\Uslugi::$nazwaUsluga.'`,
+                    `'.\Config\Database\DBConfig\Uslugi::$Cena.'`
                     
-                ) VALUES (:nazwaUsluga)');
+                ) VALUES (:nazwaUsluga, :Cena)');
 
             $stmt->bindValue(':nazwaUsluga', $nazwaUsluga, PDO::PARAM_STR);
+            $stmt->bindValue(':Cena', $Cena, PDO::PARAM_STR);
             $result = $stmt->execute();
 
             if(!$result)
@@ -112,24 +114,28 @@ class Uslugi extends Model {
         return $data;
     }
 
-    public function update($id, $nazwaUsluga){
+    public function update($id, $nazwaUsluga, $Cena){
         $data = array();
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id == null){
+        if($id === null || $nazwaUsluga === null || $Cena === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
+
         try	{
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableUslugi.'` SET
-                    `'.\Config\Database\DBConfig\Uslugi::$nazwaUsluga.'`=:nazwaUsluga`
+                    `'.\Config\Database\DBConfig\Uslugi::$nazwaUsluga.'`=:nazwa,               
+                    `'.\Config\Database\DBConfig\Uslugi::$Cena.'`=:Cena
                 
                  WHERE `'.\Config\Database\DBConfig\Uslugi::$id.'`=:id');
 
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':nazwaUsluga', $nazwaUsluga, PDO::PARAM_STR);
+            $stmt->bindValue(':nazwa', $nazwaUsluga, PDO::PARAM_STR);
+            $stmt->bindValue(':Cena', $Cena, PDO::PARAM_STR);
+
 
             $result = $stmt->execute();
             $rows = $stmt->rowCount();

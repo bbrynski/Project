@@ -29,6 +29,7 @@
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_klient_3.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_model.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_pracownik.js"></script>
+<script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_usluga.js"></script>
 
 
 

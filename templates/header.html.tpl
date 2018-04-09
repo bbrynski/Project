@@ -50,6 +50,10 @@
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/">Sprawdź konfiguracje</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Uslugi">Uslugi</a>
+            </li>
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

@@ -33,6 +33,7 @@ class Uslugi extends View{
     public function editform($Uslugi){
         $this->set('id', $Uslugi[\Config\Database\DBConfig\Uslugi::$id]);
         $this->set('nazwaUsluga', $Uslugi[\Config\Database\DBConfig\Uslugi::$nazwaUsluga]);
+        $this->set('Cena', $Uslugi[\Config\Database\DBConfig\Uslugi::$Cena]);
 
         $this->render('UslugiEditForm');
     }

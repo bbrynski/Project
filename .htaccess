@@ -69,6 +69,15 @@ RewriteRule ^Pracownik/edit/(\d+)/?$ index.php?controller=Pracownik&action=editf
 RewriteRule ^Pracownik/update/?$ index.php?controller=Pracownik&action=update [L]
 RewriteRule ^Pracownik/delete/(\d+)/?$ index.php?controller=Pracownik&action=delete&id=$1 [L]
 
+#Uslugi
+RewriteRule ^Uslugi/?$ index.php?controller=Uslugi [L]
+RewriteRule ^Uslugi/add-form/?$ index.php?controller=Uslugi&action=addform [L]
+RewriteRule ^Uslugi/add/?$ index.php?controller=Uslugi&action=add [L]
+
+RewriteRule ^Uslugi/edit/(\d+)/?$ index.php?controller=Uslugi&action=editform&id=$1 [L]
+RewriteRule ^Uslugi/update/?$ index.php?controller=Uslugi&action=update [L]
+RewriteRule ^Uslugi/delete/(\d+)/?$ index.php?controller=Uslugi&action=delete&id=$1 [L]
+
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 
