@@ -15,23 +15,15 @@ class UslugiKlient extends Model{
             $data['error']= \config\Database\DBErrorName::$connection;
             return $data;
         }//if
-        $data['uslugi']=array();
+        $data['uslugiKlient']=array();
         try{
-            $stmt = $this->pdo->query('SELECT * FROM '.\Config\Database\DBConfig::$tableUslugiKlient.' 
-				INNER JOIN '.\Config\Database\DBConfig::$tableModel.'
-				ON '.\Config\Database\DBConfig::$tableUslugiKlient.'.'.\Config\Database\DBConfig\UslugiKlient::$Id_Model. ' = ' .\Config\Database\DBConfig::$tableModel.'.'.\Config\Database\DBConfig\Model::$id.'
-				INNER JOIN '.\Config\Database\DBConfig::$tableUslugi.'
-				ON '.\Config\Database\DBConfig::$tableUslugiKlient.'.'.\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi. ' = ' .\Config\Database\DBConfig::$tableUslugi.'.'.\Config\Database\DBConfig\Uslugi::$id.'
-            INNER JOIN '.\Config\Database\DBConfig::$tableKlient.'
-				ON '.\Config\Database\DBConfig::$tableUslugiKlient.'.'.\Config\Database\DBConfig\Uslugi::$Id_Klient. ' = ' .\Config\Database\DBConfig::$tableKlient.'.'.\Config\Database\DBConfig\Model::$id);
-
-
-            $uslugi = $stmt->fetchAll();
+            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableUslugiKlient.'`');
+            $uslugiKlient = $stmt->fetchAll();
             $stmt->closeCursor();
-            if($uslugi && ! empty($uslugi))
-                $data['uslugi']=$uslugi;
+            if($uslugiKlient && ! empty($uslugiKlient))
+                $data['uslugiKlient'] = $uslugiKlient;
             else
-                $data['uslugi'] = array();
+                $data['uslugiKlient'] = array();
 
         }//try
         catch(\PDOException $e) {

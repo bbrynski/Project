@@ -78,6 +78,15 @@ RewriteRule ^Uslugi/edit/(\d+)/?$ index.php?controller=Uslugi&action=editform&id
 RewriteRule ^Uslugi/update/?$ index.php?controller=Uslugi&action=update [L]
 RewriteRule ^Uslugi/delete/(\d+)/?$ index.php?controller=Uslugi&action=delete&id=$1 [L]
 
+#UslugiKlient
+RewriteRule ^UslugiKlient/?$ index.php?controller=UslugiKlient [L]
+RewriteRule ^UslugiKlient/add-form/?$ index.php?controller=UslugiKlient&action=addform [L]
+RewriteRule ^UslugiKlient/add/?$ index.php?controller=UslugiKlient&action=add [L]
+
+RewriteRule ^UslugiKlient/edit/(\d+)/?$ index.php?controller=UslugiKlient&action=editform&id=$1 [L]
+RewriteRule ^UslugiKlient/update/?$ index.php?controller=UslugiKlient&action=update [L]
+RewriteRule ^UslugiKlient/delete/(\d+)/?$ index.php?controller=UslugiKlient&action=delete&id=$1 [L]
+
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 

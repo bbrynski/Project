@@ -18,7 +18,7 @@ class UslugiKlient extends View
             $this->set('error',$data['error']);
         $model = $this->getModel('UslugiKlient');
         $data = $model->getAll();
-        $this->set('uslugi', $data['uslugi']);
+        $this->set('uslugiKlient', $data['uslugiKlient']);
         if(isset($data['error']))
             $this->set('error', $data['error']);
         
