@@ -201,6 +201,7 @@ $query = 'DROP TABLE IF EXISTS `'.DB::$tableZamowienie.'`';
 $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugi.'` (
 		        `'.DB\Uslugi::$id.'` INT NOT NULL AUTO_INCREMENT,
 		        `'.DB\Uslugi::$nazwaUsluga.'` VARCHAR(40) NOT NULL,
+		        `'.DB\Uslugi::$Cena.'` FLOAT NOT NULL,
 		        PRIMARY KEY (`'.DB\Uslugi::$id.'`)) ENGINE=InnoDB;';
 
 try
@@ -1375,22 +1376,36 @@ catch(PDOException $e)
 }
 
 $uslugi = array();
-$uslugi[] = 'Przeglad okresowy';
-$uslugi[] = 'Wymiana oleju';
-$uslugi[] = 'Wywazenie kol';
-$uslugi[] = 'Myjnia automatyczna';
-$uslugi[] = 'Zmiana opon na letnie/zimowe';
-$uslugi[] = 'Nabicie klimatyzacji';
+$uslugi[] = array(
+        'nazwaUsluga' => 'Przeglad okresowy',
+        'Cena' => '200.00');
+$uslugi[] = array(
+        'nazwaUsluga' => 'Wymiana oleju',
+        'Cena' => '100.00');
+$uslugi[] = array(
+        'nazwaUsluga' => 'Wywazenie kol',
+        'Cena' => '50.00');
+$uslugi[] = array(
+        'nazwaUsluga' => 'Myjnia automatyczna',
+        'Cena' => '10.00');
+$uslugi[] = array(
+        'nazwaUsluga' => 'Zmiana opon na letnie/zimowe',
+        'Cena' => '80.00');
+$uslugi[] = array(
+        'nazwaUsluga' => 'Nabicie klimatyzacji',
+        'Cena' => '60.00');
 
 try
 {
     $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableUslugi.'` (
-                    `'.DB\Uslugi::$nazwaUsluga.'`
+                    `'.DB\Uslugi::$nazwaUsluga.'`,
+                    `'.DB\Uslugi::$Cena.'`
                     ) 
-                    VALUES(:nazwaUsluga)');
+                    VALUES(:nazwaUsluga, :Cena)');
     foreach($uslugi as $usluga)
     {
-        $stmt -> bindValue(':nazwaUsluga', $usluga, PDO::PARAM_STR);
+        $stmt -> bindValue(':nazwaUsluga', $usluga['nazwaUsluga'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Cena', $usluga['Cena'], PDO::PARAM_STR);
         $stmt -> execute();
     }
 }
