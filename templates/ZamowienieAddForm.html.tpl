@@ -26,10 +26,16 @@
 
         <div class="form-group">
             <label for="name">Model</label>
-            <select class="form-control" id="IdModel" name="IdModel">
+            <select disabled
+                {if isset($model)}
+                    class="form-control" id="IdModel" name="IdModel">
+                    <option value="$model"> cos z konfi</option>
+                {else}
+                class="form-control" id="IdModel" name="IdModel">
                 {foreach $samochody as $key => $samochod}
-                    <option value="{$samochod['IdModel']}">{$samochod['nazwaModel']} {$samochod['Cena']}</option>
+                        <option value="{$samochod['IdModel']}">{$samochod['nazwaModel']} {$samochod['Cena']}</option>
                 {/foreach}
+                {/if}
             </select>
         </div>
 

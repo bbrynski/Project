@@ -21,8 +21,12 @@ class Samochod extends Model
         //$data['query'] = 'SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=:id';
         //d($data);
         try	{
-            //$stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableModel.'` WHERE `'.\Config\Database\DBConfig\Model::$Konfigurator.'`=0'); //pobranie do oferty a nie konfigurator
+            if($id == 3){
+                $query='SELECT * FROM '.\Config\Database\DBConfig::$tableModel;
+
+            }else
             $query= 'SELECT * FROM '.\Config\Database\DBConfig::$tableModel.' WHERE '.\Config\Database\DBConfig\Model::$Konfigurator.'='.$id;
+
             $stmt = $this->pdo->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $result = $stmt->execute();
