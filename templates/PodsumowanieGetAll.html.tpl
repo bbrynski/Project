@@ -87,6 +87,9 @@
         {if !isset($smarty.session.numer)}
         <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/zapisz">Zapisz konfiguracje</a>
         {/if}
+        {if isset($smarty.session.user)}
+            <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/add-form/">Zamów</a>
+        {/if}
     </div>
 
 </div>

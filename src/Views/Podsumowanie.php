@@ -47,6 +47,7 @@ class Podsumowanie extends View
         $data = $model->getAll();
         $this->set('napedy', $data['napedy']);
 
+    d(\Tools\Session::get('user'));
 
         if(isset($data['error']))
             $this->set('error', $data['error']);

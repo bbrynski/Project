@@ -34,7 +34,7 @@ class Zamowienie extends View
         $this->set('pracownicy', $data['pracownicy']);
         
         $model = $this->getModel('Samochod');
-        $data = $model->getAll();
+        $data = $model->getAll(3);
         $this->set('samochody', $data['samochody']);
         
         
@@ -61,6 +61,7 @@ class Zamowienie extends View
 
     public function addform(){
 
+        //\Tools\Access::clearAll();
         $model = $this->getModel('Klient');
         $data = $model->getAll();
         $this->set('klienci', $data['klienci']);
@@ -73,6 +74,15 @@ class Zamowienie extends View
         $data = $model->getAll();
         $this->set('samochody', $data['samochody']);
 
+
+        $v= \Tools\Access::get('idmodel');
+        if(isset($v)){
+            $this->set('model', $v);
+        }
+
+
+        d(\Tools\Access::get('idmodel'));
+        d(\Tools\Access::get('user'));
         $this->render('ZamowienieAddForm');
     }
 
