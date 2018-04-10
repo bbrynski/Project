@@ -181,6 +181,21 @@
                 $data['error'] = \Config\Database\DBErrorName::$query;
             }
             return $data;
-		}         
+		}
+
+
+        public function getAllForSelect(){
+            $data = $this->getAll();
+            $klienci = array();
+
+            if(!isset($data['error']))
+
+                foreach($data['klienci'] as $klient) {
+                    $opcja = $klient['Imie'] . ' ' . $klient['Nazwisko'];
+                    $klienci[$klient[\Config\Database\DBConfig\Klient::$id]] = $opcja;
+                }
+
+            return $klienci;
+        }
         
 	}

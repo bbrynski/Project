@@ -71,6 +71,35 @@ class UslugiKlient extends Model{
     }     //add
 
 
+    public function getOne($id){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null){
+            $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            return $data;
+        }
+        $data = array();
+        $data['UslugiKlient'] = array();
+        try	{
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableUslugiKlient.'` WHERE  `'.\Config\Database\DBConfig\UslugiKlient::$id.'`=:id');
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            $UslugiKlient = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+            if($UslugiKlient && !empty($UslugiKlient))
+                $data['UslugiKlient'] = $UslugiKlient;
+            else
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
     public function delete($id){
         $data = array();
         if($this->pdo === null){
@@ -98,13 +127,13 @@ class UslugiKlient extends Model{
     }
 
 
-    public function update($id,$Id_Model,$Id_Uslugi,$Id_Klient,$opis){
+    public function update($id,$Id_Model,$Id_Uslugi,$Id_Klient,$Opis){
         $data = array();
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id === null || $Id_Model === null|| $Id_Uslugi === null|| $Id_Klient === null|| $opis === null){
+        if($id === null || $Id_Model === null|| $Id_Uslugi === null|| $Id_Klient === null|| $Opis === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
@@ -113,18 +142,16 @@ class UslugiKlient extends Model{
                 `'.\Config\Database\DBConfig\UslugiKlient::$Id_Model.'`=:Id_Model, 
                 `'.\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi.'`=:Id_Uslugi,
                 `'.\Config\Database\DBConfig\UslugiKlient::$Id_Klient.'`=:Id_Klient,
-                `'.\Config\Database\DBConfig\UslugiKlient::$opis.'`=:opis, 
+                `'.\Config\Database\DBConfig\UslugiKlient::$Opis.'`=:opis
                 
                 
-                WHERE `'
-                .\Config\Database\DBConfig\UslugiKlient::$id.'`=:IdUslugaKlient');
+                WHERE `' .\Config\Database\DBConfig\UslugiKlient::$id.'`=:id');
+
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Uslugi', $Id_Uslugi, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
-
-
-            $stmt->bindValue(':opis', $opis, PDO::PARAM_STR);
+            $stmt->bindValue(':opis', $Opis, PDO::PARAM_STR);
 
 
             $result = $stmt->execute();

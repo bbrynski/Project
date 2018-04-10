@@ -6,5 +6,5 @@ namespace Config\Database\DBConfig;
         public static $Id_Model = 'IdModel';
         public static $Id_Uslugi = 'IdUslugi';
         public static $Id_Klient = 'IdKlient';
-        public static $opis = 'Opis';
+        public static $Opis = 'Opis';
     }

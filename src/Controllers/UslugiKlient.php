@@ -42,6 +42,11 @@ class UslugiKlient extends Controller{
             $this->redirect('UslugiKlient');
         }
 
+    public function getOne($id){
+        $view = $this->getView('UslugiKlient');
+        $view->getOne($id);
+    }
+
     public function delete($id){
 
         $model=$this->getModel('UslugiKlient');
@@ -61,7 +66,7 @@ class UslugiKlient extends Controller{
             $this->redirect('UslugiKlient/');
         }
         $view = $this->getView('UslugiKlient');
-        $view->editform($data['uslugi'][0]);
+        $view->editform($data['UslugiKlient']);
     }
     public function update(){
 
