@@ -27,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {foreach $parkingi as $key => $parkingi}
+                {foreach $parking as $key => $parkingi}
                     <tr>
                         <td>{$parkingi['Id_Model']} </td>
                         <td>{$parkingi['DostepneSztuki']} </td>
