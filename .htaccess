@@ -87,6 +87,9 @@ RewriteRule ^UslugiKlient/edit/(\d+)/?$ index.php?controller=UslugiKlient&action
 RewriteRule ^UslugiKlient/update/?$ index.php?controller=UslugiKlient&action=update [L]
 RewriteRule ^UslugiKlient/delete/(\d+)/?$ index.php?controller=UslugiKlient&action=delete&id=$1 [L]
 
+#Parking
+RewriteRule ^Parking/?$ index.php?controller=Parking [L]
+
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 

@@ -57,7 +57,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient">Uslugi Klientów</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
