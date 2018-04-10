@@ -151,4 +151,18 @@ class Uslugi extends Model {
         return $data;
     }
 
+    public function getAllForSelect(){
+        $data = $this->getAll();
+        $uslugi = array();
+
+        if(!isset($data['error']))
+
+            foreach($data['uslugi'] as $usluga) {
+                $opcja = $usluga['nazwaUsluga'];
+                $uslugi[$usluga[\Config\Database\DBConfig\Uslugi::$id]] = $opcja;
+            }
+
+        return $uslugi;
+    }
+
 }

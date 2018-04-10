@@ -47,23 +47,31 @@ class UslugiKlient extends View
 
 
 
+    public function getOne($id){
+        $model = $this->getModel('UslugiKlient');
+        $data = $model->getOne($id);
+        $this->set('UslugiKlient', $data['UslugiKlient']);
+        if(isset($data['error']))
+            $this->set('error', $data['error']);
 
+        $this->render('UslugiKlientEditForm');
+    }
 
 
     public function addform(){
 
-        $model = $this->getModel('Samochod');
-        $data = $model->getAll();
-        $this->set('samochody', $data['samochody']);
+        $model_klient = $this->getModel('Klient');
+        $klienci = $model_klient->getAllForSelect();
+        $this->set('Klient',$klienci);
 
-        $model = $this->getModel('Uslugi');
-        $data = $model->getAll();
-        $this->set('uslugi', $data['uslugi']);
+        $model_samochod = $this->getModel('Samochod');
+        $samochody = $model_samochod->getAllForSelect();
+        $this->set('Samochody',$samochody);
 
+        $model_uslugi = $this->getModel('Uslugi');
+        $uslugi = $model_uslugi->getAllForSelect();
+        $this->set('Uslugi', $uslugi);
 
-        $model = $this->getModel('Klient');
-        $data = $model->getAll();
-        $this->set('klienci', $data['klienci']);
 
 
 
@@ -75,13 +83,20 @@ class UslugiKlient extends View
         $this->set('Id_Model', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Model]);
         $this->set('Id_Uslugi', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi]);
         $this->set('Id_Klient', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Klient]);
-        $this->set('opis', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$opis]);
+        $this->set('Opis', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Opis]);
 
 
-        $this->set('Modele', $this->getModel('Samochod')->getAll()['samochody']);
-        $this->set('uslugi', $this->getModel('Uslugi')->getAll()['uslugi']);
-        $this->set('$klienci', $this->getModel('Klient')->getAll()['$klienci']);
+        $model_klient = $this->getModel('Klient');
+        $klienci = $model_klient->getAllForSelect();
+        $this->set('Klient',$klienci);
 
+        $model_samochod = $this->getModel('Samochod');
+        $samochody = $model_samochod->getAllForSelect();
+        $this->set('Samochody',$samochody);
+
+        $model_uslugi = $this->getModel('Uslugi');
+        $uslugi = $model_uslugi->getAllForSelect();
+        $this->set('Uslugi', $uslugi);
 
         $this->set('customScript','UslugiKlient');
         $this->render('UslugiKlientEditForm');

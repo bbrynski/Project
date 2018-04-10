@@ -52,8 +52,8 @@
 
                         <td>{$uslugaKlient['Opis']} </td>
 
-                        <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient/edit/{$uslugaKlient['IdUslugi']}">Edytuj</a></td>
-                        <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient/delete/{$uslugaKlient['IdUslugi']}">Usuń</a></td> </tr>
+                        <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient/edit/{$uslugaKlient['IdUslugaKlient']}">Edytuj</a></td>
+                        <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient/delete/{$uslugaKlient['IdUslugaKlient']}">Usuń</a></td> </tr>
                 {/foreach}
                 </tbody>
             </table>

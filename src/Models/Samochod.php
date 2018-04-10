@@ -189,5 +189,19 @@ class Samochod extends Model
         return $data;
     }
 
+    public function getAllForSelect(){
+        $data = $this->getAll();
+        $samochody = array();
+
+        if(!isset($data['error']))
+
+            foreach($data['samochody'] as $samochod) {
+                $opcja = $samochod['nazwaModel'];
+                $samochody[$samochod[\Config\Database\DBConfig\Model::$id]] = $opcja;
+            }
+
+        return $samochody;
+    }
+
 
 }
