@@ -456,7 +456,7 @@ $query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableUslugiKlient.'` (
 		        `'.DB\UslugiKlient::$Id_Uslugi.'` INT NOT NULL,
 		        `'.DB\UslugiKlient::$Id_Klient.'` INT NOT NULL,
 		        `'.DB\UslugiKlient::$Id_Model.'` INT NOT NULL,
-		        `'.DB\UslugiKlient::$opis.'` VARCHAR(100) NOT NULL,
+		        `'.DB\UslugiKlient::$Opis.'` VARCHAR(100) NOT NULL,
 		        PRIMARY KEY (`'.DB\UslugiKlient::$id.'`),
 		        FOREIGN KEY (`'.DB\UslugiKlient::$Id_Uslugi.'`) REFERENCES '.DB::$tableUslugi.'('.DB\Uslugi::$id.'),
 		        FOREIGN KEY ('.DB\UslugiKlient::$Id_Klient.') REFERENCES '.DB::$tableKlient.'('.DB\Klient::$id.'),
@@ -1667,7 +1667,7 @@ try
             `'.DB\UslugiKlient::$Id_Uslugi.'`,
             `'.DB\UslugiKlient::$Id_Klient.'`,
             `'.DB\UslugiKlient::$Id_Model.'`,
-            `'.DB\UslugiKlient::$opis.'`) 
+            `'.DB\UslugiKlient::$Opis.'`) 
             VALUES(:IdUslugi, :IdKlient, :IdModel, :opis)');
     foreach($uslugiklienci as $uslugaklient)
     {
