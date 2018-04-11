@@ -19,23 +19,25 @@
             <table id="data" class=" table table-hover">
                 <thead>
                 <tr>
-                    <th>Id_Model</th>
+                    <th>Nazwa Modelu</th>
                     <th>Dostepne Sztuki</th>
-                    <th></th>
-                    <th></th>
+                    
 
                 </tr>
                 </thead>
                 <tbody>
-                {foreach $parking as $key => $parkingi}
+                {foreach $parkingi as $key => $parking}
                     <tr>
-                        <td>{$parkingi['IdModel']} </td>
-                        <td>{$parkingi['DostepneSztuki']} </td>
+                        {foreach $samochody as $key => $samochod}
+                            {if {$samochod['IdModel']}=={$parking['IdModel']}}
+                                <td>{$samochod['nazwaModel']}  </td>
+                            {/if}
+                        {/foreach}
+
+                        <td>{$parking['DostepneSztuki']} </td>
 
 
-                        <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/edit/{$uslug['IdUslugi']}">Edytuj</a></td>
-                        <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/delete/{$usluga['IdUslugi']}">Usuń</a></td> </tr>
-                {/foreach}
+                         {/foreach}
                 </tbody>
             </table>
 
