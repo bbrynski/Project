@@ -27,11 +27,12 @@
         <div class="form-group">
             <label for="name">Model</label>
             <select
-                {if isset($idmodel)}disabled
+                {if isset($idmodel)} readonly
                     class="form-control" id="IdModel" name="IdModel">
-                    <option value="$idmodel"> {$model['nazwaModel']}</option>
+                    <option value="{$idmodel}">{$model['nazwaModel']}</option>
                 {else}
                 class="form-control" id="IdModel" name="IdModel">
+
                 {foreach $samochody as $key => $samochod}
                         <option value="{$samochod['IdModel']}">{$samochod['nazwaModel']} {$samochod['Cena']}</option>
                 {/foreach}

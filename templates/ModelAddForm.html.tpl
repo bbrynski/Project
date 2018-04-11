@@ -31,6 +31,10 @@
             <label for="name">Lakier</label>
             {html_options name=Id_Lakier options=$Lakier  class="form-control"}
         </div>
+        <div class="form-group">
+            <label for="name">Ilość</label>
+            <input type="text" class="form-control" name="ilosc" />
+        </div>
         <button type="submit" name="submit" class="btn btn-default">Dodaj</button>
     </form>
 

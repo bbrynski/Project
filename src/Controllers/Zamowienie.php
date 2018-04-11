@@ -50,6 +50,7 @@ class Zamowienie extends Controller{
                 \Tools\Session::set('error', $data['error']);
             if(isset($data['message']))
                 \Tools\Session::set('message', $data['message']);
+
             \Tools\Access::clearAll();
             $this->redirect('Zamowienie');
         }

@@ -70,6 +70,7 @@ class Session{
     //wyczyszczenie	zmiennych w sesji
     public static function clearAll() {
         $_SESSION = array();
+
     }
     //zniszczenie sesji
     public static function destroy() {

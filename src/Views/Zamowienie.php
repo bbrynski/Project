@@ -61,7 +61,6 @@ class Zamowienie extends View
 
     public function addform(){
 
-        //\Tools\Access::clearAll();
         $model = $this->getModel('Klient');
         $data = $model->getAll();
         $this->set('klienci', $data['klienci']);
