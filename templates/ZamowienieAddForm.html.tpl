@@ -26,8 +26,8 @@
 
         <div class="form-group">
             <label for="name">Model</label>
-            <select disabled
-                {if isset($idmodel)}
+            <select
+                {if isset($idmodel)}disabled
                     class="form-control" id="IdModel" name="IdModel">
                     <option value="$idmodel"> {$model['nazwaModel']}</option>
                 {else}

@@ -80,11 +80,11 @@ class Zamowienie extends View
         $v= \Tools\Access::get('idmodel');
         if(isset($v)){
             $this->set('idmodel', $v);
-        }
+
 
         $data = $model->getOne($v);
         $this->set('model', $data['samochody']);
-
+        }
         $this->render('ZamowienieAddForm');
     }
 

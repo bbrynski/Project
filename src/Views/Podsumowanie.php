@@ -5,21 +5,23 @@ namespace Views;
 
 class Podsumowanie extends View
 {
-    public function getAll($data = null){
-        if(isset($data['message']))
-            $this->set('message',$data['message']);
-        if(isset($data['error']))
-            $this->set('error',$data['error']);
+    public function getAll($data = null)
+    {
+        if (isset($data['message']))
+            $this->set('message', $data['message']);
+        if (isset($data['error']))
+            $this->set('error', $data['error']);
 
-        if(isset($data['wyposazenie']))
-        $this->set('opcje', $data['wyposazenie']);
+        if (isset($data['wyposazenie']))
+            $this->set('opcje', $data['wyposazenie']);
 
         $model = $this->getModel('Samochod');
-        if(isset($data['konfigurator']))
+        if (isset($data['konfigurator'])){
             $data = $model->getAll(1);
-        else
+    }else {
             $data = $model->getAll();
-        $this->set('samochody', $data['samochody']);
+        }
+            $this->set('samochody', $data['samochody']);
 
 
         $model = $this->getModel('Silnik');
@@ -47,7 +49,7 @@ class Podsumowanie extends View
         $data = $model->getAll();
         $this->set('napedy', $data['napedy']);
 
-    d(\Tools\Session::get('user'));
+   //d(\Tools\Session::get('user'));
 
         if(isset($data['error']))
             $this->set('error', $data['error']);
