@@ -2,7 +2,7 @@
 
 <div class="container-fluid mt-5">
     <!-- Zawartość kontenera -->
-    <h2 class="text-center mb-5">Dostępne Modele Samochodów</h2>
+    <h2 class="text-center mb-5">Skonfiguruj swojego Volkswagena</h2>
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
     {/if}
@@ -28,7 +28,7 @@
                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$samochod['nazwaModel']}</h1>
                         </a>
-                        <center><a type="button" class="btn btn-info DostepnoscModelu" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/Dostepnosc/{$samochod['IdModel']}">Dostępność</a></center>
+                       <!-- <center><a type="button" class="btn btn-info DostepnoscModelu" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/Dostepnosc/{$samochod['IdModel']}">Dostępność</a></center> -->
 
 
                     </div>

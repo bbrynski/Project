@@ -1,7 +1,7 @@
 
 
 <footer class="footer bg-dark">
-    <p></p>
+    <p style="color: white" class="text-center p-2 mt-5">&copy; Copyright 2018, Volkswagen</p>
 </footer>
 
 

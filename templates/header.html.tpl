@@ -27,38 +27,40 @@
         <ul class="navbar-nav mr-auto justify-content-center">
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Konfigurator</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Model</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie">Zamowienie</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie">Zamowienie</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/status">Sprawdź Zamówienie</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/status">Sprawdź Zamówienie</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/">Sprawdź konfiguracje</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/">Sprawdź konfiguracje</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Uslugi">Uslugi</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Uslugi">Uslugi</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient">Uslugi Klientów</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient">Uslugi Klientów</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
             </li>
         </ul>
 
@@ -68,11 +70,11 @@
             {if !isset($login)}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Logowanie</a>
+                    <a class="nav-link active" href="#" data-toggle="modal" data-target="#exampleModal">Logowanie</a>
                 </li>
             {else}
                 <li class="nav-item">
-                    <a class="nav-link" href="http://{$smarty.server.HTTP_HOST}{$subdir}access/logout">Wyloguj</a>
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}access/logout">Wyloguj</a>
                 </li>
             {/if}
         </ul>

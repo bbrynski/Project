@@ -49,7 +49,7 @@ class Konfigurator extends Model
 
             $stmt = $this->pdo->prepare('INSERT INTO `' . \Config\Database\DBConfig::$tableKonfigurator . '` (`' . \Config\Database\DBConfig\Konfigurator::$idModel . '`,`' . \Config\Database\DBConfig\Konfigurator::$numer . '`) VALUES(:IdModel, :Numer)');
             $stmt->bindValue(':IdModel', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':Numer', $numer, PDO::PARAM_INT);
+            $stmt->bindValue(':Numer', $numer, PDO::PARAM_STR);
 
             $result = $stmt->execute();
             if (!$result)

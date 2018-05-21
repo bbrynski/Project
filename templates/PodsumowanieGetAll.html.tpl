@@ -21,55 +21,66 @@
     <!-- Wyśrodkowanie -->
     <div class="d-flex justify-content-center">
 
+
+
+
         {foreach $samochody as $key => $samochod}
 
             {if {$samochod['IdModel']} == {$smarty.session.idmodel}}
             <div class="col-sm-6">
                     <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['Foto']}" class="img-fluid" alt="Responsive image"></center>
-                    <h1 class="text-center">{$samochod['nazwaModel']}</h1>
 
+
+                    <h2 class="text-center">Model:{$samochod['nazwaModel']}</h2>
+                    <br>
             {/if}
         {/foreach}
 
+
+
         {foreach $silniki as $key => $silnik}
             {if {$silnik['IdSilnik']} == {$smarty.session.idsilnik}}
-                        <h2 class="text-center">{$silnik['TypSilnika']}</h2>
+                        <h4 class="text-center">Silnik: {$silnik['TypSilnika']}</h4>
             {/if}
         {/foreach}
 
         {foreach $skrzynie as $key => $skrzynia}
             {if {$skrzynia['IdSkrzynia']} == {$smarty.session.idskrzynia}}
-                <h2 class="text-center">{$skrzynia['TypSkrzyni']}</h2>
+                <h4 class="text-center">Skrzynia: {$skrzynia['TypSkrzyni']}</h4>
             {/if}
         {/foreach}
 
                 {foreach $lakiery as $key => $lakier}
                     {if {$lakier['IdLakier']} == {$smarty.session.idlakier}}
-                        <h2 class="text-center">{$lakier['nazwaLakier']}</h2>
-                    {/if}
-                {/foreach}
-
-                {foreach $reflektory as $key => $reflektor}
-                    {if {$reflektor['IdReflektory']} == {$smarty.session.idreflektory}}
-                        <h2 class="text-center">{$reflektor['nazwaReflektory']}</h2>
-                    {/if}
-                {/foreach}
-
-                {foreach $kola as $key => $kolo}
-                    {if {$kolo['IdKola']} == {$smarty.session.idkola}}
-                        <h2 class="text-center">{$kolo['Wartosc']}"</h2>
+                        <h4 class="text-center">Lakier: {$lakier['nazwaLakier']}</h4>
                     {/if}
                 {/foreach}
 
                 {foreach $napedy as $key => $naped}
                     {if {$naped['IdNaped']} == {$smarty.session.idnaped}}
-                        <h2 class="text-center">{$naped['nazwaNaped']}</h2>
+                        <h4 class="text-center">Napęd: {$naped['nazwaNaped']}</h4>
                     {/if}
                 {/foreach}
 
+                {foreach $reflektory as $key => $reflektor}
+                    {if {$reflektor['IdReflektory']} == {$smarty.session.idreflektory}}
+                        <h4 class="text-center">Reflektory: {$reflektor['nazwaReflektory']}</h4>
+                    {/if}
+                {/foreach}
+
+                {foreach $kola as $key => $kolo}
+                    {if {$kolo['IdKola']} == {$smarty.session.idkola}}
+                        <h4 class="text-center">Koła: {$kolo['Wartosc']}"</h4>
+                    {/if}
+                {/foreach}
+
+
+
                 {if isset($opcje)}
+                    <br>
+                    <h4 class="text-center">Opcje:</h4>
                 {foreach $opcje as $item}
-                        <h2 class="text-center">{$item}</h2>
+                        <h4 class="text-center"> - {$item}</h4>
                 {/foreach}
                 {/if}
 
