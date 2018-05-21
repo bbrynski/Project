@@ -13,7 +13,7 @@ class Silnik extends Controller
         $data = $model->getOne($id);
         $data=$data['samochody'];
 
-       // \Tools\Session::set('nazwaModel', $data['nazwaModel']);
+        \Tools\Session::set('nazwaModel', $data['nazwaModel']);
 
 
         $view = $this->getView('Silnik');
