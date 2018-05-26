@@ -31,6 +31,11 @@
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_pracownik.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_usluga.js"></script>
 
+<script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/terminarz.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
 
 
 

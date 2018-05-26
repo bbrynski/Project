@@ -6,14 +6,10 @@
     <form id="addModel"  action="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient/add" method="post" enctype="multipart/form-data">
 
 
-        <div class="form-group">
-            <label for="name">Klient</label>
-            {html_options name=Id_Klient options=$Klient class="form-control"}
-        </div>
 
         <div class="form-group">
-            <label for="name">Model</label>
-            {html_options name=Id_Model options=$Samochody  class="form-control"}
+            <label for="name">Klient</label>
+            {html_options name=Id_Klient options=$Samochody  class="form-control"}
         </div>
 
         <div class="form-group">

@@ -60,11 +60,7 @@ class UslugiKlient extends View
 
     public function addform(){
 
-        $model_klient = $this->getModel('Klient');
-        $klienci = $model_klient->getAllForSelect();
-        $this->set('Klient',$klienci);
-
-        $model_samochod = $this->getModel('Samochod');
+        $model_samochod = $this->getModel('SamochodSerwis');
         $samochody = $model_samochod->getAllForSelect();
         $this->set('Samochody',$samochody);
 
@@ -80,9 +76,8 @@ class UslugiKlient extends View
 
     public function editform($UslugiKlient){
         $this->set('id', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$id]);
-        $this->set('Id_Model', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Model]);
         $this->set('Id_Uslugi', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi]);
-        $this->set('Id_Klient', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_Klient]);
+        $this->set('Id_Klient', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Id_KlientSamochod]);
         $this->set('Opis', $UslugiKlient[\Config\Database\DBConfig\UslugiKlient::$Opis]);
 
 

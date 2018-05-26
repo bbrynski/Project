@@ -2,7 +2,7 @@
 namespace Tools;
 
 class Access extends Session {
-    private static $login = 'user';
+    public static $login = 'user';
     private static $loginTime = 'logintime';
     private static $sessionTime = 6000;
 

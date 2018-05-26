@@ -28,4 +28,7 @@
         public static $tableParking = 'Parking';
         public static $tableUslugi = 'Uslugi';
         public static $tableUslugiKlient = 'UslugiKlient';
+
+        public static $tableKlientSamochod = 'KlientSamochod';
+        public static $tableSamochodSerwis = 'SamochodSerwis';
 	}

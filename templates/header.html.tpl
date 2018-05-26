@@ -10,6 +10,9 @@
     <!-- DataTables Table plug-in for jQuery -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+
 </head>
 
 <body>
@@ -62,6 +65,10 @@
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Terminarz">Terminarz</a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -73,6 +80,11 @@
                     <a class="nav-link active" href="#" data-toggle="modal" data-target="#exampleModal">Logowanie</a>
                 </li>
             {else}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient/samochody/{$id}">{$user}</a>
+                    </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}access/logout">Wyloguj</a>
                 </li>

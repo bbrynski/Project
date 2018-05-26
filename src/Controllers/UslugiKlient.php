@@ -34,7 +34,7 @@ class UslugiKlient extends Controller{
         public function add()
         {
             $model = $this->getModel('UslugiKlient');
-            $data = $model->add($_POST['Id_Model'],$_POST['Id_Uslugi'],$_POST['Id_Klient'],$_POST['Opis']);
+            $data = $model->add($_POST['Id_Uslugi'],$_POST['Id_Klient'],$_POST['Opis']);
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);
             if(isset($data['message']))

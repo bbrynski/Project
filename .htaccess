@@ -90,6 +90,12 @@ RewriteRule ^UslugiKlient/delete/(\d+)/?$ index.php?controller=UslugiKlient&acti
 #Parking
 RewriteRule ^Parking/?$ index.php?controller=Parking [L]
 
+#Terminarz
+RewriteRule ^Terminarz/?$ index.php?controller=Terminarz&action=getCalendar [L]
+
+#KlientSamochod
+RewriteRule ^Klient/samochody/(\d+)/?$ index.php?controller=KlientSamochod&action=getOne&id=$1 [L]
+
 #Error
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 

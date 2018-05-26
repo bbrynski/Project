@@ -17,7 +17,14 @@ class UslugiKlient extends Model{
         }//if
         $data['uslugiKlient']=array();
         try{
-            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableUslugiKlient.'`');
+            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableUslugiKlient.'`
+            INNER JOIN `'.\Config\Database\DBConfig::$tableKlientSamochod.'`
+            ON `'.\Config\Database\DBConfig::$tableUslugiKlient.'`.`'.\Config\Database\DBConfig\UslugiKlient::$Id_KlientSamochod.'`=`'.\Config\Database\DBConfig::$tableKlientSamochod.'`.`'.\Config\Database\DBConfig\KlientSamochod::$id.'`
+                INNER JOIN `'.\Config\Database\DBConfig::$tableSamochodSerwis.'`
+                ON `'.\Config\Database\DBConfig::$tableKlientSamochod.'`.`'.\Config\Database\DBConfig\KlientSamochod::$id_Samochod.'`=`'.\Config\Database\DBConfig::$tableSamochodSerwis.'`.`'.\Config\Database\DBConfig\SamochodSerwis::$id.'`
+                    INNER JOIN `'.\Config\Database\DBConfig::$tableKlient.'` 
+                    ON `'.\Config\Database\DBConfig::$tableKlientSamochod.'`.`'.\Config\Database\DBConfig\KlientSamochod::$id_Klient.'`=`'.\Config\Database\DBConfig::$tableKlient.'`.`'.\Config\Database\DBConfig\Klient::$id.'`
+            ');
             $uslugiKlient = $stmt->fetchAll();
             $stmt->closeCursor();
             if($uslugiKlient && ! empty($uslugiKlient))
@@ -34,26 +41,24 @@ class UslugiKlient extends Model{
 
 
 
-    public function add($Id_Model,$Id_Uslugi,$Id_Klient,$Opis){
+    public function add($Id_Uslugi,$Id_Klient,$Opis){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($Id_Model === null||$Id_Uslugi === null||$Id_Klient === null||$Opis === null){
+        if($Id_Uslugi === null||$Id_Klient === null||$Opis === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
         $data = array();
         try	{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableUslugiKlient.'` (
-                `' .\Config\Database\DBConfig\UslugiKlient::$Id_Model.'`,
                 `' .\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi.'`,
-                `' .\Config\Database\DBConfig\UslugiKlient::$Id_Klient.'`,
+                `' .\Config\Database\DBConfig\UslugiKlient::$Id_KlientSamochod.'`,
                 `' .\Config\Database\DBConfig\UslugiKlient::$Opis.'`
                 
-                ) VALUES (:Id_Model,:Id_Uslugi,:Id_Klient,:Opis)');
+                ) VALUES (:Id_Uslugi,:Id_Klient,:Opis)');
 
-            $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Uslugi', $Id_Uslugi, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
             $stmt->bindValue(':Opis', $Opis, PDO::PARAM_STR);
@@ -83,8 +88,14 @@ class UslugiKlient extends Model{
         $data = array();
         $data['UslugiKlient'] = array();
         try	{
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableUslugiKlient.'` WHERE  `'.\Config\Database\DBConfig\UslugiKlient::$id.'`=:id');
+            $query='SELECT * FROM '.\Config\Database\DBConfig::$tableUslugiKlient.'
+             INNER JOIN '.\Config\Database\DBConfig::$tableUslugi.
+                ' ON '.\Config\Database\DBConfig::$tableUslugiKlient.'.'.\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi.'='.\Config\Database\DBConfig::$tableUslugi.'.'.\Config\Database\DBConfig\Uslugi::$id.
+                ' WHERE '.\Config\Database\DBConfig::$tableUslugiKlient.'.'.\Config\Database\DBConfig\UslugiKlient::$Id_KlientSamochod.'='.$id;
+
+            $stmt = $this->pdo->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
             $result = $stmt->execute();
             $UslugiKlient = $stmt->fetch(PDO::FETCH_ASSOC);
             $stmt->closeCursor();
@@ -127,28 +138,26 @@ class UslugiKlient extends Model{
     }
 
 
-    public function update($id,$Id_Model,$Id_Uslugi,$Id_Klient,$Opis){
+    public function update($id,$Id_Uslugi,$Id_Klient,$Opis){
         $data = array();
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id === null || $Id_Model === null|| $Id_Uslugi === null|| $Id_Klient === null|| $Opis === null){
+        if($id === null || $Id_Uslugi === null|| $Id_Klient === null|| $Opis === null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
         try	{
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableUslugiKlient.'` SET
-                `'.\Config\Database\DBConfig\UslugiKlient::$Id_Model.'`=:Id_Model, 
                 `'.\Config\Database\DBConfig\UslugiKlient::$Id_Uslugi.'`=:Id_Uslugi,
-                `'.\Config\Database\DBConfig\UslugiKlient::$Id_Klient.'`=:Id_Klient,
+                `'.\Config\Database\DBConfig\UslugiKlient::$Id_KlientSamochod.'`=:Id_Klient,
                 `'.\Config\Database\DBConfig\UslugiKlient::$Opis.'`=:opis
                 
                 
                 WHERE `' .\Config\Database\DBConfig\UslugiKlient::$id.'`=:id');
 
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Uslugi', $Id_Uslugi, PDO::PARAM_INT);
             $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
             $stmt->bindValue(':opis', $Opis, PDO::PARAM_STR);

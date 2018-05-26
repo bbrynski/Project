@@ -13,4 +13,5 @@
         public static $nr = 'Nr_Domu_Lokalu';
         public static $email = 'Email';
         public static $telefon = 'Telefon';
+        public static $uzytkownik = 'Id_Uzytkownik';
     }

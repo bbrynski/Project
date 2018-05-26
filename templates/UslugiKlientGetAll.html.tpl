@@ -32,11 +32,9 @@
                 {foreach $uslugiKlient as $key => $uslugaKlient}
                     <tr>
 
-                        {foreach $samochody as $key => $samochod}
-                            {if {$uslugaKlient['IdModel']}=={$samochod['IdModel']}}
-                                <td>{$samochod['nazwaModel']}  </td>
-                            {/if}
-                        {/foreach}
+
+                                <td>{$uslugaKlient['Model']}  </td>
+
 
                         {foreach $uslugi as $key => $usluga}
                             {if {$uslugaKlient['IdUslugi']}=={$usluga['IdUslugi']}}
@@ -44,11 +42,10 @@
                             {/if}
                         {/foreach}
 
-                        {foreach $klienci as $key => $klient}
-                            {if {$uslugaKlient['IdKlient']}=={$klient['Id_Klient']}}
-                                <td>{$klient['Imie']}  {$klient['Nazwisko']} </td>
-                            {/if}
-                        {/foreach}
+
+                                <td>{$uslugaKlient['Imie']}  {$uslugaKlient['Nazwisko']} </td>
+
+
 
                         <td>{$uslugaKlient['Opis']} </td>
 

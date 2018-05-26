@@ -14,13 +14,16 @@ class Access extends Model {
             if ($uzytkownik['Login'] === $login) {
                 
                 if ($uzytkownik['Haslo'] === $password) {
-                    \Tools\Access::login($_POST['login']);
+                        \Tools\Access::login($login);
 
                     $dostep = $uzytkownik['Prawo'];
+                    $id = $uzytkownik['Id_Uzytkownika'];
 
 
                     // dostęp do prawa
                     \Tools\Session::set('prawo', $dostep);
+                    \Tools\Session::set('idUzytkownik', $id);
+                    \Tools\Session::set('login', $uzytkownik['Login'] );
                     return $data;
                 }
             }

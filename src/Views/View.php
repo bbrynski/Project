@@ -6,8 +6,13 @@ abstract class View {
     public function  __construct() {
         $this->smarty = new Smarty();
         $this->set('subdir', '/'.\Config\Website\Config::$subdir);
-        if(\Tools\Access::islogin() === true)
-            $this->set('login',true);
+        if(\Tools\Access::islogin() === true) {
+            $this->set('login', true);
+            $this->set('user',\Tools\Access::get(\Tools\Access::$login));
+            $this->set('id',\Tools\Access::get('idUzytkownik'));
+            $this->set('prawo',\Tools\Access::get('prawo'));
+
+        }
     }
     //załadowanie modelu
     public function getModel($name){
