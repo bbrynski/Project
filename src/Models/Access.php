@@ -17,7 +17,7 @@ class Access extends Model {
                         \Tools\Access::login($login);
 
                     $dostep = $uzytkownik['Prawo'];
-                    $id = $uzytkownik['Id_Uzytkownika'];
+                    $id = $uzytkownik['Id_Klient'];
 
 
                     // dostęp do prawa
@@ -36,6 +36,8 @@ class Access extends Model {
     public function logout(){
         \Tools\Access::logout();
         \Tools\Session::clear('prawo');
+        \Tools\Session::clear('idUzytkownik');
+        \Tools\Session::clear('login');
     }
 
 
@@ -47,7 +49,8 @@ class Access extends Model {
         $data = array();
         $data['uzytkownicy'] = array();
         try	{
-            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableUzytkownik.'`');
+            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableUzytkownik.'` INNER JOIN `'.\Config\Database\DBConfig::$tableKlient.'`
+            ON `'.\Config\Database\DBConfig::$tableUzytkownik.'`.`'.\Config\Database\DBConfig\Uzytkownik::$id_uzytkownik.'`=`'.\Config\Database\DBConfig::$tableKlient.'`.`'.\Config\Database\DBConfig\Klient::$uzytkownik.'`');
             $uzytkownicy = $stmt->fetchAll();
             $stmt->closeCursor();
             if($uzytkownicy && !empty($uzytkownicy))
