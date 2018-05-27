@@ -9,6 +9,7 @@ class Access extends View {
             $this->set('message',$data['message']);
         if(isset($data['error']))
             $this->set('error',$data['error']);
+
         $this->render('LogForm');
 
     }
