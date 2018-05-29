@@ -52,6 +52,37 @@
             return $data;
         }
 
+        public function getId($imie, $nazwisko){
+            if($this->pdo === null){
+                $data['error'] = \Config\Database\DBErrorName::$connection;
+                return $data;
+            }
+            if($imie === null && $nazwisko == null){
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+                return $data;
+            }
+            $data = array();
+            $data['Klient'] = array();
+            try	{
+                $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableKlient.'` 
+                WHERE  `'.\Config\Database\DBConfig\Klient::$imie.'`=:imie && `'.\Config\Database\DBConfig\Klient::$nazwisko.'`=:nazwisko');
+                $stmt->bindValue(':imie', $imie, PDO::PARAM_INT);
+                $stmt->bindValue(':nazwisko', $nazwisko, PDO::PARAM_INT);
+
+                $result = $stmt->execute();
+                $Klient = $stmt->fetch(PDO::FETCH_ASSOC);
+                $stmt->closeCursor();
+                if($Klient && !empty($Klient))
+                    $data['Klient'] = $Klient;
+                else
+                    $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            }
+            catch(\PDOException $e)	{
+                $data['error'] = \Config\Database\DBErrorName::$query;
+            }
+            return $data;
+    }
+
 
 
         public function add($imie, $nazwisko, $firma, $nip, $kod, $miejscowosc, $ulica, $nr, $email, $telefon){

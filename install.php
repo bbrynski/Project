@@ -25,6 +25,17 @@
         usunięcie starych tabel    
     */
 
+$query = 'DROP TABLE IF EXISTS `'.DB::$tableOdbior.'`';
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$delete_table.DB::$tableOdbior;
+}
+
+
 $query = 'DROP TABLE IF EXISTS `'.DB::$tableUslugiKlient.'`';
 try
 {
@@ -213,7 +224,26 @@ catch(PDOException $e)
 
 
 
+/**
+tworzenie tabeli Odbior
+ */
+$query = 'CREATE TABLE IF NOT EXISTS `'.DB::$tableOdbior.'` (
+                `'.DB\Odbior::$id.'` INT NOT NULL AUTO_INCREMENT,
+                `'.DB\Odbior::$idKlient.'`  INT NOT NULL,
+                `'.DB\Odbior::$data.'` DATE NOT NULL,
+                `'.DB\Odbior::$numerZamowienia.'` VARCHAR(50) NOT NULL,
+                `'.DB\Odbior::$odebrano.'` BIT NOT NULL,
+                PRIMARY KEY (`'.DB\Odbior::$id.'`)
+                ) ENGINE=InnoDB;';
 
+try
+{
+    $pdo->exec($query);
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$create_table.DB::$tableKlient;
+}
 
 /**
 tworzenie tabeli SamochodSerwis
@@ -1782,7 +1812,7 @@ try
             `'.DB\Model::$Foto.'`,
             `'.DB\Model::$Id_Wyposazenie.'`,
             `'.DB\Model::$Id_Lakier.'`,
-            `'.DB\Model::$Konfigurator.'`) 
+            `'.DB\Model::$Konfigurator.'`)
             VALUES(:nazwaModel, :cena, :Id_Silnik, :Id_Skrzynia, :Id_Naped, :Foto, :Id_Wyposazenie, :Id_Lakier, :Konfigurator)');
     foreach($modele as $model)
     {
@@ -1859,6 +1889,41 @@ catch(PDOException $e)
 {
     echo \Config\Database\DBErrorName::$noadd;
 }
+
+/*
+ *
+ * odbior przykladowe
+ */
+
+$odbiory = array();
+$odbiory[] = array(
+    'IdKlient' => '2',
+    'Data' => '2018-5-5',
+    'Numer' => '1214245',
+    'Odebrano' => 0);
+
+try
+{
+    $stmt = $pdo -> prepare('INSERT INTO `'.DB::$tableOdbior.'` (
+            `'.DB\Odbior::$idKlient.'`,
+            `'.DB\Odbior::$data.'`,
+           `'.DB\Odbior::$numerZamowienia.'`,
+           `'.DB\Odbior::$odebrano.'`) 
+            VALUES(:IdKlient, :Data, :Numer, :Odebrano)');
+    foreach($odbiory as $odbior)
+    {
+        $stmt -> bindValue(':IdKlient', $odbior['IdKlient'], PDO::PARAM_INT);
+        $stmt -> bindValue(':Data', $odbior['Data'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Numer', $odbior['Numer'], PDO::PARAM_STR);
+        $stmt -> bindValue(':Odebrano', $odbior['Odebrano'], PDO::PARAM_INT);
+        $stmt -> execute();
+    }
+}
+catch(PDOException $e)
+{
+    echo \Config\Database\DBErrorName::$noadd;
+}
+
 /*
 $zamowienia = array();
 $zamowienia[] = array(

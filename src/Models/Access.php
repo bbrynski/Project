@@ -44,7 +44,7 @@ $data['error'] = \Config\Website\ErrorName::$wrongdata;
 return $data;
 }
 
-    
+
     public function logout(){
         \Tools\Access::logout();
         \Tools\Session::clear('prawo');

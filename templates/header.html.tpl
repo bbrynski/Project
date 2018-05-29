@@ -69,6 +69,10 @@
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Terminarz">Terminarz</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Odbiory">Odbiory</a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
