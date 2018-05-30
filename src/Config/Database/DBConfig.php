@@ -8,8 +8,8 @@
         public static $hostname = 'localhost';
         public static $databaseType = 'mysql';
         public static $port = '3306';
-        public static $user = 'kowalski';
-        public static $password = '123456';
+        public static $user = 'root';
+        public static $password = '';
 
         //nazwy tabel
         public static $tableKlient = 'Klient';

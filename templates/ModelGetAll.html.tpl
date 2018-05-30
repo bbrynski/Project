@@ -28,7 +28,6 @@
                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['Foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$samochod['nazwaModel']}</h1>
                         </a>
-                       <!-- <center><a type="button" class="btn btn-info DostepnoscModelu" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/Dostepnosc/{$samochod['IdModel']}">Dostępność</a></center> -->
 
 
                     </div>
@@ -39,10 +38,15 @@
         {/if}
     {/if}
 
-    <!-- Wyśrodkowanie -->
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
-    </div>
+
+    {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+
+        <!-- Wyśrodkowanie -->
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
+        </div>
+
+    {/if}
 
 </div>
 </div>

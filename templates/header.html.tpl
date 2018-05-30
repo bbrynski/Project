@@ -29,46 +29,55 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto justify-content-center">
 
+
+
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Konfigurator</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
-            </li>
-
-
-
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie">Zamowienie</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/status">Sprawdź Zamówienie</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/">Sprawdź konfiguracje</a>
             </li>
 
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Klient">Klienci</a>
+                </li>
+            {/if}
+
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Pracownik">Pracownicy</a>
+                </li>
+            {/if}
+
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie">Zamowienie</a>
+                </li>
+            {/if}
+
+            <li class="nav-item">
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/status">Sprawdź Zamówienie</a>
+            </li>
+
+
+
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Uslugi">Uslugi</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient">Uslugi Klientów</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
-            </li>
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}UslugiKlient">Uslugi Klientów</a>
+                </li>
+            {/if}
 
-            <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Terminarz">Terminarz</a>
-            </li>
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking">Parking</a>
+                </li>
+            {/if}
 
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Odbiory">Odbiory</a>
