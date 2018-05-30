@@ -39,7 +39,7 @@
     {/if}
 
 
-    {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+    {if (isset($prawo) && ($prawo == 'admin'))}
 
         <!-- Wyśrodkowanie -->
         <div class="d-flex justify-content-center">

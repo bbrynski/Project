@@ -110,10 +110,7 @@
         {/if}
     {/if}
 
-    <!-- Wyśrodkowanie -->
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
-    </div>
+
 
 </div>
 </div>
