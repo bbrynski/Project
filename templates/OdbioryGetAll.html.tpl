@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-4 mb-4">
+<div class="container mt-4 mb-4">
 
     <div class="d-flex justify-content-center">
         <h2>Wydawanie samochodow</h2>
@@ -21,11 +21,11 @@
             <br/>
             <br/>
         {else}
-            <div>
-                <div class="container">
+            <div class="container col-md-8">
+            <div class="form-group">
                     <form id="add_odbior" action="http://{$smarty.server.HTTP_HOST}{$subdir}Odbior/add" method="post">
 
-                        {if !isset($prawo) && !isset($idUzytkownik)}
+                        {if (!isset($prawo) && !isset($idUzytkownik))  || (isset($prawo) && ($prawo == 'admin'))}
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputImie">Imie</label>
@@ -39,12 +39,12 @@
                             {/if}
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="inputNumerZamowienia">Numer zamówienia</label>
                                 <input type="text" class="form-control" id="inputNumerZamowienia" name="numer"
                                        placeholder="Numer zamówienia">
                             </div>
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-6">
                                 <label for="inputData">Data odbioru</label>
                                 <input type="date" class="form-control" id="inputData" name="data" placeholder="Data">
                             </div>
@@ -53,7 +53,7 @@
 
                             <button type="submit" class="btn btn-primary">Dodaj</button>
                     </form>
-                </div>
+            </div>
             </div>
             {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
                 <table id="data" class="display table table-hover">
@@ -118,6 +118,4 @@
     {/if}
 
 </div>
-
-
 {include file="footer.html.tpl"}
