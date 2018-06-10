@@ -40,9 +40,10 @@ class Parking extends View
     public function addform(){
 
 
-        $model = $this->getModel('Samochod');
-        $data = $model->getAll();
-        $this->set('samochody', $data['samochody']);
+        $model_samochod = $this->getModel('Samochod');
+        $samochody = $model_samochod->getAllForSelect();
+        $this->set('Samochody',$samochody);
+
 
         $this->render('ParkingAddForm');
     }
@@ -50,11 +51,13 @@ class Parking extends View
     public function editform($Parking){
         $this->set('id', $Parking[\Config\Database\DBConfig\Parking::$id]);
         $this->set('Id_Model', $Parking[\Config\Database\DBConfig\Parking::$Id_Model]);
-        $this->set('DostepneSztuki', $Parking[\Config\Database\DBConfig\Parking::$DostepneSztuki]);
+        $this->set('Sztuki', $Parking[\Config\Database\DBConfig\Parking::$DostepneSztuki]);
 
 
-        $this->set('Modele', $this->getModel('Samochod')->getAll()['samochody']);
-        $this->set('customScript','Parking');
+        $model_samochod = $this->getModel('Samochod');
+        $samochody = $model_samochod->getAllForSelect();
+        $this->set('Samochody',$samochody);
+
         $this->render('ParkingEditForm');
     }
 

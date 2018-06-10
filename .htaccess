@@ -89,6 +89,12 @@ RewriteRule ^UslugiKlient/delete/(\d+)/?$ index.php?controller=UslugiKlient&acti
 
 #Parking
 RewriteRule ^Parking/?$ index.php?controller=Parking [L]
+RewriteRule ^Parking/add-form/?$ index.php?controller=Parking&action=addform [L]
+RewriteRule ^Parking/add/?$ index.php?controller=Parking&action=add [L]
+
+RewriteRule ^Parking/edit/(\d+)/?$ index.php?controller=Parking&action=editform&id=$1 [L]
+RewriteRule ^Parking/update/?$ index.php?controller=Parking&action=update [L]
+RewriteRule ^Parking/delete/(\d+)/?$ index.php?controller=Parking&action=delete&id=$1 [L]
 
 #Terminarz
 RewriteRule ^Terminarz/?$ index.php?controller=Terminarz&action=getCalendar [L]

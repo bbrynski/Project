@@ -100,7 +100,7 @@
             }
             try	{
                 $stmt = $this->pdo->prepare('DELETE FROM  `'.\Config\Database\DBConfig::$tableParking.'` 
-                WHERE  `'.\Config\Database\DBConfig\Pracownik::$id.'`=:id');
+                WHERE  `'.\Config\Database\DBConfig\Parking::$id.'`=:id');
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT); 
                 $result = $stmt->execute(); 
                 if(!$result)

@@ -9,6 +9,16 @@
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
+
+    {if $smarty.session.prawo == 'admin'}
+
+        <div class="text-center">
+            <a class="btn btn-success m-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/add-form">Dodaj</a>
+        </div>
+
+    {/if}
+
+
     {if isset($parkingi)}
         {if $parkingi|@count === 0}
             <div class="alert alert-primary" role="alert">
@@ -16,11 +26,15 @@
             </div>
         {else}
 
+
+
             <table id="data" class=" table table-hover">
                 <thead>
                 <tr>
                     <th>Nazwa Modelu</th>
                     <th>Dostepne Sztuki</th>
+                    <th></th>
+                    <th></th>
                     
 
                 </tr>
@@ -36,10 +50,16 @@
 
                         <td>{$parking['DostepneSztuki']} </td>
 
+                     <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/edit/{$parking['IdParking']}">Edytuj</a></td>
+                     <td><a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/delete/{$parking['IdParking']}">Usuń</a></td> </tr>
+
+
 
                          {/foreach}
                 </tbody>
             </table>
+
+
 
 
 

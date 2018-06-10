@@ -34,7 +34,7 @@ class Parking extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Parking');
-        $data = $model->add($_POST['id'], $_POST['Id_Model'], $_POST['DostepneSztuki']);
+        $data = $model->add($_POST['IdModel'], $_POST['Sztuki']);
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
