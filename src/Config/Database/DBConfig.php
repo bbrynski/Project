@@ -32,4 +32,6 @@
         public static $tableKlientSamochod = 'KlientSamochod';
         public static $tableSamochodSerwis = 'SamochodSerwis';
         public static $tableOdbior = 'Odbior';
+
+        public static $tableUslugaSerwis = 'UslugaSerwis';
 	}
