@@ -52,6 +52,21 @@
             return $data;
         }
 
+        public function mail($model,$cena){
+
+            $klienci = $this->getAll();
+            $klienci = $klienci['klienci'];
+
+            foreach ($klienci as $klient){
+                $tekst = "W naszej ofercie pojawił się ". $model ." w kwocie ".$cena. " zł.";
+                mail(
+                    $klient['Email'],
+                    "Nowy model",
+                    $tekst
+                );
+            }
+        }
+
         public function getId($imie, $nazwisko){
             if($this->pdo === null){
                 $data['error'] = \Config\Database\DBErrorName::$connection;
