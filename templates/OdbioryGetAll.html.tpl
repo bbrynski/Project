@@ -63,7 +63,7 @@
                         <th>Telefon</th>
                         <th>Data odbioru</th>
                         <th>Numer zamówienia</th>
-
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -87,6 +87,7 @@
                         {else}
                             <td> odebrano</td>
                         {/if}
+                        <td><a class="btn btn-primary" href="http://{$smarty.server.HTTP_HOST}{$subdir}Odbiory/edit/{$odbior['Id_Odbior']}">Edytuj</a></td>
                         {/foreach}
                     </tbody>
                 </table>

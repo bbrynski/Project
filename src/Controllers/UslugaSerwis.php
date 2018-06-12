@@ -45,13 +45,13 @@
             $this->redirect('UslugaSerwis');
         }
 
-        public function update($id){
+        public function update(){
+
 
             $model=$this->getModel('UslugaSerwis');
-            $UslugaSerwis=$model->getOne($id);
-            $UslugaSerwis = $UslugaSerwis['UslugaSerwis'];
+            $data = $model->update($_GET['id']);
 
-            $data = $model->update($UslugaSerwis['Id_UslugaSerwis'], UslugaSerwis['Id_Klient'], UslugaSerwis['Data'], UslugaSerwis['IdUslugi']);
+
 
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);

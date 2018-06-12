@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Data:</label> <input type="text" class="form-control" name="Data_Zamowienia" >
+            <label for="name">Data:</label> <input type="date" class="form-control" name="Data_Zamowienia" >
         </div>
         <div class="form-group">
             <label for="name">Status zamowienia:</label><input type="text" class="form-control" name="Statuszamowienia" >

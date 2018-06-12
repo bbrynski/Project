@@ -11,14 +11,19 @@
 
 			$model = $this->getModel('UslugaSerwis');
             $data = $model->getAll();
-
             $this->set('serwis', $data['serwis']);
+
+
             if(isset($data['error']))
                 $this->set('error', $data['error']);
-            $model2 = $this->getModel('Uslugi');
-            $data = $model2->getAll();
-            $this->set('uslugi', $data['uslugi']);
-          	$this->render('UslugaSerwisGetAll');
+
+
+            $model_uslugi = $this->getModel('Uslugi');
+            $uslugi = $model_uslugi->getAllForSelect();
+            $this->set('uslugi', $uslugi);
+
+
+            $this->render('UslugaSerwisGetAll');
 		}
 	}
 

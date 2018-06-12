@@ -141,7 +141,7 @@ class UslugaSerwis extends Model
 
     }
 
-    public function update($id, $klient, $dataUslugi, $idUslugi){
+    public function update($id){
         $data = array();
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
@@ -153,17 +153,11 @@ class UslugaSerwis extends Model
         }
         try	{
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableUslugaSerwis.'` SET
-                    `'.\Config\Database\DBConfig\UslugaSerwis::$idKlient.'`=:idKlient,
-                    `'.\Config\Database\DBConfig\UslugaSerwis::$data.'`=:data,
-                    `'.\Config\Database\DBConfig\UslugaSerwis::$idUslugi.'`=:idUslugi,
                     `'.\Config\Database\DBConfig\UslugaSerwis::$zrealizowano.'`=:zrealizowano
                
                  WHERE `'.\Config\Database\DBConfig\UslugaSerwis::$id.'`=:id');
 
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':idKlient', $klient, PDO::PARAM_INT);
-            $stmt->bindValue(':data', $dataUslugi, PDO::PARAM_STR);
-            $stmt->bindValue(':idUslugi', $idUslugi, PDO::PARAM_STR);
             $stmt->bindValue(':zrealizowano', 1, PDO::PARAM_INT);
 
             $result = $stmt->execute();
