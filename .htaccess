@@ -119,3 +119,8 @@ RewriteRule ^UslugaSerwis/ukoncz/(\d+)/?$ index.php?controller=UslugaSerwis&acti
 ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 
 
+#Strona Główna
+
+RewriteRule ^Strona/?$ index.php?controller=Strona&action=getAll [L]
+
+

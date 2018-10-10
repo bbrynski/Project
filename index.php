@@ -20,7 +20,7 @@ Config\Database\DBConnection::setDBConnection(
     if(isset($_GET['controller']))
         $controller = $_GET['controller'];
     else
-        $controller = 'Klient';
+        $controller = 'Strona';
     if(isset($_GET['action']))
         $action = $_GET['action'];
     else
