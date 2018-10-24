@@ -4,6 +4,7 @@
 <head>
     <title>Volkswagen</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/bootstrap.min.css" rel="stylesheet">
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/jquery-ui.min.css" rel="stylesheet">
@@ -18,7 +19,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="http://{$smarty.server.HTTP_HOST}{$subdir}">
         <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Logo_Volkswagen.png" height="70" alt="">
     </a>
 
@@ -29,6 +30,18 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto justify-content-center">
 
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
 
 
             <li class="nav-item">

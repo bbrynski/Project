@@ -8,4 +8,16 @@
 			$view = $this->getView('Strona');
             $view->getAll();
 		}
+
+        public function Golf()
+        {
+            $view = $this->getView('Strona');
+            $view->Golf();
+        }
+
+        public function Arteon()
+        {
+            $view = $this->getView('Strona');
+            $view->Arteon();
+        }
 	}
