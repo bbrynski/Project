@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<h1 class="display-3 text-center">Volkswagen Golf</h1>
+<h1 class="display-3 text-center">Volkswagen Tiguan</h1>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -11,16 +11,16 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item tmp active">
-            <img class="first-slide"   src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/1.jpg" width="100%">
+            <img class="first-slide"   src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/1.jpg" width="100%">
         </div>
         <div class="carousel-item tmp">
-            <img class="second-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/2.jpg"  width="100%">
+            <img class="second-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/2.jpg"  width="100%">
         </div>
         <div class="carousel-item tmp">
-            <img class="third-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/3.jpg"  width="100%">
+            <img class="third-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/3.jpg"  width="100%">
         </div>
         <div class="carousel-item tmp">
-            <img class="fourth-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/4.jpg"  width="100%">
+            <img class="fourth-slide" src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/4.jpg"  width="100%">
         </div>
     </div>
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -39,8 +39,8 @@
         <div class="col-md-4 text-center">
             <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Inne/1.jpg" width="100%">
             <h6 class="mt-3">Zakup</h6>
-            <h3>Rabat do 16 000 zł</h3>
-            <p>Kupując Golfa z rocznika 2018 na dzień dobry otrzymujesz rabat do 16 000 zł.</p>
+            <h3>Rabat do 12 000 zł</h3>
+            <p>KKupując Tiguana z rocznika 2018 na dzień dobry otrzymujesz rabat 12 000 zł.</p>
         </div>
         <div class="col-md-4 text-center">
             <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Inne/2.jpg" width="100%">
@@ -63,12 +63,12 @@
 
 <div class="carousel-inner pl-5 pr-5">
     <div class="carousel-item active">
-        <img  src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img2.jpg" width="100%" alt="Nowy Volkswagen T-Cross">
+        <img  src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img_2.jpg" width="100%">
         <div class="container">
             <div class="carousel-caption text-left">
                 <h1> Już od 548 zł/mc</h1>
                 <h3>Skorzystaj z kalkulatora i oblicz ratę.</h3>
-                <p><a class="btn btn-lg btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Kalkulator" role="button">Kalkulator</a></p>
+                <p><a class="btn btn-lg btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Golf" role="button">Kalkulator</a></p>
             </div>
         </div>
     </div>
@@ -77,41 +77,40 @@
 
 <div class="row p-5">
     <div class="col-md-6">
-       <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img3.jpg" width="100%">
+       <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img_3.jpg" width="100%">
     </div>
     <div class="col-md-6">
         <div class="pt-5 m-5">
-            <h6>Wygląd zewnętrzny.</h6>
-            <h3>Elegancki towarzysz.</h3>
-            <p>Golf już od pierwszego spojrzenia zachwyca wyglądem - wrażenie robią zarówno nowo zaprojektowane reflektory i zderzaki, dynamiczny grill chłodnicy, jak i tylny dyfuzor oraz wyjątkowy panel LED-owych świateł tylnych. </p>
+            <h6>Siła pociągowa.</h6>
+            <h3>Gdy pojawia się nadbagaż.</h3>
+            <p>Potrzebujesz czasem ruszyć w drogę z przyczepą? Z Tiguanem to żaden problem! Z opcjonalnym, ręcznie składanym hakiem może on holować przyczepę nawet o masie 2,5 tony.</p>
         </div>
     </div>
 </div>
 
-
 <div class="row p-5">
     <div class="col-md-6">
         <div class="pt-5 m-5">
-            <h6>Wnętrze.</h6>
-            <h3>Więcej miejsca, więcej komfortu.</h3>
-            <p>Przestrzeń, komfort, jakość, a przede wszystkim nowe technologie – to wszystko można znaleźć we wnętrzu nowego, jeszcze bardziej intuicyjnego Golfa. I wszystko służy jednemu celowi: by każda podróż przebiegała komfortowo i bezpiecznie. Pomoże w tym też funkcja sterowania gestem „Gesture control”, dostępna w ramach nawigacji Discover Pro.</p>
+            <h6>4MOTION Active Control.</h6>
+            <h3>Twój Volkswagen dopasowuje się do Twojego stylu jazdy.</h3>
+            <p>Tiguan będzie dla Ciebie nie tylko towarzyszem przygód – on sam także jest przygodą. Dzięki standardowemu w silnikach 4MOTION i opcjonalnemu w pozostałych silnikach systemowi 4MOTION Active Control masz do dyspozycji ustawienia dopasowane do wymagań różnych nawierzchni. Dodatkowo, w trybie Onroad, możesz wybrać jeden z pięciu profili jazdy.</p>
         </div>
     </div>
     <div class="col-md-6">
-        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img4.jpg" width="100%">
+        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img_4.jpg" width="100%">
     </div>
-</div>
 
+</div>
 
 <div class="row p-5">
     <div class="col-md-6">
-        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img.png" width="100%">
+        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img_5.jpg" width="100%">
     </div>
     <div class="col-md-6">
         <div class="pt-5 m-5">
-            <h6>Światła.</h6>
-            <h3>Golf ma doświadczenie i wie jak rozświetlić każdy mrok.</h3>
-            <p>Zachwyci Cię stylistyka reflektorów Golfa. Do wyboru masz kilka atrakcyjnych wersji. Niezależnie od tego, na którą się zdecydujesz, reflektory zapewnią Ci doskonałą widoczność.</p>
+            <h6>Dynaudio.</h6>
+            <h3>Perfekcyjne brzmienie.</h3>
+            <p>Czy to możliwe, aby muzyka w samochodzie brzmiała lepiej, niż ze sprzętu HiFi w domu? Teraz tak. Dostępny na życzenie system nagłaśniający DYNAUDIO Excite jest dostrojony do akustyki wnętrza samochodu i gwarantuje brzmienie w jakości, która Cię zaskoczy. Nawet jeśli jesteś przyzwyczajony do dźwięku high-end.</p>
         </div>
     </div>
 </div>
@@ -125,18 +124,19 @@
 
 <div class="row p-5">
     <div class="col-md-5">
-        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img1.png" width="100%">
+        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img.png" width="100%">
         <h3 class="text-center">Highline</h3>
-        <h6 class="text-center">Od 83 790 PLN</h6>
+        <h6 class="text-center">Od 136 290 PLN</h6>
     </div>
     <div class="col-md-5">
         <div class="pt-5">
-            <li>Piękne i praktyczne: reflektory przeciwmgielne z funkcją statycznego doświetlania zakrętów nadają Twojemu Volkswagenowi sportowy wygląd.</li>
-            <li>Fotel kierowcy i pasażera z regulacja wysokości i z regulacją odcinka lędźwiowego, sportowy</li>
-            <li>Aktywny tempomat ACC do 210 km/h z automatyczną regulacją odległości i system obserwacji otoczenia Front Assist</li>
-            <li>Z lewej czy z prawej strony: opcjonalna, w pełni automatyczna klimatyzacja Climatronic tworzy dwie indywidualne strefy klimatyczne w Twoim Volkswagenie.</li>
-            <li>Obręcze aluminiowe Hita 6,5J x 16</li>
+            <li>Tylne światła w technologii LED, przyciemniane ze zmienną grafiką</li>
+            <li>Aktywny tempomat z automatyczną regulacją odległości Front Assist do prędkości 160 km/h</li>
+            <li>Nowa era komunikacji między kierowcą a samochodem właśnie nadeszła. W pełni personalizowalne, cyfrowe zegary na których zawsze widzisz więcej.</li>
+            <li>Obręcze ze stopu metali lekkich "Kingston" 7J x 18</li>
+            <li>Fotele przednie Top-Komfort</li>
         </div>
+
     </div>
     <div class="col-md-2">
         <div class="pt-5"></div>
@@ -148,18 +148,19 @@
 
 <div class="row p-5">
     <div class="col-md-5">
-        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Golf/img2.png" width="100%">
-        <h3 class="text-center">City</h3>
-        <h6 class="text-center">Od 61 940 PLN</h6>
+        <img src="http://{$smarty.server.HTTP_HOST}{$subdir}images/Tiguan/img_1.png" width="100%">
+        <h3 class="text-center">Comfortline</h3>
+        <h6 class="text-center">Od 109 990 PLN</h6>
     </div>
     <div class="col-md-5">
         <div class="pt-5">
-            <li>Światła do jazdy dziennej</li>
-            <li>Park Pilot - czujniki parkowania z przodu i tyłu</li>
-            <li>Obręcze ze stopu metali lekkich "Lyon" 6J x 15 (2 x 5 ramion)</li>
-            <li>Klimatyzacja z regulacją manualną "Climatic"</li>
-            <li>Radio "Composition Colour"</li>
+            <li>Szyby przyciemniane tylne boczne wraz z tylną</li>
+            <li>System Park Pilot - czujniki parkowania z przodu i z tyłu z wizualizacją na ekranie radia</li>
+            <li>System "Light Assist" - asystent świateł drogowych</li>
+            <li>Piękne i praktyczne: reflektory przeciwmgielne z funkcją statycznego doświetlania zakrętów nadają Twojemu Volkswagenowi sportowy wygląd.</li>
+            <li>Obręcze ze stopu metali lekkich "Montana" 7J x 17</li>
         </div>
+
     </div>
     <div class="col-md-2">
         <div class="pt-5"></div>

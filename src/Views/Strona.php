@@ -19,6 +19,13 @@
         }
 
 
+        public function Tiguan()
+        {
+            $this->render('Strona/Tiguan');
+        }
+
+
+
 	}
 
 

@@ -20,4 +20,10 @@
             $view = $this->getView('Strona');
             $view->Arteon();
         }
+
+        public function Tiguan()
+        {
+            $view = $this->getView('Strona');
+            $view->Tiguan();
+        }
 	}

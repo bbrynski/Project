@@ -13,7 +13,7 @@
             $this->set('klienci', $data['klienci']);
             if(isset($data['error']))
                 $this->set('error', $data['error']);
-          	$this->render('KlientGetAll');
+          	$this->render('Klient/KlientGetAll');
 		}
 
         public function getOne($id){
@@ -27,7 +27,7 @@
         }
 
         public function addform(){
-			$this->render('KlientAddForm');
+			$this->render('Klient/KlientAddForm');
         }
         
         public function editform($klient){
@@ -43,7 +43,7 @@
             $this->set('email', $klient[\Config\Database\DBConfig\Klient::$email]);
             $this->set('telefon', $klient[\Config\Database\DBConfig\Klient::$telefon]);
 
-			$this->render('KlientEditForm');
+			$this->render('Klient/KlientEditForm');
         }        
 	}
 

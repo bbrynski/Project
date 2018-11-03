@@ -19,7 +19,7 @@ class Samochod extends View
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
-        $this->render('ModelGetAll');
+        $this->render('Model/ModelGetAll');
     }
 
 
@@ -42,11 +42,6 @@ class Samochod extends View
         $this->set('Naped',$napedy);
         $this->set('Lakier',$lakiery);
 
-        $this->render('ModelAddForm');
+        $this->render('Model/ModelAddForm');
     }
-
-        //$this->render('ModelGetAll');
-
-
-
 }

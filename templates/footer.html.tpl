@@ -1,8 +1,14 @@
 
 
+
+
+
 <footer class="footer bg-dark">
-    <p style="color: white" class="text-center p-2 mt-5">&copy; Copyright 2018, Volkswagen</p>
+    <div class="container text-center">
+        <span class="text-center">&copy; Copyright 2018, Volkswagen</span>
+    </div>
 </footer>
+
 
 
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/jquery-3.2.1.min.js"></script>

@@ -14,6 +14,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 
+    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/sticky-footer.css" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -32,17 +36,19 @@
 
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Modele
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="http://{$smarty.server.HTTP_HOST}{$subdir}Golf">Golf</a>
+                    <a class="dropdown-item" href="http://{$smarty.server.HTTP_HOST}{$subdir}Arteon">Arteon</a>
+                    <a class="dropdown-item" href="http://{$smarty.server.HTTP_HOST}{$subdir}Tiguan">Tiguan</a>
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Kalkulator">Kalkulator</a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Konfigurator</a>

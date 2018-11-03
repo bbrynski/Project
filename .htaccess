@@ -124,6 +124,11 @@ ErrorDocument 404 http://localhost/Projekt_Zespolowy/errors/404.html
 RewriteRule ^Strona/?$ index.php?controller=Strona&action=getAll [L]
 RewriteRule ^Golf/?$ index.php?controller=Strona&action=Golf [L]
 RewriteRule ^Arteon/?$ index.php?controller=Strona&action=Arteon [L]
+RewriteRule ^Tiguan/?$ index.php?controller=Strona&action=Tiguan [L]
+
+#Kalkulator
+
+RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 
 
 
