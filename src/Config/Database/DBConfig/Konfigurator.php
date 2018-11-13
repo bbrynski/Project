@@ -4,6 +4,6 @@
 
     class Konfigurator{
         public static $id = 'IdKonfigurator';
-        public static $idModel = 'IdModel';
+        public static $id_Samochod = 'Id_Samochod';
         public static $numer = 'Numer';
     }

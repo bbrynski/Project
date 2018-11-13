@@ -3,14 +3,14 @@
  * Created by PhpStorm.
  * User: User
  * Date: 13.11.2018
- * Time: 17:05
+ * Time: 17:09
  */
 
 namespace Config\Database\DBConfig;
 
 
-class Wyposazenie
+class Wersja
 {
-    public static $id_Wyposazenie = 'id_Wyposazenie';
+    public static $id_Wersja = 'id_Wersja';
     public static $nazwa = 'nazwa';
 }
