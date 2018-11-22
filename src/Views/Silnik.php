@@ -12,6 +12,7 @@ class Silnik extends View
             $this->set('error',$data['error']);
 
 
+        /*
         $model = $this->getModel('Samochod');
         $data = $model->getAll();
         $this->set('samochody', $data['samochody']);
@@ -40,6 +41,13 @@ class Silnik extends View
         $data = $model->getAll();
         $this->set('napedy', $data['napedy']);
 
+        */
+
+        $model = $this->getModel('Silnik');
+        $data = $model->getAll(\Tools\Session::get('id_ZbiorModeli'));
+        $this->set('SamochodParametry', $data['SamochodParametry']);
+
+
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
         /*
@@ -50,6 +58,6 @@ class Silnik extends View
 
         if(isset($data['error']))
             $this->set('error', $data['error']);
-        $this->render('SilnikGetAll');
+        $this->render('SamochodParametry');
     }
 }

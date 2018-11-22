@@ -9,8 +9,8 @@
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    {if isset($samochody)}
-        {if $samochody|@count === 0}
+    {if isset($ZbiorModeli)}
+        {if $ZbiorModeli|@count === 0}
             <div class="alert alert-primary" role="alert">
                 Brak Modeli Samochodów w Bazie
             </div>
@@ -22,11 +22,11 @@
         </div>
 
             <div class="row">
-                {foreach $samochody as $key => $samochod}
+                {foreach $ZbiorModeli as $key => $Wartosc}
                     <div class="col-sm-6">
-                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/{$samochod['id_ZbiorModeli']}">
-                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$samochod['foto']}" class="img-fluid" alt="Responsive image">
-                        <h1 class="text-center">{$samochod['nazwa']}</h1>
+                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/{$Wartosc['id_ZbiorModeli']}">
+                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
+                        <h1 class="text-center">{$Wartosc['nazwa']}</h1>
                         </a>
 
                         <!-- dodać jeszcze wersje wyposażenia -->
@@ -38,17 +38,6 @@
 
         {/if}
     {/if}
-
-
-    {if (isset($prawo) && ($prawo == 'admin'))}
-
-        <!-- Wyśrodkowanie -->
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-success mb-3 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod/add-form">+</a>
-        </div>
-
-    {/if}
-
 </div>
 </div>
 

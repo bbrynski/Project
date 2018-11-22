@@ -131,4 +131,8 @@ RewriteRule ^Tiguan/?$ index.php?controller=Strona&action=Tiguan [L]
 RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 
 
+#Konfigurator
+RewriteRule ^KonfiguratorModelu/?$ index.php?controller=ZbiorModeli [L]
+
+
 

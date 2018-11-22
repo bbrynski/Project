@@ -1,35 +1,53 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BartoszBryński
- * Date: 11.03.2018
- * Time: 12:25
- */
+
 
 namespace Models;
-
+use \PDO;
 
 class Silnik extends Model
 {
-    public function getAll(){
+    public function getAll($id){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
+        if($id === null){
+            $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            return $data;
+        }
+
         $data = array();
-        $data['silniki'] = array();
+        $data['SamochodParametry'] = array();
         try	{
-            $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableSilnik.'`');
-            $silniki = $stmt->fetchAll();
+
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodParametry.'` 
+            
+                                            INNER JOIN `'.\Config\Database\DBConfig::$tableJednostkaNapedowa.'`
+                                            ON `'.\Config\Database\DBConfig::$tableSamochodParametry.'`.`'. \Config\Database\DBConfig\SamochodParametry::$id_SamochodParametry . '`
+                                            =`' . \Config\Database\DBConfig::$tableJednostkaNapedowa . '`.`' . \Config\Database\DBConfig\JednostkaNapedowa::$id_JednostkaNapedowa . '`
+                                    
+                                            
+            
+                                            WHERE  `'.\Config\Database\DBConfig\SamochodParametry::$id_ZbiorModeli.'`=:id');
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            $result = $stmt->execute();
+            $SamochodParametry = $stmt->fetchAll();
             $stmt->closeCursor();
-            if($silniki && !empty($silniki))
-                $data['silniki'] = $silniki;
+
+
+            if($SamochodParametry && !empty($SamochodParametry))
+                $data['SamochodParametry'] = $SamochodParametry;
+
+            d($data);
         }
         catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;
         }
         return $data;
     }
+
+    /*
     public function getAllForSelect(){
         $data = $this->getAll();
         $silniki = array();
@@ -43,5 +61,6 @@ class Silnik extends Model
 
         return $silniki;
     }
+    */
 
 }

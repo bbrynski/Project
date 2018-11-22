@@ -51,7 +51,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Konfigurator</a>
+                <a class="nav-link active" href="http://{$smarty.server.HTTP_HOST}{$subdir}KonfiguratorModelu">Konfigurator</a>
             </li>
 
             <li class="nav-item">
