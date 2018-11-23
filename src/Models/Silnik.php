@@ -23,7 +23,7 @@ class Silnik extends Model
             $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodParametry.'` 
             
                                             INNER JOIN `'.\Config\Database\DBConfig::$tableJednostkaNapedowa.'`
-                                            ON `'.\Config\Database\DBConfig::$tableSamochodParametry.'`.`'. \Config\Database\DBConfig\SamochodParametry::$id_SamochodParametry . '`
+                                            ON `'.\Config\Database\DBConfig::$tableSamochodParametry.'`.`'. \Config\Database\DBConfig\SamochodParametry::$id_JednostkaNapedowa . '`
                                             =`' . \Config\Database\DBConfig::$tableJednostkaNapedowa . '`.`' . \Config\Database\DBConfig\JednostkaNapedowa::$id_JednostkaNapedowa . '`
                                     
                                             

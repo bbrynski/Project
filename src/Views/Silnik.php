@@ -41,7 +41,15 @@ class Silnik extends View
         $data = $model->getAll();
         $this->set('napedy', $data['napedy']);
 
+
+
+
         */
+
+        $model = $this->getModel('ZbiorModeli');
+        $data = $model->getAll();
+        $this->set('ZbiorModeli', $data['ZbiorModeli']);
+
 
         $model = $this->getModel('Silnik');
         $data = $model->getAll(\Tools\Session::get('id_ZbiorModeli'));

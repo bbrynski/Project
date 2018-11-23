@@ -4,7 +4,6 @@ namespace Views;
 
 class ZbiorModeli extends View
 {
-
     public function getAll($data = null)
     {
         if(isset($data['message']))
@@ -21,7 +20,28 @@ class ZbiorModeli extends View
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
-        $this->render('ZbiorModeli/ZbiorModeli');
+        $this->render('ZbiorModeli/WyborModelu');
+    }
+
+
+    public function WyborWersji($data = null, $nazwaModelu)
+    {
+        if(isset($data['message']))
+            $this->set('message',$data['message']);
+        if(isset($data['error']))
+            $this->set('error',$data['error']);
+
+        $model = $this->getModel('ZbiorModeli');
+        $data = $model->WyborWersji($nazwaModelu);
+
+        $this->set('WyborWersji', $data['WyborWersji']);
+
+        if(isset($data['error']))
+            $this->set('error', $data['error']);
+
+        $this->set('sciezka',\Config\Website\Config::$subdirimage);
+
+        $this->render('ZbiorModeli/WyborWersji');
     }
 
 }

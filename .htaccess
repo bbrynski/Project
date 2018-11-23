@@ -131,8 +131,13 @@ RewriteRule ^Tiguan/?$ index.php?controller=Strona&action=Tiguan [L]
 RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 
 
+
+# 7 semestr zmiany
 #Konfigurator
 RewriteRule ^KonfiguratorModelu/?$ index.php?controller=ZbiorModeli [L]
+
+RewriteRule ^WersjeModelu/?$ index.php?controller=ZbiorModeli&action=WyborWersji [L]
+
 
 
 

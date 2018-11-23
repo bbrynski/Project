@@ -23,15 +23,25 @@
 
             <div class="row">
                 {foreach $ZbiorModeli as $key => $Wartosc}
+
+
+
                     <div class="col-sm-6">
-                        <a href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/{$Wartosc['id_ZbiorModeli']}">
+                        <form id="add_klient" action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
+
                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
                         <h1 class="text-center">{$Wartosc['nazwa']}</h1>
-                        </a>
 
-                        <!-- dodać jeszcze wersje wyposażenia -->
-
+                        <input type="hidden" name="nazwa" value="{$Wartosc['nazwa']}">
+                            <div class="text-center">
+                            <button type="submit" class="btn btn-success">Wybierz</button>
+                            </div>
+                        </form>
                     </div>
+
+
+
+
                 {/foreach}
             </div>
 
