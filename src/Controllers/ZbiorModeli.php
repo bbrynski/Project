@@ -23,9 +23,19 @@ class ZbiorModeli extends Controller
     public function WyborWersji()
     {
 
-        print ($_POST['nazwa']);
 
-        $nazwaModelu = $_POST['nazwa'];
+
+        if( isset($_POST['nazwa'])!= null)
+        {
+            $nazwaModelu = $_POST['nazwa'];
+            \Tools\Session::set('wersja_nazwa', $nazwaModelu);
+        }
+        else
+        {
+            $nazwaModelu = \Tools\Session::get('wersja_nazwa');
+        }
+
+
 
         $view = $this->getView('ZbiorModeli');
         $data = null;

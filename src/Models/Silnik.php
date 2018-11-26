@@ -39,7 +39,7 @@ class Silnik extends Model
             if($SamochodParametry && !empty($SamochodParametry))
                 $data['SamochodParametry'] = $SamochodParametry;
 
-            d($data);
+           // d($data);
         }
         catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;

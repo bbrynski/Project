@@ -24,23 +24,22 @@
             <div class="row">
                 {foreach $ZbiorModeli as $key => $Wartosc}
 
-
-
                     <div class="col-sm-6">
                         <form id="add_klient" action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
 
-                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
-                        <h1 class="text-center">{$Wartosc['nazwa']}</h1>
+                            <input type="hidden" name="nazwa" value="{$Wartosc['nazwa']}">
 
-                        <input type="hidden" name="nazwa" value="{$Wartosc['nazwa']}">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
+                            <h1 class="text-center">{$Wartosc['nazwa']}</h1>
+
+
+
                             <div class="text-center">
-                            <button type="submit" class="btn btn-success">Wybierz</button>
+                                <button type="submit" class="btn btn-success">Wybierz</button>
                             </div>
+
                         </form>
                     </div>
-
-
-
 
                 {/foreach}
             </div>

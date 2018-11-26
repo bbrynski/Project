@@ -37,8 +37,7 @@ RewriteRule ^Zamowienie/status/?$ index.php?controller=Zamowienie&action=sprawdz
 
 RewriteRule ^Zamowienie/sprawdz/?$ index.php?controller=Zamowienie&action=sprawdz [L]
 
-#Silnik
-RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
+
 
 #Skrzynia
 RewriteRule ^Skrzynia/(\d+)/?$ index.php?controller=Skrzynia&action=getAll&id=$1 [L]
@@ -137,6 +136,12 @@ RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 RewriteRule ^KonfiguratorModelu/?$ index.php?controller=ZbiorModeli [L]
 
 RewriteRule ^WersjeModelu/?$ index.php?controller=ZbiorModeli&action=WyborWersji [L]
+
+RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]
+
+#Silnik
+RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
+
 
 
 

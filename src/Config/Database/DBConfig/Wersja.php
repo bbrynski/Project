@@ -12,5 +12,5 @@ namespace Config\Database\DBConfig;
 class Wersja
 {
     public static $id_Wersja = 'id_Wersja';
-    public static $nazwa = 'nazwa';
+    public static $nazwa = 'wersja_nazwa';
 }

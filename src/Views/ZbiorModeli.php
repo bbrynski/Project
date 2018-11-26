@@ -20,7 +20,7 @@ class ZbiorModeli extends View
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
-        $this->render('ZbiorModeli/WyborModelu');
+        $this->render('Konfigurator/WyborModelu');
     }
 
 
@@ -41,7 +41,7 @@ class ZbiorModeli extends View
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
-        $this->render('ZbiorModeli/WyborWersji');
+        $this->render('Konfigurator/WyborWersji');
     }
 
 }

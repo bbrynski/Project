@@ -33,6 +33,39 @@ class ZbiorModeli extends Model
         return $data;
     }
 
+    public function getAll2()
+    {
+        if($this->pdo === null)
+        {
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+
+        $data = array();
+        $data['ZbiorModeli'] = array();
+
+        try
+        {
+            $stmt = $this->pdo->query('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZbiorModeli.'` 
+                               INNER JOIN '.\Config\Database\DBConfig::$tableWersja. '
+                                ON '.\Config\Database\DBConfig::$tableZbiorModeli.'.'.\Config\Database\DBConfig\ZbiorModeli::$id_Wersja.'
+                                ='.\Config\Database\DBConfig::$tableWersja.'.'.\Config\Database\DBConfig\Wersja::$id_Wersja);
+            
+            $result = $stmt->execute();
+            $ZbiorModeli = $stmt->fetchAll();
+
+           // d($ZbiorModeli);
+
+            $stmt->closeCursor();
+            if($ZbiorModeli && !empty($ZbiorModeli))
+                $data['ZbiorModeli'] = $ZbiorModeli;
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
     public function WyborWersji($nazwaModelu)
     {
         if($this->pdo === null)
@@ -61,9 +94,6 @@ class ZbiorModeli extends Model
             $result = $stmt->execute();
 
             $WyborWersji = $stmt->fetchAll();
-
-            d($WyborWersji);
-            d($nazwaModelu);
 
             $stmt->closeCursor();
             if($WyborWersji && !empty($WyborWersji))

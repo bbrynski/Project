@@ -3,7 +3,7 @@
 namespace Views;
 
 
-class Silnik extends View
+class Kola extends View
 {
     public function getAll($data = null){
         if(isset($data['message']))
@@ -55,6 +55,13 @@ class Silnik extends View
         $data = $model->getAll(\Tools\Session::get('id_ZbiorModeli'));
         $this->set('SamochodParametry', $data['SamochodParametry']);
 
+        $model = $this->getModel('Kola');
+        $data = $model->getAll(\Tools\Session::get('id_ZbiorModeli'));
+        $this->set('Kola', $data['kola']);
+
+       // d($data['kola']);
+
+
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
@@ -66,6 +73,6 @@ class Silnik extends View
 
         if(isset($data['error']))
             $this->set('error', $data['error']);
-        $this->render('Konfigurator/SamochodParametry');
+        $this->render('Konfigurator/SamochodKola');
     }
 }
