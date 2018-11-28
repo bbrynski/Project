@@ -79,7 +79,7 @@
                     {/foreach}
 
                     {foreach $SamochodParametry as $key => $Wartosc}
-                        {if {$Wartosc['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
+                        {if {$Wartosc['id_SamochodParametry']} == {$smarty.session.id_ZbiorModeli}}
                             <h4>Silnik: {$Wartosc['pojemnosc']}  {$Wartosc['moc']}KM {$Wartosc['silnik']} ({$Wartosc['skrzynia']})</h4>
                         {/if}
                     {/foreach}

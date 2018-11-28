@@ -25,7 +25,7 @@
                 {foreach $ZbiorModeli as $key => $Wartosc}
 
                     <div class="col-sm-6">
-                        <form id="add_klient" action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
+                        <form  action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
 
                             <input type="hidden" name="nazwa" value="{$Wartosc['nazwa']}">
 
