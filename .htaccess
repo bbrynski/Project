@@ -19,11 +19,8 @@ RewriteRule ^access/logform/?$ index.php?controller=Access&action=logform [L]
 RewriteRule ^access/login/?$ index.php?controller=Access&action=login [L]
 RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 
-#Samochod
-RewriteRule ^Samochod/?$ index.php?controller=Samochod [L]
-RewriteRule ^Samochod/add-form/?$ index.php?controller=Samochod&action=addform [L]
-RewriteRule ^Samochod/wstaw/?$ index.php?controller=Samochod&action=add [L]
-RewriteRule ^Samochod/Dostepnosc/(\d+)/?$ index.php?controller=Samochod&action=DostepnoscModelu&id=$1 [L]
+
+
 
 
 #Zamowienie
@@ -132,15 +129,25 @@ RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 
 
 # 7 semestr zmiany
-#Konfigurator
+
+
+#KonfiguratorModelu
 RewriteRule ^KonfiguratorModelu/?$ index.php?controller=ZbiorModeli [L]
+RewriteRule ^KonfiguratorModelu/add-form/?$ index.php?controller=ZbiorModeli&action=addform [L]
+RewriteRule ^KonfiguratorModelu/add/?$ index.php?controller=ZbiorModeli&action=add [L]
+
 
 RewriteRule ^WersjeModelu/?$ index.php?controller=ZbiorModeli&action=WyborWersji [L]
 
-RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]
 
 #Silnik
 RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
+RewriteRule ^Silnik/add-form/?$ index.php?controller=Silnik&action=addform [L]
+
+
+RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]
+
+
 
 
 

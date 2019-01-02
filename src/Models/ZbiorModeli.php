@@ -104,4 +104,88 @@ class ZbiorModeli extends Model
         }
         return $data;
     }
+
+    public function add($nazwa_model, $id_wersja, $cena, $img){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($nazwa_model==null && $id_wersja==null && $cena==null && $img ==null){
+            $data['error'] = \Config\Database\DBErrorName::$empty;
+            return $data;
+        }
+        //$image=base64_encode(file_get_contents(addslashes($img)));
+        $data = array();
+
+
+        try	{
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableZbiorModeli.'` 
+                (
+                    `'.\Config\Database\DBConfig\ZbiorModeli::$nazwa.'`,
+                    `'.\Config\Database\DBConfig\ZbiorModeli::$id_Wersja.'`,
+                    `'.\Config\Database\DBConfig\ZbiorModeli::$cena.'`,
+                    `'.\Config\Database\DBConfig\ZbiorModeli::$foto.'`
+                  
+                    
+                ) VALUES (:nazwa, :wersja, :cena, :foto)');
+
+            $stmt->bindValue(':nazwa', $nazwa_model, PDO::PARAM_STR);
+            $stmt->bindValue(':wersja', $id_wersja, PDO::PARAM_INT);
+            $stmt->bindValue(':cena', $cena, PDO::PARAM_STR);
+            $stmt->bindValue(':foto', $img, PDO::PARAM_STR);
+
+            $result = $stmt->execute();
+
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$noadd;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$addok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+    public function getAllWersje()
+    {
+        if($this->pdo === null)
+        {
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+
+        $data = array();
+        $data['wersje'] = array();
+
+        try
+        {
+            $stmt = $this->pdo->query('SELECT * FROM  '.\Config\Database\DBConfig::$tableWersja);
+
+            $result = $stmt->execute();
+            $wersje = $stmt->fetchAll();
+
+            $stmt->closeCursor();
+            if($wersje && !empty($wersje))
+                $data['wersje'] = $wersje;
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
+    public function SelectWersje()
+    {
+        $data = $this->getAllWersje();
+        $wersje = array();
+
+        if(!isset($data['error']))
+            foreach($data['wersje'] as $wersja)
+                $wersje[$wersja[\Config\Database\DBConfig\Wersja::$id_Wersja]] = $wersja[\Config\Database\DBConfig\Wersja::$nazwa];
+
+        return $wersje;
+    }
 }

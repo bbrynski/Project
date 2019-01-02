@@ -4,36 +4,30 @@ $(document).ready(function() {
         return /^\d{5,6}?$/.test(value);
     }, 'Podany format jest nieprawidłowy');
 
-    $('#add_model').validate({
+    $('#add_silnik').validate({
         rules: {
             //atrybut name: {reguły}
-            nazwa_model: {
+            pojemnosc: {
+                required: true
+            },
+            moc: {
                 required: true,
-                minlength: 2,
-                maxlength: 40
             },
             cena: {
                 required: true,
                 cenaformat:true
-            },
-            foto: {
-                required: true,
-                extension: "jpg,jpeg,png"
             }
         },
 
         messages: {
-            nazwa_model: {
-                required: 'Pole wymagane',
-                minlength: jQuery.validator.format("Pole musi zawierać minimum {0} znaki!"),
-                maxlength: jQuery.validator.format("Pole musi zawierać maksimum {0} znaki!")
-            },
-            cena:{
+            pojemnosc: {
                 required: 'Pole wymagane'
             },
-            foto:{
+            moc:{
+                required: 'Pole wymagane'
+            },
+            cena:{
                 required: 'Pole wymagane',
-                extension: 'Plik musi być w odpowiednim formacie'
             }
         },
         highlight: function(element, errorClass, validClass) {

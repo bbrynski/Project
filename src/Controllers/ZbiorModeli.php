@@ -20,11 +20,38 @@ class ZbiorModeli extends Controller
     }
 
 
+    public function addform()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+        $view = $this->getView('ZbiorModeli');
+        $view->addform();
+    }
+
+
+    public function add()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model = $this->getModel('ZbiorModeli');
+
+       // $modelKlient = $this->getModel('Klient');
+       // $modelKlient->mail($_POST['nazwaModel'], $_POST['cena']);
+
+        $data = $model->add($_POST['nazwa_model'], $_POST['id_wersja'], $_POST['cena'], $_FILES['foto']['name']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+        $this->redirect('KonfiguratorModelu');
+    }
+
+
     public function WyborWersji()
     {
-
-
-
         if( isset($_POST['nazwa'])!= null)
         {
             $nazwaModelu = $_POST['nazwa'];

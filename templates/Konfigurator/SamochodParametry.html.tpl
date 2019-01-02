@@ -8,6 +8,7 @@
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
+
     {if isset($SamochodParametry)}
         {if $SamochodParametry|@count === 0}
             <div class="alert alert-primary" role="alert">
@@ -35,7 +36,7 @@
                         <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi" method="post">
 
                             {foreach $SamochodParametry as $key => $Wartosc}
-                                {if $Wartosc['silnik'] == "benzynowy"}
+                                {if $Wartosc['silnik'] == "Benzynowy"}
                                     <tr>
                                         <td>
                                             <div class="radio">
@@ -206,6 +207,12 @@
         {/if}
     {/if}
 </div>
+
+{if (isset($prawo) && ($prawo == 'admin'))}
+    <div class="text-center">
+        <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-form">Dodaj silnik</a>
+    </div>
+{/if}
 
 
 {include file="footer.html.tpl"}

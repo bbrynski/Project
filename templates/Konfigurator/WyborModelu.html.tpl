@@ -9,6 +9,13 @@
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
+
+    {if (isset($prawo) && ($prawo == 'admin'))}
+        <div class="text-center">
+            <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}KonfiguratorModelu/add-form">Dodaj</a>
+        </div>
+    {/if}
+
     {if isset($ZbiorModeli)}
         {if $ZbiorModeli|@count === 0}
             <div class="alert alert-primary" role="alert">
@@ -16,10 +23,9 @@
             </div>
         {else}
 
-    <div class="container">
-        <div id="szczegoly">
 
-        </div>
+
+    <div class="container">
 
             <div class="row">
                 {foreach $ZbiorModeli as $key => $Wartosc}
@@ -43,6 +49,8 @@
 
                 {/foreach}
             </div>
+
+
 
 
         {/if}

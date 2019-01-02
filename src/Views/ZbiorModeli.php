@@ -44,4 +44,19 @@ class ZbiorModeli extends View
         $this->render('Konfigurator/WyborWersji');
     }
 
+    public function addform()
+    {
+
+        $model = $this->getModel('ZbiorModeli');
+        $wersje = $model->SelectWersje();
+
+        if(isset($_FILES['Foto']['name'])) {
+            $zmienna = $_FILES['Foto']['name'];
+        }
+
+        $this->set('wersje',$wersje);
+
+        $this->render('Formularze/ModelAdd');
+    }
+
 }

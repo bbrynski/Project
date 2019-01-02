@@ -33,4 +33,12 @@ class Silnik extends Controller
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
     }
+
+    public function addform()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+        $view = $this->getView('Silnik');
+        $view->addform();
+    }
 }

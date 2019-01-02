@@ -68,4 +68,9 @@ class Silnik extends View
             $this->set('error', $data['error']);
         $this->render('Konfigurator/SamochodParametry');
     }
+
+    public function addform()
+    {
+        $this->render('Formularze/SilnikAdd');
+    }
 }
