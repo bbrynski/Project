@@ -17,7 +17,7 @@ class Silnik extends Controller
 
         \Tools\Session::set('nazwaModel', $data['nazwaModel']);
 
-        */
+         */
 
 
         $view = $this->getView('Silnik');
