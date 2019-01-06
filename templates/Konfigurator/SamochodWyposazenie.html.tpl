@@ -113,21 +113,11 @@
             </div>
             <div>
                 <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
-                        Silnik (do zrobienia)</a>
+                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla">&#8592;
+                       Światła</a>
                 </div>
 
-                <!--
 
-                {if isset($smarty.session.idsilnik)}
-                    <div class="text-right">
-                        <a class="btn btn-success mr-5"
-                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$smarty.session.idsilnik}">Skrzynia
-                            &#8594;</a>
-                    </div>
-                {/if}
-
-                -->
 
             </div>
         {/if}

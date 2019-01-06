@@ -18,42 +18,57 @@
                 <div class="col-8">
                     <h2 class="text-center mb-5">Wybierz felgi</h2>
 
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th colspan="4" class="text-center">Felgi</th>
-                        </tr>
-                        <tr>
-                            <th>Rozmiar</th>
-                        </tr>
-                        </thead>
+
+                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
+
+                        <h4>Obręcze kół - standardowe</h4>
+                        {foreach $felgi as $key => $Wartosc}
+
+                            {if {$Wartosc['id_Opcja']} == 1}
+                                <div class="form-check form-check-inline">
+                                   <input class="form-check-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
+
+                                    <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
+                                        <div>
+                                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}"
+                                                 class="img-fluid" alt="Responsive image">
+                                            <p>{$Wartosc['nazwa']}</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            {/if}
 
 
-                        <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
+                        {/foreach}
 
-                            {foreach $felgi as $key => $Wartosc}
+                        <h4>Obręcze kół - opcjonalne</h4>
 
-                                    <tr>
-                                        <td>
-                                            <div class="radio">
-                                                <label><input type="radio" id='regular' name="id_SamochodKola"
-                                                              value="{$Wartosc['id_SamochodKola']}" required> {$Wartosc['nazwa']}<img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
-                                                </label>
-                                            </div>
-                                        </td>
+                        {foreach $felgi as $key => $Wartosc}
 
-                                    </tr>
+                            {if {$Wartosc['id_Opcja']} == 2}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
 
-                            {/foreach}
-
-                    </table>
-
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
-                            </div>
+                                    <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
+                                        <div>
+                                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}"
+                                                 class="img-fluid" alt="Responsive image">
+                                            <p>{$Wartosc['nazwa']}</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            {/if}
 
 
-                        </form>
+                        {/foreach}
+
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
+                        </div>
+
+
+                    </form>
 
 
                 </div>
@@ -71,7 +86,8 @@
 
                     {foreach $ZbiorModeli as $key => $wartosc1}
                         {if {$wartosc1['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid"
+                                 alt="Responsive image">
                             <h4>Model: {$wartosc1['nazwa']}</h4>
                             <h4>Wersja: {$wartosc1['wersja_nazwa']} </h4>
                         {/if}
@@ -79,14 +95,16 @@
 
                     {foreach $silnik as $key => $wartosc2}
                         {if {$wartosc2['id_SamochodParametry']} == {$smarty.session.id_SamochodParametry}}
-                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']} ({$wartosc2['skrzynia']})</h4>
+                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']}
+                                ({$wartosc2['skrzynia']})</h4>
                         {/if}
                     {/foreach}
 
                     {foreach $felgi as $key => $wartosc3}
                         {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
                             <h4>Felgi: {$wartosc3['nazwa']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}"
+                                 class="img-fluid" alt="Responsive image">
                         {/if}
                     {/foreach}
 
@@ -105,7 +123,8 @@
                     {foreach $lakier as $key => $wartosc6}
                         {if {$wartosc6['IdLakier']} == {$smarty.session.IdLakier}}
                             <h4>Lakier: {$wartosc6['nazwaLakier']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}"
+                                 class="img-fluid" alt="Responsive image">
                         {/if}
                     {/foreach}
 

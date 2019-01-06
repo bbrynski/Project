@@ -18,35 +18,48 @@
                 <div class="col-8">
                     <h2 class="text-center mb-5">Wybierz światła</h2>
 
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th colspan="4" class="text-center">Światła</th>
-                        </tr>
-                        <tr>
-                            <th>Typ</th>
-                        </tr>
-                        </thead>
+                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie" method="post">
+
+                    <h4>Światła - standardowe</h4>
+                    {foreach $swiatla as $key => $Wartosc}
+
+                        {if {$Wartosc['id_Opcja']} == 1}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
+
+                                <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
+                                    <div style="max-width: 500px" class="text-center">
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$Wartosc['nazwa']}</h6>
+                                    </div>
+                                </label>
+                            </div>
+                        {/if}
 
 
-                        <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie" method="post">
+                    {/foreach}
 
-                            {foreach $swiatla as $key => $Wartosc}
+                    <h4>Światła - opcjonalne</h4>
 
-                                    <tr>
-                                        <td>
-                                            <div class="radio">
-                                                <label><input type="radio" id='regular' name="id_SamochodSwiatla"
-                                                              value="{$Wartosc['id_SamochodSwiatla']}" required> {$Wartosc['nazwa']}
-                                                </label>
-                                            </div>
-                                        </td>
+                    {foreach $swiatla as $key => $Wartosc}
 
-                                    </tr>
+                        {if {$Wartosc['id_Opcja']} == 2}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
-                            {/foreach}
+                                <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
+                                    <div style="max-width: 500px" class="text-center">
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$Wartosc['nazwa']}</h6>
+                                    </div>
+                                </label>
+                            </div>
+                        {/if}
 
-                    </table>
+
+                    {/foreach}
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
@@ -113,21 +126,10 @@
             </div>
             <div>
                 <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
-                        Silnik (do zrobienia)</a>
+                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi">&#8592;
+                        Felgi</a>
                 </div>
 
-                <!--
-
-                {if isset($smarty.session.idsilnik)}
-                    <div class="text-right">
-                        <a class="btn btn-success mr-5"
-                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$smarty.session.idsilnik}">Skrzynia
-                            &#8594;</a>
-                    </div>
-                {/if}
-
-                -->
 
             </div>
         {/if}

@@ -47,6 +47,15 @@ class Silnik extends View
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
 
+
+
+
+
+        $model = $this->getModel('Silnik');
+        $data = $model->SelectSilnik();
+        $this->set('selectsilnik',$data);
+
+
         $this->render('Konfigurator/SamochodParametry');
     }
 

@@ -201,7 +201,7 @@
 
         <div class="form-group">
             <label for="name">Wersja</label>
-            {html_options name=id_jednostka_napedowa options=$silnik  class="form-control"}
+            {html_options name=id_jednostka_napedowa options=$selectsilnik  class="form-control"}
         </div>
 
         <button type="submit" name="submit" class="btn btn-default">Dodaj silnik do modelu</button>

@@ -18,35 +18,30 @@
                 <div class="col-8">
                     <h2 class="text-center mb-5">Wybierz lakier</h2>
 
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th colspan="4" class="text-center">Lakier</th>
-                        </tr>
-                        <tr>
-                            <th>Rozmiar</th>
-                        </tr>
-                        </thead>
 
 
                         <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie" method="post">
 
+
                             {foreach $lakier as $key => $Wartosc}
 
-                                    <tr>
-                                        <td>
-                                            <div class="radio">
-                                                <label><input type="radio" id='regular' name="IdLakier"
-                                                              value="{$Wartosc['IdLakier']}" required> {$Wartosc['nazwaLakier']}<img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$Wartosc['Foto']}" class="img-fluid" alt="Responsive image">
-                                                </label>
-                                            </div>
-                                        </td>
 
-                                    </tr>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="IdLakier"  id="inlineRadio{$Wartosc['IdLakier']}" value="{$Wartosc['IdLakier']}" required>
+
+                                        <label class="form-check-label" for="inlineRadio{$Wartosc['IdLakier']}">
+                                            <div style="min-width: 250px">
+                                                <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$Wartosc['Foto']}"
+                                                     class="img-fluid" alt="Responsive image">
+                                                <p>{$Wartosc['nazwaLakier']}</p>
+                                            </div>
+                                        </label>
+                                    </div>
+
+
 
                             {/foreach}
 
-                    </table>
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
@@ -113,21 +108,9 @@
             </div>
             <div>
                 <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
-                        Silnik (do zrobienia)</a>
+                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie">&#8592;
+                        Wyposażenie</a>
                 </div>
-
-                <!--
-
-                {if isset($smarty.session.idsilnik)}
-                    <div class="text-right">
-                        <a class="btn btn-success mr-5"
-                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$smarty.session.idsilnik}">Skrzynia
-                            &#8594;</a>
-                    </div>
-                {/if}
-
-                -->
 
             </div>
         {/if}
