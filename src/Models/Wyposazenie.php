@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Models;
 use pdo;
 
-class Reflektor extends Model
+class Wyposazenie extends Model
 {
     public function getAll($id){
         if($this->pdo === null){
@@ -17,14 +16,14 @@ class Reflektor extends Model
         }
 
         $data = array();
-        $data['SamochodSwiatla'] = array();
+        $data['SamochodWyposazenie'] = array();
         try	{
 
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'` 
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'` 
             
-                                            INNER JOIN `'.\Config\Database\DBConfig::$tableSwiatla.'`
-                                            ON `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'`.`'. \Config\Database\DBConfig\SamochodSwiatla::$id_SamochodSwiatla . '`
-                                            =`' . \Config\Database\DBConfig::$tableSwiatla . '`.`' . \Config\Database\DBConfig\Swiatla::$id_Swiatla . '`
+                                            INNER JOIN `'.\Config\Database\DBConfig::$tableWyposazenie.'`
+                                            ON `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'`.`'. \Config\Database\DBConfig\SamochodWyposazenie::$id_SamochodWyposazenie . '`
+                                            =`' . \Config\Database\DBConfig::$tableWyposazenie . '`.`' . \Config\Database\DBConfig\Wyposazenie::$id_Wyposazenie . '`
                                     
                                             
             
@@ -37,7 +36,7 @@ class Reflektor extends Model
 
 
             if($wartosc && !empty($wartosc))
-                $data['SamochodSwiatla'] = $wartosc;
+                $data['SamochodWyposazenie'] = $wartosc;
 
             // d($data);
         }

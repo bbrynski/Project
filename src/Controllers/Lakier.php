@@ -7,7 +7,7 @@ class Lakier extends Controller
 
     public function getAll($id){
 
-        \Tools\Session::set('idskrzynia', $id);
+        \Tools\Session::set('id_SamochodWyposazenie',$_POST['id_SamochodWyposazenie']);
 
         $view = $this->getView('Lakier');
         $data = null;

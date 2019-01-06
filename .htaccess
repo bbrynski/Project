@@ -143,9 +143,24 @@ RewriteRule ^WersjeModelu/?$ index.php?controller=ZbiorModeli&action=WyborWersji
 #Silnik
 RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
 RewriteRule ^Silnik/add-form/?$ index.php?controller=Silnik&action=addform [L]
+RewriteRule ^Silnik/add/?$ index.php?controller=Silnik&action=add [L]
+RewriteRule ^Silnik/add-2/?$ index.php?controller=Silnik&action=add2 [L]
 
 
 RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]
+
+
+
+RewriteRule ^Swiatla/?$ index.php?controller=Reflektor&action=getAll [L]
+
+RewriteRule ^Wyposazenie/?$ index.php?controller=Wyposazenie&action=getAll [L]
+
+RewriteRule ^Lakier/?$ index.php?controller=Lakier&action=getAll [L]
+
+RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
+
+
+
 
 
 

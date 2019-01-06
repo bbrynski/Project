@@ -11,6 +11,7 @@ class Kola extends Controller
         \Tools\Session::set('id_SamochodParametry',$_POST['id_SamochodParametry']);
 
 
+
         $view = $this->getView('Kola');
         $data = null;
 

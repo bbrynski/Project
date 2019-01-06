@@ -9,16 +9,6 @@ class Silnik extends Controller
 
         \Tools\Session::set('id_ZbiorModeli', $id);
 
-        /* \Tools\Session::clear('numer');
-
-        $model = $this->getModel('Samochod');
-        $data = $model->getOne($id);
-        $data=$data['samochody'];
-
-        \Tools\Session::set('nazwaModel', $data['nazwaModel']);
-
-         */
-
 
         $view = $this->getView('Silnik');
         $data = null;
@@ -40,5 +30,35 @@ class Silnik extends Controller
         $accessController->islogin();
         $view = $this->getView('Silnik');
         $view->addform();
+    }
+
+    public function add()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Silnik');
+        $data = $model->add($_POST['pojemnosc'], $_POST['rodzaj'], $_POST['moc'], $_POST['skrzynia'], $_POST['cena']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('Silnik/1');
+    }
+
+    public function add2()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Silnik');
+        $data = $model->add2($_POST['id_zbior_modeli'], $_POST['id_jednostka_napedowa']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('Silnik/1');
     }
 }

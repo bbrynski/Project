@@ -16,4 +16,5 @@ class JednostkaNapedowa
     public static $silnik = 'silnik';
     public static $moc = 'moc';
     public static $skrzynia = 'skrzynia';
+    public static $cena = 'cena';
 }

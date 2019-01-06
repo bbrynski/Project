@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Damian
- * Date: 2018-03-20
- * Time: 11:00
- */
+
 
 namespace Models;
 use \PDO;

@@ -3,10 +3,10 @@
 namespace Views;
 
 
-class Podsumowanie extends View
+class Wyposazenie extends View
 {
-    public function getAll($data = null)
-    {
+    public function getAll($data = null){
+
         if (isset($data['message']))
             $this->set('message', $data['message']);
         if (isset($data['error']))
@@ -46,7 +46,6 @@ class Podsumowanie extends View
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
 
-
-        $this->render('Konfigurator/Podsumowanie');
+        $this->render('Konfigurator/SamochodWyposazenie');
     }
 }

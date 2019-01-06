@@ -7,7 +7,8 @@ class Reflektor extends Controller
 
     public function getAll($id){
 
-        \Tools\Session::set('idnaped', $id);
+        \Tools\Session::set('id_SamochodKola',$_POST['id_SamochodKola']);
+
 
         $view = $this->getView('Reflektor');
         $data = null;

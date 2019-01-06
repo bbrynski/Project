@@ -45,7 +45,10 @@ class Kola extends Model
         catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;
         }
-        return $data;
+
+
+
+       return $data;
     }
 
 

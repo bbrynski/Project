@@ -9,8 +9,8 @@
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
-    {if isset($SamochodParametry)}
-        {if $SamochodParametry|@count === 0}
+    {if isset($silnik)}
+        {if $silnik|@count === 0}
             <div class="alert alert-primary" role="alert">
                 Brak Silników w Bazie
             </div>
@@ -35,7 +35,7 @@
 
                         <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi" method="post">
 
-                            {foreach $SamochodParametry as $key => $Wartosc}
+                            {foreach $silnik as $key => $Wartosc}
                                 {if $Wartosc['silnik'] == "Benzynowy"}
                                     <tr>
                                         <td>
@@ -76,7 +76,7 @@
                             </tr>
                             </thead>
 
-                            {foreach $SamochodParametry as $key => $Wartosc}
+                            {foreach $silnik as $key => $Wartosc}
                                 {if $Wartosc['silnik'] == "Diesel"}
                                     <tr>
                                         <td>
@@ -122,66 +122,50 @@
                     <h2 class="text-center mb-5">Postęp</h2>
 
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="25"
+                        <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="25"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 
-
-                    {foreach $ZbiorModeli as $key => $Wartosc}
-                        {if {$Wartosc['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
-                            <center><img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}"
-                                         class="img-fluid" alt="Responsive image"></center>
-                            <h4>Model: {$Wartosc['nazwa']}</h4>
-                            <h4>Wersja: {$Wartosc['wersja_nazwa']} </h4>
+                    {foreach $ZbiorModeli as $key => $wartosc1}
+                        {if {$wartosc1['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid" alt="Responsive image">
+                            <h4>Model: {$wartosc1['nazwa']}</h4>
+                            <h4>Wersja: {$wartosc1['wersja_nazwa']} </h4>
                         {/if}
                     {/foreach}
 
-
-                    <!--
-
-                {foreach $silniki as $key => $silnik}
-                    {if {$silnik['IdSilnik']} == {$smarty.session.idsilnik}}
-                        <h4>Silnik: {$silnik['TypSilnika']}</h4>
-                    {/if}
-                {/foreach}
-
-                {foreach $skrzynie as $key => $skrzynia}
-                    {if {$skrzynia['IdSkrzynia']} == {$smarty.session.idskrzynia}}
-                        <h4>Skrzynia: {$skrzynia['TypSkrzyni']}</h4>
-                    {/if}
-                {/foreach}
-
-                {foreach $lakiery as $key => $lakier}
-                    {if {$lakier['IdLakier']} == {$smarty.session.idlakier}}
-                        <h4>Lakier: {$lakier['nazwaLakier']}</h4>
-                    {/if}
-                {/foreach}
-
-                {foreach $napedy as $key => $naped}
-                    {if {$naped['IdNaped']} == {$smarty.session.idnaped}}
-                        <h4>{$naped['nazwaNaped']}</h4>
-                    {/if}
-                {/foreach}
-
-                {foreach $reflektory as $key => $reflektor}
-                    {if {$reflektor['IdReflektory']} == {$smarty.session.idreflektory}}
-                        <h4>{$reflektor['nazwaReflektory']}</h4>
-                    {/if}
-                {/foreach}
-
-                {foreach $kola as $key => $kolo}
-                    {if {$kolo['IdKola']} == {$smarty.session.idkola}}
-                        <h4>{$kolo['Wartosc']}"</h4>
-                    {/if}
-                {/foreach}
-
-                {if isset($opcje)}
-                    {foreach $opcje as $item}
-                        <h4>{$item}</h4>
+                    {foreach $silnik as $key => $wartosc2}
+                        {if {$wartosc2['id_SamochodParametry']} == {$smarty.session.id_SamochodParametry}}
+                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']} ({$wartosc2['skrzynia']})</h4>
+                        {/if}
                     {/foreach}
-                {/if}
 
-                -->
+                    {foreach $felgi as $key => $wartosc3}
+                        {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
+                            <h4>Felgi: {$wartosc3['nazwa']}</h4>
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}" class="img-fluid" alt="Responsive image">
+                        {/if}
+                    {/foreach}
+
+                    {foreach $swiatla as $key => $wartosc4}
+                        {if {$wartosc4['id_SamochodSwiatla']} == {$smarty.session.id_SamochodSwiatla}}
+                            <h4>Światła: {$wartosc4['nazwa']}</h4>
+                        {/if}
+                    {/foreach}
+
+                    {foreach $wyposazenie as $key => $wartosc5}
+                        {if {$wartosc5['id_SamochodWyposazenie']} == {$smarty.session.id_SamochodWyposazenie}}
+                            <h4>Wyposażenie dodatkowe: {$wartosc5['nazwa']}</h4>
+                        {/if}
+                    {/foreach}
+
+                    {foreach $lakier as $key => $wartosc6}
+                        {if {$wartosc6['IdLakier']} == {$smarty.session.IdLakier}}
+                            <h4>Lakier: {$wartosc6['nazwaLakier']}</h4>
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}" class="img-fluid" alt="Responsive image">
+                        {/if}
+                    {/foreach}
+
 
                 </div>
             </div>
@@ -209,7 +193,24 @@
 </div>
 
 {if (isset($prawo) && ($prawo == 'admin'))}
-    <div class="text-center">
+
+<div class="container">
+    <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-2" method="post">
+
+        <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
+
+        <div class="form-group">
+            <label for="name">Wersja</label>
+            {html_options name=id_jednostka_napedowa options=$silnik  class="form-control"}
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-default">Dodaj silnik do modelu</button>
+    </form>
+</div>
+
+
+
+    <div class="text-center mb-2">
         <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-form">Dodaj silnik</a>
     </div>
 {/if}

@@ -4,8 +4,19 @@ namespace Controllers;
 
 class Podsumowanie extends Controller
 {
+    public function getAll()
+    {
 
-    public function getAll($id=0){
+        \Tools\Session::set('IdLakier',$_POST['IdLakier']);
+
+        $view = $this->getView('Podsumowanie');
+        $view->getAll();
+
+    }
+    /*
+
+    public function getAll($id=0)
+    {
 
             if (isset($_POST['reflektory']) && isset($_POST['kola'])) {
                 if(isset($_POST['reflektory']) && isset($_POST['kola'])) {
@@ -59,4 +70,6 @@ class Podsumowanie extends Controller
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
     }
+
+    */
 }

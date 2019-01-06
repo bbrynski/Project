@@ -2,14 +2,14 @@
 namespace Controllers;
 
 
-class Naped extends Controller
+class Wyposazenie extends Controller
 {
 
-    public function getAll($id){
+    public function getAll(){
 
-        \Tools\Session::set('idlakier', $id);
+        \Tools\Session::set('id_SamochodSwiatla',$_POST['id_SamochodSwiatla']);
 
-        $view = $this->getView('Naped');
+        $view = $this->getView('Wyposazenie');
         $data = null;
         if(\Tools\Session::is('message'))
             $data['message'] = \Tools\Session::get('message');

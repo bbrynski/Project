@@ -8,20 +8,20 @@
     {if isset($error)}
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    {if isset($felgi)}
-        {if $felgi|@count === 0}
+    {if isset($lakier)}
+        {if $lakier|@count === 0}
             <div class="alert alert-primary" role="alert">
-                Brak felg w Bazie
+                Brak lakieru w Bazie
             </div>
         {else}
             <div class="row m-5">
                 <div class="col-8">
-                    <h2 class="text-center mb-5">Wybierz felgi</h2>
+                    <h2 class="text-center mb-5">Wybierz lakier</h2>
 
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
-                            <th colspan="4" class="text-center">Felgi</th>
+                            <th colspan="4" class="text-center">Lakier</th>
                         </tr>
                         <tr>
                             <th>Rozmiar</th>
@@ -29,15 +29,15 @@
                         </thead>
 
 
-                        <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
+                        <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie" method="post">
 
-                            {foreach $felgi as $key => $Wartosc}
+                            {foreach $lakier as $key => $Wartosc}
 
                                     <tr>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" id='regular' name="id_SamochodKola"
-                                                              value="{$Wartosc['id_SamochodKola']}" required> {$Wartosc['nazwa']}<img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}" class="img-fluid" alt="Responsive image">
+                                                <label><input type="radio" id='regular' name="IdLakier"
+                                                              value="{$Wartosc['IdLakier']}" required> {$Wartosc['nazwaLakier']}<img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$Wartosc['Foto']}" class="img-fluid" alt="Responsive image">
                                                 </label>
                                             </div>
                                         </td>
@@ -64,7 +64,7 @@
                     <h2 class="text-center mb-5">Postęp</h2>
 
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="25"
+                        <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="25"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 

@@ -3,7 +3,7 @@
     <div class="text-center mt-2">
         <h1>Dodaj silnik</h1>
     </div>
-    <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}KonfiguratorModelu/add" method="post">
+    <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add" method="post">
 
         <div class="form-group">
             <label for="name">Pojemnosc:</label> <input type="text" class="form-control" name="pojemnosc">
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label>Skrzynia:</label>
-            <select class="form-control" name="rodzaj">
+            <select class="form-control" name="skrzynia">
                 <option value="manualna">manualna</option>
                 <option value="automatyczna">automatyczna</option>
             </select>
