@@ -7,7 +7,11 @@ class Wyposazenie extends Controller
 
     public function getAll(){
 
-        \Tools\Session::set('id_SamochodSwiatla',$_POST['id_SamochodSwiatla']);
+
+        if( isset($_POST['id_SamochodSwiatla'])!= null)
+        {
+            \Tools\Session::set('id_SamochodSwiatla', $_POST['id_SamochodSwiatla']);
+        }
 
         $view = $this->getView('Wyposazenie');
         $data = null;

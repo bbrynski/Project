@@ -7,7 +7,12 @@ class Podsumowanie extends Controller
     public function getAll()
     {
 
-        \Tools\Session::set('IdLakier',$_POST['IdLakier']);
+
+
+        if( isset($_POST['IdLakier'])!= null)
+        {
+            \Tools\Session::set('IdLakier', $_POST['IdLakier']);
+        }
 
         $view = $this->getView('Podsumowanie');
         $view->getAll();

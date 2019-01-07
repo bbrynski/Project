@@ -28,7 +28,7 @@
                                 <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
                                 <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
-                                    <div style="max-width: 500px" class="text-center">
+                                    <div style="max-width: 400px" class="text-center">
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
                                         <h6>{$Wartosc['nazwa']}</h6>
@@ -49,7 +49,7 @@
                                 <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
                                 <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
-                                    <div style="max-width: 500px" class="text-center">
+                                    <div style="max-width: 400px" class="text-center">
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
                                         <h6>{$Wartosc['nazwa']}</h6>
@@ -89,7 +89,8 @@
 
                     {foreach $ZbiorModeli as $key => $wartosc1}
                         {if {$wartosc1['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid"
+                                 alt="Responsive image">
                             <h4>Model: {$wartosc1['nazwa']}</h4>
                             <h4>Wersja: {$wartosc1['wersja_nazwa']} </h4>
                         {/if}
@@ -97,35 +98,67 @@
 
                     {foreach $silnik as $key => $wartosc2}
                         {if {$wartosc2['id_SamochodParametry']} == {$smarty.session.id_SamochodParametry}}
-                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']} ({$wartosc2['skrzynia']})</h4>
+                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']}
+                                ({$wartosc2['skrzynia']})</h4>
                         {/if}
                     {/foreach}
 
-                    {foreach $felgi as $key => $wartosc3}
-                        {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
-                            <h4>Felgi: {$wartosc3['nazwa']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}" class="img-fluid" alt="Responsive image">
-                        {/if}
-                    {/foreach}
+                    <div class="container-fluid pt-2">
+                        <div class="row">
+                            <div class="col text-center">
 
-                    {foreach $swiatla as $key => $wartosc4}
-                        {if {$wartosc4['id_SamochodSwiatla']} == {$smarty.session.id_SamochodSwiatla}}
-                            <h4>Światła: {$wartosc4['nazwa']}</h4>
-                        {/if}
-                    {/foreach}
 
-                    {foreach $wyposazenie as $key => $wartosc5}
-                        {if {$wartosc5['id_SamochodWyposazenie']} == {$smarty.session.id_SamochodWyposazenie}}
-                            <h4>Wyposażenie dodatkowe: {$wartosc5['nazwa']}</h4>
-                        {/if}
-                    {/foreach}
 
-                    {foreach $lakier as $key => $wartosc6}
-                        {if {$wartosc6['IdLakier']} == {$smarty.session.IdLakier}}
-                            <h4>Lakier: {$wartosc6['nazwaLakier']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}" class="img-fluid" alt="Responsive image">
-                        {/if}
-                    {/foreach}
+                                {foreach $felgi as $key => $wartosc3}
+                                    {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Felgi</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$wartosc3['nazwa']}</h6>
+                                    {/if}
+                                {/foreach}
+
+                            </div>
+                            <div class="col text-center">
+
+
+
+                                {foreach $swiatla as $key => $wartosc4}
+                                    {if {$wartosc4['id_SamochodSwiatla']} == {$smarty.session.id_SamochodSwiatla}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Swiatła</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$wartosc4['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$wartosc4['nazwa']}</h6>
+                                    {/if}
+                                {/foreach}
+                            </div>
+
+
+
+
+
+
+                            <div class="col text-center">
+
+
+
+                                {foreach $wyposazenie as $key => $wartosc5}
+                                    {if {$wartosc5['id_SamochodWyposazenie']} == {$smarty.session.id_SamochodWyposazenie}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Tapicerka</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Tapicerka/{$wartosc5['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                    {/if}
+                                {/foreach}
+
+                            </div>
+
+                        </div>
 
                 </div>
             </div>

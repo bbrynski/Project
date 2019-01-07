@@ -110,6 +110,8 @@
                             Wersja</a>
                     </div>
 
+
+
                     </form>
 
 
@@ -141,33 +143,62 @@
                         {/if}
                     {/foreach}
 
-                    {foreach $felgi as $key => $wartosc3}
-                        {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
-                            <h4>Felgi: {$wartosc3['nazwa']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}"
-                                 class="img-fluid" alt="Responsive image">
-                        {/if}
-                    {/foreach}
+                    <div class="container-fluid pt-2">
+                        <div class="row">
+                            <div class="col text-center">
 
-                    {foreach $swiatla as $key => $wartosc4}
-                        {if {$wartosc4['id_SamochodSwiatla']} == {$smarty.session.id_SamochodSwiatla}}
-                            <h4>Światła: {$wartosc4['nazwa']}</h4>
-                        {/if}
-                    {/foreach}
 
-                    {foreach $wyposazenie as $key => $wartosc5}
-                        {if {$wartosc5['id_SamochodWyposazenie']} == {$smarty.session.id_SamochodWyposazenie}}
-                            <h4>Wyposażenie dodatkowe: {$wartosc5['nazwa']}</h4>
-                        {/if}
-                    {/foreach}
 
-                    {foreach $lakier as $key => $wartosc6}
-                        {if {$wartosc6['IdLakier']} == {$smarty.session.IdLakier}}
-                            <h4>Lakier: {$wartosc6['nazwaLakier']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}"
-                                 class="img-fluid" alt="Responsive image">
-                        {/if}
-                    {/foreach}
+                                {foreach $felgi as $key => $wartosc3}
+                                    {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Felgi</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$wartosc3['nazwa']}</h6>
+                                    {/if}
+                                {/foreach}
+
+                            </div>
+                            <div class="col text-center">
+
+
+
+                                {foreach $swiatla as $key => $wartosc4}
+                                    {if {$wartosc4['id_SamochodSwiatla']} == {$smarty.session.id_SamochodSwiatla}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Swiatła</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$wartosc4['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                        <h6>{$wartosc4['nazwa']}</h6>
+                                    {/if}
+                                {/foreach}
+                            </div>
+
+
+
+
+
+
+                            <div class="col text-center">
+
+
+
+                                {foreach $wyposazenie as $key => $wartosc5}
+                                    {if {$wartosc5['id_SamochodWyposazenie']} == {$smarty.session.id_SamochodWyposazenie}}
+                                        <ul class="list-group mb-5">
+                                            <li class="list-group-item active"><h4>Tapicerka</h4></li>
+                                        </ul>
+                                        <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Tapicerka/{$wartosc5['foto']}"
+                                             class="img-fluid" alt="Responsive image">
+                                    {/if}
+                                {/foreach}
+
+                            </div>
+
+                        </div>
 
 
                 </div>

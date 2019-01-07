@@ -8,8 +8,12 @@ class Kola extends Controller
     public function getAll()
     {
 
-        \Tools\Session::set('id_SamochodParametry',$_POST['id_SamochodParametry']);
 
+
+        if( isset($_POST['id_SamochodParametry'])!= null)
+        {
+            \Tools\Session::set('id_SamochodParametry', $_POST['id_SamochodParametry']);
+        }
 
 
         $view = $this->getView('Kola');

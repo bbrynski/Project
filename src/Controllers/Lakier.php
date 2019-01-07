@@ -5,9 +5,13 @@ namespace Controllers;
 class Lakier extends Controller
 {
 
-    public function getAll($id){
+    public function getAll(){
 
-        \Tools\Session::set('id_SamochodWyposazenie',$_POST['id_SamochodWyposazenie']);
+
+        if( isset($_POST['id_SamochodWyposazenie'])!= null)
+        {
+            \Tools\Session::set('id_SamochodWyposazenie', $_POST['id_SamochodWyposazenie']);
+        }
 
         $view = $this->getView('Lakier');
         $data = null;
