@@ -6,18 +6,6 @@ class ZbiorModeli extends View
 {
     public function getAll($data = null)
     {
-
-        \Tools\Session::clear('id_ZbiorModeli');
-        \Tools\Session::clear('id_SamochodParametry');
-        \Tools\Session::clear('id_SamochodKola');
-        \Tools\Session::clear('id_SamochodSwiatla');
-        \Tools\Session::clear('id_SamochodWyposazenie');
-        \Tools\Session::clear('IdLakier');
-
-
-
-
-
         if(isset($data['message']))
             $this->set('message',$data['message']);
         if(isset($data['error']))

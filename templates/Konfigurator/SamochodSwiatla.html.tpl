@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 pb-3">
 
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
@@ -24,10 +24,10 @@
                     {foreach $swiatla as $key => $Wartosc}
 
                         {if {$Wartosc['id_Opcja']} == 1}
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
-                                <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
+                                <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
                                     <div style="max-width: 500px" class="text-center">
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
@@ -45,10 +45,10 @@
                     {foreach $swiatla as $key => $Wartosc}
 
                         {if {$Wartosc['id_Opcja']} == 2}
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
-                                <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
+                                <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
                                     <div style="max-width: 500px" class="text-center">
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
@@ -64,6 +64,11 @@
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
                             </div>
+
+                        <div class="text-left">
+                            <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi">&#8592;
+                                Felgi</a>
+                        </div>
 
 
                         </form>
@@ -125,10 +130,7 @@
                 </div>
             </div>
             <div>
-                <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi">&#8592;
-                        Felgi</a>
-                </div>
+
 
 
             </div>

@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 pb-3">
 
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
@@ -21,14 +21,14 @@
 
                     <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
 
-                        <h4>Obręcze kół - standardowe</h4>
+                        <h4 class="">Obręcze kół - standardowe</h4>
                         {foreach $felgi as $key => $Wartosc}
 
                             {if {$Wartosc['id_Opcja']} == 1}
-                                <div class="form-check form-check-inline">
-                                   <input class="form-check-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                   <input class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
 
-                                    <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
+                                    <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
                                         <div>
                                             <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}"
                                                  class="img-fluid" alt="Responsive image">
@@ -46,10 +46,10 @@
                         {foreach $felgi as $key => $Wartosc}
 
                             {if {$Wartosc['id_Opcja']} == 2}
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
 
-                                    <label class="form-check-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
+                                    <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
                                         <div>
                                             <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}"
                                                  class="img-fluid" alt="Responsive image">
@@ -65,6 +65,11 @@
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
+                        </div>
+
+                        <div class="text-left">
+                            <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
+                                Silnik</a>
                         </div>
 
 
@@ -130,25 +135,10 @@
 
                 </div>
             </div>
-            <div>
-                <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
-                        Silnik (do zrobienia)</a>
-                </div>
 
-                <!--
 
-                {if isset($smarty.session.idsilnik)}
-                    <div class="text-right">
-                        <a class="btn btn-success mr-5"
-                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$smarty.session.idsilnik}">Skrzynia
-                            &#8594;</a>
-                    </div>
-                {/if}
 
-                -->
 
-            </div>
         {/if}
     {/if}
 </div>

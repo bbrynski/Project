@@ -5,6 +5,14 @@ class ZbiorModeli extends Controller
 {
     public function getAll()
     {
+        \Tools\Session::clear('wersja_nazwa');
+        \Tools\Session::clear('id_ZbiorModeli');
+        \Tools\Session::clear('id_SamochodParametry');
+        \Tools\Session::clear('id_SamochodKola');
+        \Tools\Session::clear('id_SamochodSwiatla');
+        \Tools\Session::clear('id_SamochodWyposazenie');
+        \Tools\Session::clear('IdLakier');
+
         $view = $this->getView('ZbiorModeli');
         $data = null;
 
@@ -52,14 +60,14 @@ class ZbiorModeli extends Controller
 
     public function WyborWersji()
     {
-        if( isset($_POST['nazwa'])!= null)
+        if( isset($_POST['wersja_nazwa'])!= null)
         {
-            $nazwaModelu = $_POST['nazwa'];
-            \Tools\Session::set('wersja_nazwa', $nazwaModelu);
+            $wersja_nazwa = $_POST['wersja_nazwa'];
+            \Tools\Session::set('wersja_nazwa', $wersja_nazwa);
         }
         else
         {
-            $nazwaModelu = \Tools\Session::get('wersja_nazwa');
+            $wersja_nazwa = \Tools\Session::get('wersja_nazwa');
         }
 
 
@@ -72,10 +80,24 @@ class ZbiorModeli extends Controller
         if(\Tools\Session::is('error'))
             $data['error'] = \Tools\Session::get('error');
 
-        $view->WyborWersji($data, $nazwaModelu);
+        $view->WyborWersji($data, $wersja_nazwa);
 
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
 
+    }
+
+    public function delete_wersja($id){
+
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('ZbiorModeli');
+        $data = $model->delete_wersja($id);
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('WersjeModelu');
     }
 }

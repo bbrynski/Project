@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 pb-3">
 
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
@@ -15,7 +15,7 @@
             </div>
         {else}
             <div class="row m-5">
-                <div class="col-8">
+                <div class="col-8 text-center">
                     <h2 class="text-center mb-5">Wybierz lakier</h2>
 
 
@@ -26,11 +26,11 @@
                             {foreach $lakier as $key => $Wartosc}
 
 
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="IdLakier"  id="inlineRadio{$Wartosc['IdLakier']}" value="{$Wartosc['IdLakier']}" required>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                        <input class="custom-control-input" type="radio" name="IdLakier"  id="inlineRadio{$Wartosc['IdLakier']}" value="{$Wartosc['IdLakier']}" required>
 
-                                        <label class="form-check-label" for="inlineRadio{$Wartosc['IdLakier']}">
-                                            <div style="min-width: 250px">
+                                        <label class="custom-control-label" for="inlineRadio{$Wartosc['IdLakier']}">
+                                            <div>
                                                 <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$Wartosc['Foto']}"
                                                      class="img-fluid" alt="Responsive image">
                                                 <p>{$Wartosc['nazwaLakier']}</p>
@@ -45,6 +45,11 @@
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
+                            </div>
+
+                            <div class="text-left">
+                                <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie">&#8592;
+                                    Wyposażenie</a>
                             </div>
 
 
@@ -107,10 +112,7 @@
                 </div>
             </div>
             <div>
-                <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie">&#8592;
-                        Wyposażenie</a>
-                </div>
+
 
             </div>
         {/if}

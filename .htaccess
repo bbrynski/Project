@@ -136,15 +136,17 @@ RewriteRule ^KonfiguratorModelu/?$ index.php?controller=ZbiorModeli [L]
 RewriteRule ^KonfiguratorModelu/add-form/?$ index.php?controller=ZbiorModeli&action=addform [L]
 RewriteRule ^KonfiguratorModelu/add/?$ index.php?controller=ZbiorModeli&action=add [L]
 
-
+#Wersja
 RewriteRule ^WersjeModelu/?$ index.php?controller=ZbiorModeli&action=WyborWersji [L]
+RewriteRule ^WersjeModelu/delete/(\d+)/?$ index.php?controller=ZbiorModeli&action=delete_wersja&id=$1 [L]
 
 
 #Silnik
-RewriteRule ^Silnik/(\d+)/?$ index.php?controller=Silnik&action=getAll&id=$1 [L]
+RewriteRule ^Silnik/?$ index.php?controller=Silnik&action=getAll [L]
 RewriteRule ^Silnik/add-form/?$ index.php?controller=Silnik&action=addform [L]
 RewriteRule ^Silnik/add/?$ index.php?controller=Silnik&action=add [L]
 RewriteRule ^Silnik/add-2/?$ index.php?controller=Silnik&action=add2 [L]
+RewriteRule ^Silnik/delete/(\d+)/?$ index.php?controller=Silnik&action=delete&id=$1 [L]
 
 
 RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]

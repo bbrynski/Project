@@ -21,7 +21,7 @@
             <label for="name">Foto:</label><input type="file" class="form-control" name="foto">
         </div>
 
-        <button type="submit" name="submit" class="btn btn-default">Dodaj</button>
+        <button type="submit" name="submit" class="btn btn-secondary">Dodaj</button>
     </form>
 
 </div>

@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="http://{$smarty.server.HTTP_HOST}{$subdir}css/jquery-ui.min.css" rel="stylesheet">
     <!-- DataTables Table plug-in for jQuery -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
@@ -156,7 +156,7 @@
                     {/if} {if isset($error)}
                         <div class="alert alert-danger" role="alert">{$error}</div>
                     {/if}
-                    <button type="submit" class="btn btn-default">Zaloguj</button>
+                    <button type="submit" class="btn btn-secondary">Zaloguj</button>
                 </form>
             </div>
             <div class="modal-footer">

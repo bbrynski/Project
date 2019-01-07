@@ -1,6 +1,6 @@
 {include file="header.html.tpl"}
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 pb-3">
 
     {if isset($message)}
         <div class="alert alert-success" role="alert">{$message}</div>
@@ -39,26 +39,23 @@
                                 {if $Wartosc['silnik'] == "Benzynowy"}
                                     <tr>
                                         <td>
-                                            <div class="radio">
-                                                <label><input type="radio" id='regular' name="id_SamochodParametry"
-                                                              value="{$Wartosc['id_SamochodParametry']}" required> {$Wartosc['pojemnosc']}
-                                                </label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1{$Wartosc['id_SamochodParametry']}" name="id_SamochodParametry" class="custom-control-input"  value="{$Wartosc['id_SamochodParametry']}"
+                                                       required>
+                                                <label class="custom-control-label" for="customRadio1{$Wartosc['id_SamochodParametry']}">{$Wartosc['pojemnosc']} MPI</label>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'>{$Wartosc['moc']}</label>
-                                            </div>
+                                           {$Wartosc['moc']}
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'>{$Wartosc['skrzynia']}</label>
-                                            </div>
+                                                {$Wartosc['skrzynia']}
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'> </label>
-                                            </div>
+                                           -
+                                            {if (isset($prawo) && ($prawo == 'admin'))}
+                                                    <a class="btn btn-danger ml-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/delete/{$Wartosc['id_SamochodParametry']}">Usuń</a>
+                                            {/if}
                                         </td>
                                     </tr>
                                 {/if}
@@ -80,26 +77,23 @@
                                 {if $Wartosc['silnik'] == "Diesel"}
                                     <tr>
                                         <td>
-                                            <div class="radio">
-                                                <label><input type="radio" id='regular' name="id_SamochodParametry"
-                                                              value="{$Wartosc['id_SamochodParametry']}" required> {$Wartosc['pojemnosc']}
-                                                </label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1{$Wartosc['id_SamochodParametry']}" name="id_SamochodParametry" class="custom-control-input"  value="{$Wartosc['id_SamochodParametry']}"
+                                                       required>
+                                                <label class="custom-control-label" for="customRadio1{$Wartosc['id_SamochodParametry']}">{$Wartosc['pojemnosc']} TDI</label>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'>{$Wartosc['moc']}</label>
-                                            </div>
+                                            {$Wartosc['moc']}
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'>{$Wartosc['skrzynia']}</label>
-                                            </div>
+                                            {$Wartosc['skrzynia']}
                                         </td>
                                         <td>
-                                            <div class="radiotext">
-                                                <label for='regular'></label>
-                                            </div>
+                                            -
+                                            {if (isset($prawo) && ($prawo == 'admin'))}
+                                                <a class="btn btn-danger ml-3" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/delete/{$Wartosc['id_SamochodParametry']}">Usuń</a>
+                                            {/if}
                                         </td>
                                     </tr>
                                 {/if}
@@ -109,6 +103,11 @@
 
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
+                    </div>
+
+                    <div class="text-left">
+                        <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu">&#8592;
+                            Wersja</a>
                     </div>
 
                     </form>
@@ -128,7 +127,8 @@
 
                     {foreach $ZbiorModeli as $key => $wartosc1}
                         {if {$wartosc1['id_ZbiorModeli']} == {$smarty.session.id_ZbiorModeli}}
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$wartosc1['foto']}" class="img-fluid"
+                                 alt="Responsive image">
                             <h4>Model: {$wartosc1['nazwa']}</h4>
                             <h4>Wersja: {$wartosc1['wersja_nazwa']} </h4>
                         {/if}
@@ -136,14 +136,16 @@
 
                     {foreach $silnik as $key => $wartosc2}
                         {if {$wartosc2['id_SamochodParametry']} == {$smarty.session.id_SamochodParametry}}
-                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']} ({$wartosc2['skrzynia']})</h4>
+                            <h4>Silnik: {$wartosc2['pojemnosc']} l {$wartosc2['moc']} KM {$wartosc2['silnik']}
+                                ({$wartosc2['skrzynia']})</h4>
                         {/if}
                     {/foreach}
 
                     {foreach $felgi as $key => $wartosc3}
                         {if {$wartosc3['id_SamochodKola']} == {$smarty.session.id_SamochodKola}}
                             <h4>Felgi: {$wartosc3['nazwa']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$wartosc3['foto']}"
+                                 class="img-fluid" alt="Responsive image">
                         {/if}
                     {/foreach}
 
@@ -162,7 +164,8 @@
                     {foreach $lakier as $key => $wartosc6}
                         {if {$wartosc6['IdLakier']} == {$smarty.session.IdLakier}}
                             <h4>Lakier: {$wartosc6['nazwaLakier']}</h4>
-                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}" class="img-fluid" alt="Responsive image">
+                            <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$wartosc6['Foto']}"
+                                 class="img-fluid" alt="Responsive image">
                         {/if}
                     {/foreach}
 
@@ -170,50 +173,34 @@
                 </div>
             </div>
             <div>
-                <div class="text-left">
-                    <a class="btn btn-success ml-5 mb-5" href="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu">&#8592;
-                        Wersja</a>
-                </div>
 
-                <!--
 
-                {if isset($smarty.session.idsilnik)}
-                    <div class="text-right">
-                        <a class="btn btn-success mr-5"
-                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Skrzynia/{$smarty.session.idsilnik}">Skrzynia
-                            &#8594;</a>
-                    </div>
-                {/if}
-
-                -->
 
             </div>
         {/if}
     {/if}
-</div>
+
 
 {if (isset($prawo) && ($prawo == 'admin'))}
+    <div class="container">
+        <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-2" method="post">
 
-<div class="container">
-    <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-2" method="post">
+            <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
 
-        <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
+            <div class="form-group">
+                <label for="name">Silnik</label>
+                {html_options name=id_jednostka_napedowa options=$selectsilnik  class="form-control"}
+            </div>
 
-        <div class="form-group">
-            <label for="name">Wersja</label>
-            {html_options name=id_jednostka_napedowa options=$selectsilnik  class="form-control"}
-        </div>
-
-        <button type="submit" name="submit" class="btn btn-default">Dodaj silnik do modelu</button>
-    </form>
-</div>
-
-
-
+            <button type="submit" name="submit" class="btn btn-secondary">Dodaj silnik do modelu</button>
+        </form>
+    </div>
     <div class="text-center mb-2">
-        <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-form">Dodaj silnik</a>
+        <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/add-form">Utwórz nowy silnik</a>
     </div>
 {/if}
+
+</div>
 
 
 {include file="footer.html.tpl"}

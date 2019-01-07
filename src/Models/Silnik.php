@@ -174,4 +174,31 @@ class Silnik extends Model
         }
         return $data;
     }
+
+    public function delete($id){
+        $data = array();
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id === null){
+            $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            return $data;
+        }
+        try	{
+            $stmt = $this->pdo->prepare('DELETE FROM  `'.\Config\Database\DBConfig::$tableSamochodParametry.'` 
+                WHERE  `'.\Config\Database\DBConfig\SamochodParametry::$id_SamochodParametry.'`=:id');
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$deleteok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
 }

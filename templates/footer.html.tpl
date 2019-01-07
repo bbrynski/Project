@@ -48,5 +48,9 @@
 
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_res.js"></script>
 
+
+
+
+
 </body>
 </html>

@@ -2,12 +2,20 @@
 namespace Controllers;
 
 
+use Tools\Session;
+
 class Silnik extends Controller
 {
 
-    public function getAll($id){
+    public function getAll()
+    {
 
-        \Tools\Session::set('id_ZbiorModeli', $id);
+
+        if( isset($_POST['id_ZbiorModeli'])!= null)
+        {
+            \Tools\Session::set('id_ZbiorModeli', $_POST['id_ZbiorModeli']);
+        }
+
 
 
         $view = $this->getView('Silnik');
@@ -44,7 +52,8 @@ class Silnik extends Controller
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
-        $this->redirect('Silnik/1');
+
+        $this->redirect('Silnik');
     }
 
     public function add2()
@@ -59,6 +68,21 @@ class Silnik extends Controller
             \Tools\Session::set('error', $data['error']);
         if(isset($data['message']))
             \Tools\Session::set('message', $data['message']);
-        $this->redirect('Silnik/1');
+
+        $this->redirect('Silnik');
+    }
+
+    public function delete($id){
+
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Silnik');
+        $data = $model->delete($id);
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('Silnik');
     }
 }
