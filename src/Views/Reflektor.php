@@ -31,6 +31,7 @@ class Reflektor extends View
         $data = $model->getAll($id_ZbiorModelu);
         $this->set('swiatla', $data['SamochodSwiatla']);
 
+
         $model = $this->getModel('Wyposazenie');
         $data = $model->getAll($id_ZbiorModelu);
         $this->set('wyposazenie', $data['SamochodWyposazenie']);

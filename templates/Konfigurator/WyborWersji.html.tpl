@@ -18,12 +18,17 @@
 
     <div class="container-fluid text-center">
 
+
+
         {foreach $WyborWersji as $key => $Wartosc}
 
-        <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik" method="post">
+        <form  class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik" method="post">
 
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1{$Wartosc['id_ZbiorModeli']}" name="id_ZbiorModeli" value="{$Wartosc['id_ZbiorModeli']}" class="custom-control-input" required>
+
+
+
+            <input {if isset($smarty.session.id_ZbiorModeli)} {if $Wartosc['id_ZbiorModeli'] === $smarty.session.id_ZbiorModeli}} checked="checked" {/if} {/if} type="radio" id="customRadioInline1{$Wartosc['id_ZbiorModeli']}" name="id_ZbiorModeli" value="{$Wartosc['id_ZbiorModeli']}" class="custom-control-input" required>
             <label class="custom-control-label" for="customRadioInline1{$Wartosc['id_ZbiorModeli']}">
                 <div style="max-width:850px">
                 <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid"

@@ -19,17 +19,17 @@
                     <h2 class="text-center mb-5">Wybierz felgi</h2>
 
 
-                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
+                    <form  class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla" method="post">
 
                         <h4 class="">Obręcze kół - standardowe</h4>
                         {foreach $felgi as $key => $Wartosc}
 
                             {if {$Wartosc['id_Opcja']} == 1}
                                 <div class="custom-control custom-radio custom-control-inline">
-                                   <input class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
+                                   <input {if isset($smarty.session.id_SamochodKola)} {if $Wartosc['id_SamochodKola'] === $smarty.session.id_SamochodKola}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
 
                                     <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
-                                        <div>
+                                            <div>
                                             <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Felgi/{$Wartosc['foto']}"
                                                  class="img-fluid" alt="Responsive image">
                                             <p>{$Wartosc['nazwa']}</p>
@@ -39,12 +39,12 @@
                                                     <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Usuń</a>
                                                 </div>
                                             {/if}
+                                            </div>
 
-                                        </div>
+
                                     </label>
                                 </div>
                             {/if}
-
 
                         {/foreach}
 
@@ -54,7 +54,7 @@
 
                             {if {$Wartosc['id_Opcja']} == 2}
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
+                                    <input {if isset($smarty.session.id_SamochodKola)} {if $Wartosc['id_SamochodKola'] === $smarty.session.id_SamochodKola}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodKola"  id="inlineRadio{$Wartosc['id_SamochodKola']}" value="{$Wartosc['id_SamochodKola']}" required>
 
                                     <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodKola']}">
                                         <div>
@@ -85,9 +85,9 @@
                             <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik">&#8592;
                                 Silnik</a>
                         </div>
-
-
                     </form>
+
+
 
 
                 </div>
@@ -175,6 +175,7 @@
                             </div>
 
                         </div>
+                </div>
                 </div>
             </div>
 

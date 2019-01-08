@@ -18,14 +18,14 @@
                 <div class="col-8">
                     <h2 class="text-center mb-5">Wybierz światła</h2>
 
-                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie" method="post">
+                    <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie" method="post">
 
                     <h4>Światła - standardowe</h4>
                     {foreach $swiatla as $key => $Wartosc}
 
                         {if {$Wartosc['id_Opcja']} == 1}
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
+                                <input {if isset($smarty.session.id_SamochodSwiatla)} {if $Wartosc['id_SamochodSwiatla'] === $smarty.session.id_SamochodSwiatla}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
                                 <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
                                     <div style="max-width: 400px" class="text-center">
@@ -46,7 +46,7 @@
 
                         {if {$Wartosc['id_Opcja']} == 2}
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
+                                <input {if isset($smarty.session.id_SamochodSwiatla)} {if $Wartosc['id_SamochodSwiatla'] === $smarty.session.id_SamochodSwiatla}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodSwiatla"  id="inlineRadio{$Wartosc['id_SamochodSwiatla']}" value="{$Wartosc['id_SamochodSwiatla']}" required>
 
                                 <label class="custom-control-label" for="inlineRadio{$Wartosc['id_SamochodSwiatla']}">
                                     <div style="max-width: 400px" class="text-center">
@@ -163,6 +163,7 @@
                 </div>
             </div>
             <div>
+            </div>
 
 
 

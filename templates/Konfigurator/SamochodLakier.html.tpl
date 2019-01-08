@@ -19,7 +19,7 @@
                     <h2 class="text-center mb-5">Wybierz lakier</h2>
 
 
-                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie" method="post">
+                    <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie" method="post">
 
 
                         {foreach $lakier as $key => $Wartosc}
@@ -39,7 +39,7 @@
 
 
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Wybierz &#8594;</button>
+                            <button type="submit" class="btn btn-primary">Podsumuj &#8594;</button>
                         </div>
 
                         <div class="text-left">
@@ -140,6 +140,7 @@
                 </div>
             </div>
             <div>
+            </div>
 
 
             </div>

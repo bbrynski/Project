@@ -23,16 +23,18 @@ class Reflektor extends Model
             $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'` 
             
                                             INNER JOIN `'.\Config\Database\DBConfig::$tableSwiatla.'`
-                                            ON `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'`.`'. \Config\Database\DBConfig\SamochodSwiatla::$id_SamochodSwiatla . '`
+                                            ON `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'`.`'. \Config\Database\DBConfig\SamochodSwiatla::$id_Swiatla . '`
                                             =`' . \Config\Database\DBConfig::$tableSwiatla . '`.`' . \Config\Database\DBConfig\Swiatla::$id_Swiatla . '`
                                     
                                             
             
-                                            WHERE  `'.\Config\Database\DBConfig\SamochodParametry::$id_ZbiorModeli.'`=:id');
+                                            WHERE  `'.\Config\Database\DBConfig\SamochodSwiatla::$id_ZbiorModeli.'`=:id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
             $result = $stmt->execute();
             $wartosc = $stmt->fetchAll();
+
+
             $stmt->closeCursor();
 
 

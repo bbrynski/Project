@@ -11,7 +11,7 @@
     {if isset($wyposazenie)}
     {if $wyposazenie|@count === 0}
     <div class="alert alert-primary" role="alert">
-        Brak wyposażenia w Bazie
+        Brak tapicerki w Bazie
     </div>
     {else}
     <div class="row m-5">
@@ -19,7 +19,7 @@
             <h2 class="text-center mb-5">Wybierz stylistykę wnętrza</h2>
 
 
-            <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Lakier" method="post">
+            <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Lakier" method="post">
 
 
                 <h4>Tapicerka - standardowa</h4>
@@ -27,7 +27,7 @@
 
                     {if {$Wartosc['id_Opcja']} == 1}
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input class="custom-control-input" type="radio" name="id_SamochodWyposazenie"
+                            <input {if isset($smarty.session.id_SamochodWyposazenie)} {if $Wartosc['id_SamochodWyposazenie'] === $smarty.session.id_SamochodWyposazenie}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodWyposazenie"
                                    id="inlineRadio{$Wartosc['id_SamochodWyposazenie']}"
                                    value="{$Wartosc['id_SamochodWyposazenie']}" required>
 
@@ -48,7 +48,7 @@
 
                     {if {$Wartosc['id_Opcja']} == 2}
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input class="custom-control-input" type="radio" name="id_SamochodWyposazenie"
+                            <input {if isset($smarty.session.id_SamochodWyposazenie)} {if $Wartosc['id_SamochodWyposazenie'] === $smarty.session.id_SamochodWyposazenie}} checked="checked" {/if} {/if} class="custom-control-input" type="radio" name="id_SamochodWyposazenie"
                                    id="inlineRadio{$Wartosc['id_SamochodWyposazenie']}"
                                    value="{$Wartosc['id_SamochodWyposazenie']}" required>
 
@@ -159,6 +159,7 @@
             </div>
         </div>
         <div>
+        </div>
 
 
         </div>
