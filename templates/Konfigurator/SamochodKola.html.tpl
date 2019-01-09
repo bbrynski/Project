@@ -36,7 +36,7 @@
 
                                             {if (isset($prawo) && ($prawo == 'admin'))}
                                                 <div class="text-center">
-                                                    <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Usuń</a>
+                                                    <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi/delete/{$Wartosc['id_SamochodKola']}">Usuń</a>
                                                 </div>
                                             {/if}
                                             </div>
@@ -62,9 +62,11 @@
                                                  class="img-fluid" alt="Responsive image">
                                             <p>{$Wartosc['nazwa']}</p>
 
+
+
                                             {if (isset($prawo) && ($prawo == 'admin'))}
                                                 <div class="text-center">
-                                                    <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Usuń</a>
+                                                    <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi/delete/{$Wartosc['id_SamochodKola']}">Usuń</a>
                                                 </div>
                                             {/if}
 
@@ -180,9 +182,34 @@
             </div>
 
 
+
+
             {if (isset($prawo) && ($prawo == 'admin'))}
-                <div class="text-center">
-                    <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Dodaj nową felgę</a>
+                <div class="container">
+                    <form id="add_silnik" action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi/add" method="post">
+
+                        <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
+
+                        <div class="form-group">
+                            <label for="name">Felga</label>
+                            {html_options name=id_SamochodKola options=$selectkola  class="form-control"}
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Wersja</label>
+                            <select class="form-control" name="id_opcja">
+                                <option value="1">Standardowa</option>
+                                <option value="2">Opcjonalna</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" name="submit" class="btn btn-secondary">Dodaj felge do modelu</button>
+                    </form>
+
+                    <div class="text-center">
+                        <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Utwórz nową felgę</a>
+                    </div>
                 </div>
             {/if}
 

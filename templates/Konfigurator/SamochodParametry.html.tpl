@@ -17,8 +17,28 @@
     {else}
     <div class="row m-5">
         <div class="col-8">
+
+            <style>
+                .table-responsive tbody tr {
+                    cursor: pointer;
+                }
+                .table-responsive .table thead tr th {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                }
+                .table-responsive .table tbody tr td {
+                    padding-top: 15px;
+                    padding-bottom: 10px;
+                }
+            </style>
+
+
+
             <h2 class="text-center mb-5">Wybierz silnik</h2>
 
+            <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi" method="post">
+
+            <div class="table-responsive">
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
@@ -33,7 +53,7 @@
                 </thead>
 
 
-                <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi" method="post">
+
 
                     {foreach $silnik as $key => $Wartosc}
                         {if $Wartosc['silnik'] == "Benzynowy"}
@@ -124,6 +144,7 @@
 
 
             </form>
+            </div>
 
 
         </div>

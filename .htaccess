@@ -150,6 +150,10 @@ RewriteRule ^Silnik/delete/(\d+)/?$ index.php?controller=Silnik&action=delete&id
 
 
 RewriteRule ^Felgi/?$ index.php?controller=Kola&action=getAll [L]
+RewriteRule ^Felgi/add-form/?$ index.php?controller=Kola&action=addform [L]
+RewriteRule ^Felgi/add/?$ index.php?controller=Kola&action=add [L]
+RewriteRule ^Felgi/add-2/?$ index.php?controller=Kola&action=add2 [L]
+RewriteRule ^Felgi/delete/(\d+)/?$ index.php?controller=Kola&action=delete&id=$1 [L]
 
 
 

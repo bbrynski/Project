@@ -48,7 +48,7 @@
 
 
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_konfigurator.js"></script>
-
+<script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_silnik_tabela.js"></script>
 
 
 

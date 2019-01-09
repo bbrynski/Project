@@ -47,6 +47,14 @@ class Kola extends View
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
 
+
+
+        $model = $this->getModel('Kola');
+        $data = $model->SelectKola();
+        $this->set('selectkola',$data);
+
+
+
         $this->render('Konfigurator/SamochodKola');
     }
 }
