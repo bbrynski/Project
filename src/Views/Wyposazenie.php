@@ -46,6 +46,15 @@ class Wyposazenie extends View
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
 
+
+
+        $model = $this->getModel('Wyposazenie');
+        $data = $model->SelectWyposazenie();
+        $this->set('selectwyposazenie',$data);
+
+
+
+
         $this->render('Konfigurator/SamochodWyposazenie');
     }
 }

@@ -22,4 +22,59 @@ class Reflektor extends Controller
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
     }
+
+    public function addform()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+        $view = $this->getView('Reflektor');
+        $view->addform();
+    }
+
+    public function add()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Reflektor');
+        $data = $model->add($_POST[''], $_POST[''], $_POST['']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+        $this->redirect('Swiatla');
+    }
+
+    public function add2()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Reflektor');
+        $data = $model->add2($_POST['id_zbior_modeli'], $_POST['id_SamochodSwiatla'], $_POST['id_opcja']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+        $this->redirect('Swiatla');
+    }
+
+
+    public function delete($id){
+
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Reflektor');
+        $data = $model->delete($id);
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('Swiatla');
+    }
 }

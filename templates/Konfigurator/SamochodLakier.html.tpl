@@ -32,6 +32,11 @@
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Lakier/{$Wartosc['Foto']}"
                                              class="img-fluid" alt="Responsive image">
                                         <p>{$Wartosc['nazwaLakier']}</p>
+                                        {if (isset($prawo) && ($prawo == 'admin'))}
+                                            <div class="text-center">
+                                                <a class="btn btn-danger m-2" href="http://{$smarty.server.HTTP_HOST}{$subdir}Lakier/delete/{$Wartosc['IdLakier']}">Usuń</a>
+                                            </div>
+                                        {/if}
                                     </div>
                                 </label>
                             </div>
@@ -43,8 +48,8 @@
                         </div>
 
                         <div class="text-left">
-                            <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie">&#8592;
-                                Wyposażenie</a>
+                            <a class="btn btn-success" href="http://{$smarty.server.HTTP_HOST}{$subdir}Tapicerka">&#8592;
+                                Tapicerka</a>
                         </div>
 
 
@@ -146,6 +151,9 @@
             </div>
         {/if}
     {/if}
+
+
+
 </div>
 
 

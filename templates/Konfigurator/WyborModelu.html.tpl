@@ -23,7 +23,7 @@
 
             {foreach $ZbiorModeli as $key => $Wartosc}
 
-                    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
+                    <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}WersjeModelu" method="post">
 
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="customRadioInline1{$Wartosc['id_ZbiorModeli']}" name="wersja_nazwa" value="{$Wartosc['nazwa']}" class="custom-control-input" required>

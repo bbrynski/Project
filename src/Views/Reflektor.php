@@ -46,6 +46,15 @@ class Reflektor extends View
 
         $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
+
+
+
+        $model = $this->getModel('Reflektor');
+        $data = $model->SelectSwiatla();
+        $this->set('selectswiatla',$data);
+
+
+
         $this->render('Konfigurator/SamochodSwiatla');
     }
 }

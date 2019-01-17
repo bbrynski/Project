@@ -18,7 +18,7 @@
                 <div class="col-8">
                     <h2 class="text-center mb-5">Wybierz światła</h2>
 
-                    <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Wyposazenie" method="post">
+                    <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Tapicerka" method="post">
 
                     <h4>Światła - standardowe</h4>
                     {foreach $swiatla as $key => $Wartosc}
@@ -32,6 +32,11 @@
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
                                         <h6>{$Wartosc['nazwa']}</h6>
+                                        {if (isset($prawo) && ($prawo == 'admin'))}
+                                            <div class="text-center">
+                                                <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla/delete/{$Wartosc['id_SamochodSwiatla']}">Usuń</a>
+                                            </div>
+                                        {/if}
                                     </div>
                                 </label>
                             </div>
@@ -53,6 +58,11 @@
                                         <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}/Swiatla/{$Wartosc['foto']}"
                                              class="img-fluid" alt="Responsive image">
                                         <h6>{$Wartosc['nazwa']}</h6>
+                                        {if (isset($prawo) && ($prawo == 'admin'))}
+                                            <div class="text-center">
+                                                <a class="btn btn-danger" href="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla/delete/{$Wartosc['id_SamochodSwiatla']}">Usuń</a>
+                                            </div>
+                                        {/if}
                                     </div>
                                 </label>
                             </div>
@@ -170,6 +180,38 @@
             </div>
         {/if}
     {/if}
+
+
+    {if (isset($prawo) && ($prawo == 'admin'))}
+        <div class="container">
+            <form id="add_swiatla" action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla/add-2" method="post">
+
+                <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
+
+                <div class="form-group">
+                    <label for="name">Swiatła</label>
+                    {html_options name=id_SamochodSwiatla options=$selectswiatla  class="form-control"}
+                </div>
+
+
+                <div class="form-group">
+                    <label>Wersja</label>
+                    <select class="form-control" name="id_opcja">
+                        <option value="1">Standardowa</option>
+                        <option value="2">Opcjonalna</option>
+                    </select>
+                </div>
+
+                <button type="submit" name="submit" class="btn btn-secondary">Dodaj światła do modelu</button>
+            </form>
+
+            <div class="text-center">
+                <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Utwórz nową felgę</a>
+            </div>
+        </div>
+    {/if}
+
+
 </div>
 
 

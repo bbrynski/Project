@@ -19,10 +19,6 @@ RewriteRule ^access/logform/?$ index.php?controller=Access&action=logform [L]
 RewriteRule ^access/login/?$ index.php?controller=Access&action=login [L]
 RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 
-
-
-
-
 #Zamowienie
 RewriteRule ^Zamowienie/?$ index.php?controller=Zamowienie [L]
 RewriteRule ^Zamowienie/add-form/?$ index.php?controller=Zamowienie&action=addform [L]
@@ -34,22 +30,6 @@ RewriteRule ^Zamowienie/status/?$ index.php?controller=Zamowienie&action=sprawdz
 
 RewriteRule ^Zamowienie/sprawdz/?$ index.php?controller=Zamowienie&action=sprawdz [L]
 
-
-
-#Skrzynia
-RewriteRule ^Skrzynia/(\d+)/?$ index.php?controller=Skrzynia&action=getAll&id=$1 [L]
-
-#Lakier
-RewriteRule ^Lakier/(\d+)/?$ index.php?controller=Lakier&action=getAll&id=$1 [L]
-
-#Naped
-RewriteRule ^Naped/(\d+)/?$ index.php?controller=Naped&action=getAll&id=$1 [L]
-
-#Reflektory
-RewriteRule ^Reflektory/(\d+)/?$ index.php?controller=Reflektor&action=getAll&id=$1 [L]
-
-#Podsumowanie
-RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
 
 #Konfigurator
 RewriteRule ^Konfigurator/zapisz/?$ index.php?controller=Konfigurator&action=addConfig [L]
@@ -158,11 +138,38 @@ RewriteRule ^Felgi/delete/(\d+)/?$ index.php?controller=Kola&action=delete&id=$1
 
 
 RewriteRule ^Swiatla/?$ index.php?controller=Reflektor&action=getAll [L]
+RewriteRule ^Swiatla/add-form/?$ index.php?controller=Reflektor&action=addform [L]
+RewriteRule ^Swiatla/add/?$ index.php?controller=Reflektor&action=add [L]
+RewriteRule ^Swiatla/add-2/?$ index.php?controller=Reflektor&action=add2 [L]
+RewriteRule ^Swiatla/delete/(\d+)/?$ index.php?controller=Reflektor&action=delete&id=$1 [L]
 
-RewriteRule ^Wyposazenie/?$ index.php?controller=Wyposazenie&action=getAll [L]
+
+RewriteRule ^Tapicerka/?$ index.php?controller=Wyposazenie&action=getAll [L]
+RewriteRule ^Tapicerka/add-form/?$ index.php?controller=Wyposazenie&action=addform [L]
+RewriteRule ^Tapicerka/add/?$ index.php?controller=Wyposazenie&action=add [L]
+RewriteRule ^Tapicerka/add-2/?$ index.php?controller=Wyposazenie&action=add2 [L]
+RewriteRule ^Tapicerka/delete/(\d+)/?$ index.php?controller=Wyposazenie&action=delete&id=$1 [L]
+
+
+
 
 RewriteRule ^Lakier/?$ index.php?controller=Lakier&action=getAll [L]
 
+RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
+
+
+
+
+
+#Lakier
+RewriteRule ^Lakier/(\d+)/?$ index.php?controller=Lakier&action=getAll&id=$1 [L]
+
+
+
+#Reflektory
+RewriteRule ^Reflektory/(\d+)/?$ index.php?controller=Reflektor&action=getAll&id=$1 [L]
+
+#Podsumowanie
 RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
 
 
