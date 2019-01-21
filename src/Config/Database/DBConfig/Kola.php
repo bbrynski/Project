@@ -13,4 +13,5 @@ class Kola
 {
     public static $id_Kola = 'id_Kola';
     public static $nazwa = 'nazwa';
+    public static $foto = 'foto';
 }

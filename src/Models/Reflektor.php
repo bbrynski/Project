@@ -95,28 +95,27 @@ class Reflektor extends Model
     }
 
 
-    public function add2($id_zbior_modeli, $id_SamochodSwiatla, $id_opcja){
+    public function add2($nazwa, $foto){
 
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($id_zbior_modeli === null || $id_SamochodSwiatla == null || $id_opcja == null){
+        if($nazwa === null || $foto == null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
         $data = array();
         try	{
-            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableSamochodSwiatla.'` 
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableSwiatla.'` 
                 (
-                    `'.\Config\Database\DBConfig\SamochodSwiatla::$id_ZbiorModeli.'`,
-                    `'.\Config\Database\DBConfig\SamochodSwiatla::$id_Swiatla.'`,
-                    `'.\Config\Database\DBConfig\SamochodSwiatla::$id_Opcja.'`                                                     
-                ) VALUES (:id1, :id2, :id3)');
+                    `'.\Config\Database\DBConfig\Swiatla::$nazwa.'`,
+                    `'.\Config\Database\DBConfig\Swiatla::$foto.'`                                                     
+                ) VALUES (:id1, :id2)');
 
-            $stmt->bindValue(':id1', $id_zbior_modeli, PDO::PARAM_INT);
-            $stmt->bindValue(':id2', $id_SamochodSwiatla, PDO::PARAM_INT);
-            $stmt->bindValue(':id3', $id_opcja, PDO::PARAM_INT);
+            $stmt->bindValue(':id1', $nazwa, PDO::PARAM_STR);
+            $stmt->bindValue(':id2', $foto, PDO::PARAM_STR);
+
 
             $result = $stmt->execute();
 

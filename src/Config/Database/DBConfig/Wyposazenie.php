@@ -13,4 +13,5 @@ class Wyposazenie
 {
     public static $id_Wyposazenie = 'id_Wyposazenie';
     public static $nazwa = 'nazwa';
+    public static $foto = 'foto';
 }

@@ -202,7 +202,7 @@
             </form>
 
             <div class="text-center">
-                <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}">Utwórz nową felgę</a>
+                <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Tapicerka/add-form">Dodaj nowa tapicerke</a>
             </div>
         </div>
     {/if}

@@ -37,4 +37,28 @@ class Lakier extends Controller
             \Tools\Session::set('message', $data['message']);
         $this->redirect('Lakier');
     }
+
+    public function addform()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+        $view = $this->getView('Lakier');
+        $view->addform();
+    }
+
+    public function add()
+    {
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Lakier');
+        $data = $model->add($_POST['nazwaLakier'], $_POST['Foto']);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+        $this->redirect('Lakier');
+    }
 }

@@ -57,4 +57,8 @@ class Wyposazenie extends View
 
         $this->render('Konfigurator/SamochodWyposazenie');
     }
+
+    public function addform(){
+        $this->render('Formularze/TapicerkaAdd');
+    }
 }

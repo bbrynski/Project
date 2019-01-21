@@ -150,6 +150,9 @@
 
             </div>
         {/if}
+        <div class="text-center">
+            <a class="btn btn-warning" href="http://{$smarty.server.HTTP_HOST}{$subdir}Lakier/add-form">Dodaj nowy lakier</a>
+        </div>
     {/if}
 
 

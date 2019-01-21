@@ -57,4 +57,9 @@ class Reflektor extends View
 
         $this->render('Konfigurator/SamochodSwiatla');
     }
+
+    public function addform()
+    {
+        $this->render('Formularze/ReflektorAdd');
+    }
 }

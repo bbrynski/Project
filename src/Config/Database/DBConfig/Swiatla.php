@@ -13,4 +13,5 @@ class Swiatla
 {
     public static $id_Swiatla = 'id_Swiatla';
     public static $nazwa = 'nazwa';
+    public static $foto = 'foto';
 }

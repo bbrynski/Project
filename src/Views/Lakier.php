@@ -48,4 +48,8 @@ class Lakier extends View
 
         $this->render('Konfigurator/SamochodLakier');
     }
+
+    public function addform(){
+        $this->render('Formularze/LakierAdd');
+    }
 }

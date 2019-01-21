@@ -92,6 +92,46 @@ class Kola extends Model
         return $data;
     }
 
+    public function add2($nazwa, $foto){
+
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($nazwa === null || $foto == null){
+            $data['error'] = \Config\Database\DBErrorName::$empty;
+            return $data;
+        }
+        $data = array();
+        try	{
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableKola.'` 
+                (
+                    `'.\Config\Database\DBConfig\Kola::$nazwa.'`,
+                    `'.\Config\Database\DBConfig\Kola::$foto.'`
+                  
+                    
+                ) VALUES (:1, :2)');
+
+            $stmt->bindValue(':1', $nazwa, PDO::PARAM_STR);
+            $stmt->bindValue(':2', $foto, PDO::PARAM_STR);
+
+
+
+
+            $result = $stmt->execute();
+
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$noadd;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$addok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
     public function getAll2(){
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;

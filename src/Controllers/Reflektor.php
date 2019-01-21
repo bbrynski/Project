@@ -53,7 +53,7 @@ class Reflektor extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Reflektor');
-        $data = $model->add2($_POST['id_zbior_modeli'], $_POST['id_SamochodSwiatla'], $_POST['id_opcja']);
+        $data = $model->add2($_POST['nazwa'], $_POST['foto']);
 
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);

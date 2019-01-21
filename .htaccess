@@ -153,6 +153,8 @@ RewriteRule ^Tapicerka/delete/(\d+)/?$ index.php?controller=Wyposazenie&action=d
 
 RewriteRule ^Lakier/?$ index.php?controller=Lakier&action=getAll [L]
 RewriteRule ^Lakier/delete/(\d+)/?$ index.php?controller=Lakier&action=delete&id=$1 [L]
+RewriteRule ^Lakier/add-form/?$ index.php?controller=Lakier&action=addform [L]
+RewriteRule ^Lakier/add/?$ index.php?controller=Lakier&action=add [L]
 
 
 RewriteRule ^Reflektory/(\d+)/?$ index.php?controller=Reflektor&action=getAll&id=$1 [L]
