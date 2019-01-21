@@ -34,7 +34,7 @@
                 <img src="http://{$smarty.server.HTTP_HOST}/{$sciezka}{$Wartosc['foto']}" class="img-fluid"
                      alt="Responsive image">
                 <h1 class="text-center">{$Wartosc['wersja_nazwa']}</h1>
-                <h4>Cena: {$Wartosc['cena']} zł</h4>
+                <!-- <h4>Cena: {$Wartosc['cena']} zł</h4> -->
 
                     {if (isset($prawo) && ($prawo == 'admin'))}
                         <div class="text-center">

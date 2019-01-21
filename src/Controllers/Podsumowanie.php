@@ -18,6 +18,34 @@ class Podsumowanie extends Controller
         $view->getAll();
 
     }
+
+    public function zapisz()
+    {
+        $id_ZbiorModeli = \Tools\Session::get('id_ZbiorModeli');
+        $id_SamochodParametry = \Tools\Session::get('id_SamochodParametry');
+        $id_SamochodKola = \Tools\Session::get('id_SamochodKola');
+        $id_SamochodSwiatla = \Tools\Session::get('id_SamochodSwiatla');
+        $id_SamochodWyposazenie = \Tools\Session::get('id_SamochodWyposazenie');
+        $id_Lakier = \Tools\Session::get('IdLakier');
+
+        $model=$this->getModel('Podsumowanie');
+        $data = $model->add($id_ZbiorModeli, $id_SamochodParametry, $id_SamochodKola, $id_SamochodSwiatla, $id_SamochodWyposazenie, $id_Lakier);
+
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+
+
+
+        $numer = $data['numer'];
+        \Tools\Session::set('numer', $numer);
+
+        $this->redirect('Podsumowanie');
+    }
+
+
+
     /*
 
     public function getAll($id=0)

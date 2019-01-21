@@ -151,26 +151,15 @@ RewriteRule ^Tapicerka/add-2/?$ index.php?controller=Wyposazenie&action=add2 [L]
 RewriteRule ^Tapicerka/delete/(\d+)/?$ index.php?controller=Wyposazenie&action=delete&id=$1 [L]
 
 
-
-
 RewriteRule ^Lakier/?$ index.php?controller=Lakier&action=getAll [L]
-
-RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
-
+RewriteRule ^Lakier/delete/(\d+)/?$ index.php?controller=Lakier&action=delete&id=$1 [L]
 
 
-
-
-#Lakier
-RewriteRule ^Lakier/(\d+)/?$ index.php?controller=Lakier&action=getAll&id=$1 [L]
-
-
-
-#Reflektory
 RewriteRule ^Reflektory/(\d+)/?$ index.php?controller=Reflektor&action=getAll&id=$1 [L]
 
 #Podsumowanie
 RewriteRule ^Podsumowanie/?$ index.php?controller=Podsumowanie&action=getAll [L]
+RewriteRule ^Podsumowanie/zapisz/?$ index.php?controller=Podsumowanie&action=zapisz [L]
 
 
 

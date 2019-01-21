@@ -57,4 +57,9 @@ class Kola extends View
 
         $this->render('Konfigurator/SamochodKola');
     }
+
+    public function addform()
+    {
+        $this->render('Formularze/FelgiAdd');
+    }
 }

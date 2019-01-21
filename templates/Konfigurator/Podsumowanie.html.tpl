@@ -8,10 +8,17 @@
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
+    {if isset($message)}
+        <div class="alert alert-success" role="alert">{$message}</div>
+    {/if}
+    {if isset($error)}
+        <div class="alert alert-danger" role="alert">{$error}</div>
+    {/if}
+
 
     {if isset($smarty.session.numer)}
     <div class="alert alert-success" role="alert">
-        <!-- Numer konfiguracji:{$smarty.session.numer} -->
+        Numer konfiguracji: <strong>{$smarty.session.numer}</strong>
 
     </div>
 
@@ -121,10 +128,10 @@
 {/if}
 
 <div class="d-flex justify-content-center">
-    <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Nowa
+    <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}KonfiguratorModelu">Nowa
         Konfiguracja</a>
     {if !isset($smarty.session.numer)}
-        <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/zapisz">Zapisz
+        <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Podsumowanie/zapisz">Zapisz
             konfiguracje</a>
     {/if}
     {if isset($smarty.session.user)}

@@ -39,63 +39,62 @@
             <form class="needs-validation2" novalidate action="http://{$smarty.server.HTTP_HOST}{$subdir}Felgi" method="post">
 
             <div class="table-responsive">
-            <table class="table">
+            <table style="table-layout: fixed" class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
-                    <th colspan="4" class="text-center">Benzyna bezołowiowa</th>
+                    <th colspan="3" class="text-center">Benzyna bezołowiowa</th>
                 </tr>
-                <tr>
+                <tr class="text-center">
                     <th>Pojemność</th>
                     <th>Moc</th>
                     <th>Skrzynia</th>
-                    <th>Cena</th>
                 </tr>
                 </thead>
+                <tbody>
+                {foreach $silnik as $key => $Wartosc}
+                    {if $Wartosc['silnik'] == "Benzynowy"}
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-radio">
+                                    <input {if isset($smarty.session.id_SamochodParametry)} {if $Wartosc['id_SamochodParametry'] === $smarty.session.id_SamochodParametry}} checked="checked" {/if} {/if}
+                                            type="radio" id="customRadio1{$Wartosc['id_SamochodParametry']}"
+                                            name="id_SamochodParametry" class="custom-control-input"
+                                            value="{$Wartosc['id_SamochodParametry']}"
+                                            required>
+                                    <label class="custom-control-label"
+                                           for="customRadio1{$Wartosc['id_SamochodParametry']}">{$Wartosc['pojemnosc']}
+                                        MPI</label>
+                                </div>
+                            </td>
+                            <td>
+                                {$Wartosc['moc']}
+                            </td>
+                            <td>
+                                {$Wartosc['skrzynia']}
+                                {if (isset($prawo) && ($prawo == 'admin'))}
 
 
+                                    <a class="btn btn-danger ml-3"
+                                       href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/delete/{$Wartosc['id_SamochodParametry']}">Usuń</a>
+                                {/if}
+                            </td>
 
+                        </tr>
+                    {/if}
+                {/foreach}
+                </tbody>
+            </table>
 
-                    {foreach $silnik as $key => $Wartosc}
-                        {if $Wartosc['silnik'] == "Benzynowy"}
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-radio">
-                                        <input {if isset($smarty.session.id_SamochodParametry)} {if $Wartosc['id_SamochodParametry'] === $smarty.session.id_SamochodParametry}} checked="checked" {/if} {/if}
-                                                type="radio" id="customRadio1{$Wartosc['id_SamochodParametry']}"
-                                                name="id_SamochodParametry" class="custom-control-input"
-                                                value="{$Wartosc['id_SamochodParametry']}"
-                                                required>
-                                        <label class="custom-control-label"
-                                               for="customRadio1{$Wartosc['id_SamochodParametry']}">{$Wartosc['pojemnosc']}
-                                            MPI</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    {$Wartosc['moc']}
-                                </td>
-                                <td>
-                                    {$Wartosc['skrzynia']}
-                                </td>
-                                <td>
-                                    -
-                                    {if (isset($prawo) && ($prawo == 'admin'))}
-                                        <a class="btn btn-danger ml-3"
-                                           href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/delete/{$Wartosc['id_SamochodParametry']}">Usuń</a>
-                                    {/if}
-                                </td>
-                            </tr>
-                        {/if}
-                    {/foreach}
+                <table style="table-layout: fixed" class="table table-bordered">
 
                     <thead class="thead-dark">
                     <tr>
-                        <th colspan="4" class="text-center">Olej napędowy</th>
+                        <th colspan="3" class="text-center">Olej napędowy</th>
                     </tr>
-                    <tr>
+                    <tr class="text-center">
                         <th>Pojemność</th>
                         <th>Moc</th>
                         <th>Skrzynia</th>
-                        <th>Cena</th>
                     </tr>
                     </thead>
 
@@ -119,14 +118,14 @@
                                 </td>
                                 <td>
                                     {$Wartosc['skrzynia']}
-                                </td>
-                                <td>
-                                    -
                                     {if (isset($prawo) && ($prawo == 'admin'))}
+
+
                                         <a class="btn btn-danger ml-3"
                                            href="http://{$smarty.server.HTTP_HOST}{$subdir}Silnik/delete/{$Wartosc['id_SamochodParametry']}">Usuń</a>
                                     {/if}
                                 </td>
+
                             </tr>
                         {/if}
                     {/foreach}

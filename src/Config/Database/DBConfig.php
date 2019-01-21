@@ -41,6 +41,7 @@
         public static $tableSamochodKola = 'SamochodKola';
         public static $tableSamochodWyposazenie = 'SamochodWyposazenie';
 
+        public static $tableZapis = 'Zapis';
 
 
 	}

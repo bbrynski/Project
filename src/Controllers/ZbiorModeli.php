@@ -1,10 +1,13 @@
 <?php
 namespace Controllers;
 
+use Tools\Session;
+
 class ZbiorModeli extends Controller
 {
     public function getAll()
     {
+        \Tools\Session::clear('numer');
         \Tools\Session::clear('wersja_nazwa');
         \Tools\Session::clear('id_ZbiorModeli');
         \Tools\Session::clear('id_SamochodParametry');

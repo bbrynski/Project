@@ -23,4 +23,18 @@ class Lakier extends Controller
         \Tools\Session::clear('message');
         \Tools\Session::clear('error');
     }
+
+    public function delete($id){
+
+        $accessController = new \Controllers\Access();
+        $accessController->islogin();
+
+        $model=$this->getModel('Lakier');
+        $data = $model->delete($id);
+        if(isset($data['error']))
+            \Tools\Session::set('error', $data['error']);
+        if(isset($data['message']))
+            \Tools\Session::set('message', $data['message']);
+        $this->redirect('Lakier');
+    }
 }

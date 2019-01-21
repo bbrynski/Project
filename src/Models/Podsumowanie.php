@@ -9,18 +9,17 @@
 namespace Models;
 use \PDO;
 
-class Konfigurator extends Model
+class Podsumowanie extends Model
 {
-    public function addConfig($id)
+    public function add($id_ZbiorModeli, $id_SamochodParametry, $id_SamochodKola, $id_SamochodSwiatla, $id_SamochodWyposazenie, $id_Lakier)
     {
+
+
         if ($this->pdo === null) {
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if (!isset($id)) {
-            $data['error'] = \Config\Database\DBErrorName::$empty;
-            return $data;
-        }
+
         $data = array();
 
         //sprawdzenie unikatowego numeru
@@ -44,22 +43,43 @@ class Konfigurator extends Model
         //numer konfiguratora
         $data['numer'] = $numer;
 
+        //d($numer);
 
-        try {
+        try	{
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableZapis.'` 
+                (
+                `'.\Config\Database\DBConfig\Zapis::$numer.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_ZbiorModeli.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_SamochodParametry.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_SamochodKola.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_SamochodSwiatla.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_SamochodWyposazenie.'`,
+                    `'.\Config\Database\DBConfig\Zapis::$id_Lakier.'`
+                    
+                ) VALUES (:1, :2, :3, :4, :5, :6, :7)');
 
-            $stmt = $this->pdo->prepare('INSERT INTO `' . \Config\Database\DBConfig::$tableKonfigurator . '` (`' . \Config\Database\DBConfig\Konfigurator::$idModel . '`,`' . \Config\Database\DBConfig\Konfigurator::$numer . '`) VALUES(:IdModel, :Numer)');
-            $stmt->bindValue(':IdModel', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':Numer', $numer, PDO::PARAM_STR);
+            $stmt->bindValue(':1', $numer, PDO::PARAM_STR);
+            $stmt->bindValue(':2', $id_ZbiorModeli, PDO::PARAM_INT);
+            $stmt->bindValue(':3', $id_SamochodParametry, PDO::PARAM_INT);
+            $stmt->bindValue(':4', $id_SamochodKola, PDO::PARAM_INT);
+            $stmt->bindValue(':5', $id_SamochodSwiatla, PDO::PARAM_INT);
+            $stmt->bindValue(':6', $id_SamochodWyposazenie, PDO::PARAM_INT);
+            $stmt->bindValue(':7', $id_Lakier, PDO::PARAM_INT);
+
 
             $result = $stmt->execute();
-            if (!$result)
+
+
+            if(!$result)
                 $data['error'] = \Config\Database\DBErrorName::$noadd;
             else
                 $data['message'] = \Config\Database\DBMessageName::$addok;
             $stmt->closeCursor();
-        } catch (\PDOException $e) {
+        }
+        catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;
         }
+
         return $data;
     }
 
@@ -91,7 +111,7 @@ class Konfigurator extends Model
         try {
 
 
-            $stmt = $this->pdo->prepare('SELECT * FROM  `' . \Config\Database\DBConfig::$tableKonfigurator . '` WHERE  `' . \Config\Database\DBConfig\Konfigurator::$numer . '`=:numer');
+            $stmt = $this->pdo->prepare('SELECT * FROM  `' . \Config\Database\DBConfig::$tableZapis . '` WHERE  `' . \Config\Database\DBConfig\Zapis::$numer . '`=:numer');
             $stmt->bindValue(':numer', $numer, PDO::PARAM_STR);
             $result = $stmt->execute();
             $numerBaza = $stmt->fetchAll();
