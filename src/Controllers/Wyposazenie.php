@@ -38,7 +38,7 @@ class Wyposazenie extends Controller
         $accessController->islogin();
 
         $model=$this->getModel('Wyposazenie');
-        $data = $model->add($_POST[''], $_POST[''], $_POST['']);
+        $data = $model->add($_POST['id_zbior_modeli'], $_POST['id_SamochodWyposazenie'], $_POST['id_opcja']);
 
         if(isset($data['error']))
             \Tools\Session::set('error', $data['error']);

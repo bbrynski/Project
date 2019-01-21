@@ -184,7 +184,7 @@
 
     {if (isset($prawo) && ($prawo == 'admin'))}
         <div class="container">
-            <form id="add_swiatla" action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla/add-2" method="post">
+            <form id="add_swiatla" action="http://{$smarty.server.HTTP_HOST}{$subdir}Swiatla/add" method="post">
 
                 <input type="hidden" name="id_zbior_modeli" value="{$smarty.session.id_ZbiorModeli}}">
 

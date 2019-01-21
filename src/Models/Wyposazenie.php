@@ -47,35 +47,28 @@ class Wyposazenie extends Model
     }
 
 
-    public function add($pojemnosc, $rodzaj, $moc, $skrzynia, $cena){
+    public function add($id_zbior_modeli, $id_wyposazenie, $id_opcja){
 
         if($this->pdo === null){
             $data['error'] = \Config\Database\DBErrorName::$connection;
             return $data;
         }
-        if($pojemnosc === null || $rodzaj == null || $moc == null || $skrzynia == null || $cena == null){
+        if($id_zbior_modeli === null || $id_wyposazenie == null || $id_opcja == null){
             $data['error'] = \Config\Database\DBErrorName::$empty;
             return $data;
         }
         $data = array();
         try	{
-            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableJednostkaNapedowa.'` 
+            $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'` 
                 (
-                    `'.\Config\Database\DBConfig\JednostkaNapedowa::$pojemnosc.'`,
-                    `'.\Config\Database\DBConfig\JednostkaNapedowa::$silnik.'`,
-                    `'.\Config\Database\DBConfig\JednostkaNapedowa::$moc.'`,
-                    `'.\Config\Database\DBConfig\JednostkaNapedowa::$skrzynia.'`,
-                    `'.\Config\Database\DBConfig\JednostkaNapedowa::$cena.'`
-                  
-                    
-                ) VALUES (:1, :2, :3, :4, :5)');
+                    `'.\Config\Database\DBConfig\SamochodWyposazenie::$id_ZbiorModeli.'`,
+                    `'.\Config\Database\DBConfig\SamochodWyposazenie::$id_Wyposazenie.'`,
+                    `'.\Config\Database\DBConfig\SamochodWyposazenie::$id_Opcja.'`                                                     
+                ) VALUES (:id1, :id2, :id3)');
 
-            $stmt->bindValue(':1', $pojemnosc, PDO::PARAM_STR);
-            $stmt->bindValue(':2', $rodzaj, PDO::PARAM_STR);
-            $stmt->bindValue(':3', $moc, PDO::PARAM_STR);
-            $stmt->bindValue(':4', $skrzynia, PDO::PARAM_STR);
-            $stmt->bindValue(':5', $cena, PDO::PARAM_STR);
-
+            $stmt->bindValue(':id1', $id_zbior_modeli, PDO::PARAM_INT);
+            $stmt->bindValue(':id2', $id_wyposazenie, PDO::PARAM_INT);
+            $stmt->bindValue(':id3', $id_opcja, PDO::PARAM_INT);
 
             $result = $stmt->execute();
 
