@@ -138,9 +138,9 @@ class Podsumowanie extends Model
             return $data;
         }
         try {
-            $query='SELECT * FROM  `'.\Config\Database\DBConfig::$tableKonfigurator .'` INNER JOIN `'.\Config\Database\DBConfig::$tableModel.'` ON `'.\Config\Database\DBConfig::$tableKonfigurator.'`.`'.\Config\Database\DBConfig\Konfigurator::$idModel.'`=`'.\Config\Database\DBConfig::$tableModel.'`.`'.\Config\Database\DBConfig\Model::$id.'`INNER JOIN `'.\Config\Database\DBConfig::$tableWyposazenie.'` ON `'.\Config\Database\DBConfig::$tableModel.'`.`'.\Config\Database\DBConfig\Model::$Id_Wyposazenie.'`=`'.\Config\Database\DBConfig::$tableWyposazenie.'`.`'.\Config\Database\DBConfig\Wyposazenie::$id.'` WHERE `'.\Config\Database\DBConfig\Konfigurator::$numer.'`=:numer';
-
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableKonfigurator .'` INNER JOIN `'.\Config\Database\DBConfig::$tableModel.'` ON `'.\Config\Database\DBConfig::$tableKonfigurator.'`.`'.\Config\Database\DBConfig\Konfigurator::$idModel.'`=`'.\Config\Database\DBConfig::$tableModel.'`.`'.\Config\Database\DBConfig\Model::$id.'`INNER JOIN `'.\Config\Database\DBConfig::$tableWyposazenie.'` ON `'.\Config\Database\DBConfig::$tableModel.'`.`'.\Config\Database\DBConfig\Model::$Id_Wyposazenie.'`=`'.\Config\Database\DBConfig::$tableWyposazenie.'`.`'.\Config\Database\DBConfig\Wyposazenie::$id.'` WHERE `'.\Config\Database\DBConfig\Konfigurator::$numer.'`=:numer');
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZapis .'` 
+            
+            WHERE `'.\Config\Database\DBConfig\Konfigurator::$numer.'`=:numer');
             $stmt->bindValue(':numer', $numer, PDO::PARAM_STR);
             $result = $stmt->execute();
             $config = $stmt->fetchAll();

@@ -1,43 +1,10 @@
 <?php
+
 namespace Controllers;
 
 
 class Konfigurator extends Controller
 {
-
-    public function addConfig()
-    {
-        $model = $this->getModel('Samochod');
-        $data = $model->addConfig(\Tools\Session::get('idmodel'));
-
-        $id = $data['ostatnioWstawioneID'];
-        $model_konfigurator = $this->getModel('Konfigurator');
-        $data = $model_konfigurator->addConfig($id);
-
-        \Tools\Session::set('numer', $data['numer']);
-
-        \Tools\Session::clear('idmodel');
-        \Tools\Session::clear('idnaped');
-        \Tools\Session::clear('nazwaModel');
-        \Tools\Session::clear('idlakier');
-        \Tools\Session::clear('idsilnik');
-        \Tools\Session::clear('idreflektory');
-        \Tools\Session::clear('idkola');
-        \Tools\Session::clear('idskrzynia');
-        \Tools\Session::clear('kompletOpon');
-        \Tools\Session::clear('podgrzewanaSzybaPrzod');
-        \Tools\Session::clear('podgrzewaneSiedzenia');
-        \Tools\Session::clear('skorzanaTapicerka');
-
-        if (isset($data['error']))
-            \Tools\Session::set('error', $data['error']);
-        if (isset($data['message']))
-            \Tools\Session::set('message', $data['message']);
-
-
-        $this->redirect('Podsumowanie');
-    }
-
     public function loadConfig($numer)
     {
         $view = $this->getView('Konfigurator');
@@ -46,50 +13,59 @@ class Konfigurator extends Controller
 
     public function getConfig()
     {
-        $model = $this->getModel('Konfigurator');
+        \Tools\Session::clear('id_ZbiorModeli');
+        \Tools\Session::clear('id_SamochodParametry');
+        \Tools\Session::clear('id_SamochodKola');
+        \Tools\Session::clear('id_SamochodSwiatla');
+        \Tools\Session::clear('id_SamochodWyposazenie');
+        \Tools\Session::clear('IdLakier');
+        \Tools\Session::clear('numer');
+
+
+        $model = $this->getModel('Podsumowanie');
         $data = $model->getConfig($_POST['numer']);
-        $config = $data['config'];
 
-        \Tools\Session::set('idmodel', $config[0]['IdModel']);
-        //d( \Tools\Session::get('idmodel'));
-        //\Tools\Session::set('nazwaModel', $config[0]['nazwaModel']);
-        \Tools\Session::set('idsilnik', $config[0]['IdSilnik']);
-       // d( \Tools\Session::get('idsilnik'));
-        \Tools\Session::set('idlakier', $config[0]['IdLakier']);
-      //  d( \Tools\Session::get('idlakier'));
-        \Tools\Session::set('idnaped', $config[0]['IdNaped']);
-      //  d( \Tools\Session::get('idnaped'));
-        \Tools\Session::set('idskrzynia', $config[0]['IdSkrzynia']);
-      //  d( \Tools\Session::get('idskrzynia'));
-        \Tools\Session::set('idkola', $config[0]['IdKola']);
-      //  d( \Tools\Session::get('idkola'));
-        \Tools\Session::set('idreflektory', $config[0]['IdReflektory']);
-      //  d( \Tools\Session::get('idreflektory'));
+       // d($data);
 
-        $wyposazenie=null;
-        if (isset($config[0]['PodgrzewaneSiedzenia'])) {
-            \Tools\Session::set('podgrzewaneSiedzenia', $config[0]['PodgrzewaneSiedzenia']);
-            $wyposazenie[] = 'Podgrzewane siedzenia';
+        if(isset($data['error']))
+        {
+            $view = $this->getView('Konfigurator');
+            $view->tmp($data);
+
+           // $this->redirect('Konfigurator');
         }
-        if (isset($config[0]['PodgrzewanaSzybaPrzod'])) {
-            \Tools\Session::set('podgrzewanaSzybaPrzod', $config[0]['PodgrzewanaSzybaPrzod']);
-            $wyposazenie[] = 'Podgrzewana szyba przednia';
-        }
-        if (isset($config[0]['DodatkowyKompletOpon'])) {
-            \Tools\Session::set('kompletOpon', $config[0]['DodatkowyKompletOpon']);
-            $wyposazenie[] = 'Dodatkowy komplet opon';
-        }
-        if (isset($config[0]['SkorzanaTapicerka'])) {
-            \Tools\Session::set('kompletOpon', $config[0]['SkorzanaTapicerka']);
-            $wyposazenie[] = 'Skórzana tapicerka';
-        }
+        else {
+            if (\Tools\Session::is('error'))
+                $data['error'] = \Tools\Session::get('error');
+
+            else {
 
 
+                $config = $data['config'];
 
-        $view = $this->getView('Podsumowanie');
-        $data['wyposazenie']=$wyposazenie;
-        $data['konfigurator']=1;
-        $view->getAll($data);
+
+                \Tools\Session::set('numer', $config[0]['numer']);
+                // d(\Tools\Session::get('numer'));
+
+                \Tools\Session::set('id_ZbiorModeli', $config[0]['id_ZbiorModeli']);
+                // d(\Tools\Session::get('id_ZbiorModeli'));
+                \Tools\Session::set('id_SamochodParametry', $config[0]['id_SamochodParametry']);
+                //  d(\Tools\Session::get('id_SamochodParametry'));
+                \Tools\Session::set('id_SamochodKola', $config[0]['id_SamochodKola']);
+                //   d(\Tools\Session::get('id_SamochodKola'));
+                \Tools\Session::set('id_SamochodSwiatla', $config[0]['id_SamochodSwiatla']);
+                //   d(\Tools\Session::get('id_SamochodSwiatla'));
+                \Tools\Session::set('id_SamochodWyposazenie', $config[0]['id_SamochodWyposazenie']);
+                //   d(\Tools\Session::get('id_SamochodWyposazenie'));
+                \Tools\Session::set('IdLakier', $config[0]['IdLakier']);
+                //   d(\Tools\Session::get('IdLakier'));
+
+            }
+
+
+            $view = $this->getView('Konfigurator');
+            $view->getConfig();
+        }
 
     }
 }
