@@ -21,18 +21,45 @@ class Konfigurator extends View
         if(isset($data['error']))
             $this->set('error',$data['error']);
 
-        $this->set('config', $data['config']);
+        $id_ZbiorModelu = \Tools\Session::get('id_ZbiorModeli');
+
+        $model = $this->getModel('ZbiorModeli');
+        $data = $model->getAll2();
+        $this->set('ZbiorModeli', $data['ZbiorModeli']);
+
+        $model = $this->getModel('Silnik');
+        $data = $model->getAll($id_ZbiorModelu);
+        $this->set('silnik', $data['SamochodParametry']);
+
+        $model = $this->getModel('Kola');
+        $data = $model->getAll($id_ZbiorModelu);
+        $this->set('felgi', $data['kola']);
+
+        $model = $this->getModel('Reflektor');
+        $data = $model->getAll($id_ZbiorModelu);
+        $this->set('swiatla', $data['SamochodSwiatla']);
+
+        $model = $this->getModel('Wyposazenie');
+        $data = $model->getAll($id_ZbiorModelu);
+        $this->set('wyposazenie', $data['SamochodWyposazenie']);
+
+        $model = $this->getModel('Lakier');
+        $data = $model->getAll($id_ZbiorModelu);
+        $this->set('lakier', $data['SamochodLakier']);
+
+        $this->set('sciezka',\Config\Website\Config::$subdirimage);
 
 
-        $this->render("KonfiguratorGetOne");
+        $this->render("Konfigurator_wynik");
 
     }
 
-    public function getAll(){
-        $model = $this->getModel('Samochod');
-        $data = $model->getAll();
-        $this->set('samochody', $data['samochody']);
+    public function tmp($data)
+    {
+        if(isset($data['error']))
+            $this->set('error',$data['error']);
 
-        $this->render('KonfiguratorGetAll');
+        $this->render("Konfigurator");
     }
+
 }

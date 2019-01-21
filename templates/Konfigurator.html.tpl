@@ -3,6 +3,11 @@
     <div class="text-center mt-5">
         <h2>Wczytaj konfiguracje samochodu</h2>
     </div>
+
+    {if isset($error)}
+        <div class="alert alert-danger" role="alert">{$error}</div>
+    {/if}
+
     <form id="konfiguratorWczytaj" action="http://{$smarty.server.HTTP_HOST}{$subdir}Konfigurator/wczytaj" method="post" >
 
         <div class="form-group">
@@ -14,7 +19,7 @@
     </form>
 
     <div class="d-flex justify-content-center">
-        <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}Samochod">Nowa Konfiguracja</a>
+        <a class="btn btn-success m-5 text-center" href="http://{$smarty.server.HTTP_HOST}{$subdir}KonfiguratorModelu">Nowa Konfiguracja</a>
     </div>
 
     </div>
@@ -22,10 +27,6 @@
 
 
 
-
-    {if isset($error)}
-        <strong>{$error}</strong>
-    {/if}
 
 </div>
 
