@@ -15,17 +15,13 @@
         <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
-    {if isset($odbiory)}
-        {if $odbiory|@count === 0}
-            <b>Brak samochodów do przygotowania!</b>
-            <br/>
-            <br/>
-        {else}
+
+    {if (!isset($prawo) && !isset($idUzytkownik))  || (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
             <div class="container col-md-8">
             <div class="form-group">
                     <form id="add_odbior" action="http://{$smarty.server.HTTP_HOST}{$subdir}Odbior/add" method="post">
 
-                        {if (!isset($prawo) && !isset($idUzytkownik))  || (isset($prawo) && ($prawo == 'admin'))}
+
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputImie">Imie</label>
@@ -36,7 +32,7 @@
                                 <input type="text" class="form-control" id="inputNazwisko" name="nazwisko"
                                        placeholder="Nazwisko">
                             </div>
-                            {/if}
+
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -55,7 +51,16 @@
                     </form>
             </div>
             </div>
-            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+            {/if}
+
+    {if isset($odbiory && isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik'))}
+        {if $odbiory|@count === 0}
+            <div class="alert alert-danger" role="alert"><b>Brak samochodów do przygotowania!</b></div>
+
+        {/if}
+    {/if}
+
+            {if (isset($prawo) && ($prawo == 'admin' || $prawo == 'pracownik') && $odbiory|@count !== 0)}
                 <table id="data" class="display table table-hover">
                     <thead>
                     <tr>
@@ -82,7 +87,7 @@
                         <td>{$odbior['Numer_Zamowienia']}</td>
                         {if ($odbior['Odebrano']==0)}
                             <td><a class="btn btn-secondary"
-                                   href="http://{$smarty.server.HTTP_HOST}{$subdir}Odbior/edytuj/{$odbior['Id_Odbior']}">Ukończ</a>
+                                   href="http://{$smarty.server.HTTP_HOST}{$subdir}Odbior/zmien/{$odbior['Id_Odbior']}">Ukończ</a>
                             </td>
                         {else}
                             <td> odebrano</td>
@@ -111,12 +116,7 @@
                     </div>
                 </div>
             </div>
-        {/if}
-    {/if}
 
-    {if isset($error)}
-        <strong>{$error}</strong>
-    {/if}
 
 </div>
 {include file="footer.html.tpl"}

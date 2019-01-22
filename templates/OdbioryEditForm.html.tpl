@@ -17,11 +17,11 @@
 
         <div class="form-group">
             <label>Data</label>
-            <input type="date" class="form-control"  name="Data" value="{$Data}">
+            <input type="date" class="form-control"  name="data" value="{$Data}">
         </div>
         <div class="form-group">
             <label>Numer Zamówienia</label>
-            <input type="text" class="form-control"  name="Numer_Zamowienia" value="{$Numer_Zamowienia}">
+            <input type="text" class="form-control"  name="numer" value="{$Numer_Zamowienia}">
         </div>
 
         <input type="hidden"  name="Odebrano" value="{$Odebrano}">

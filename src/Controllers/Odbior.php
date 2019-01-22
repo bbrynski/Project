@@ -27,21 +27,19 @@
 
             $model=$this->getModel('Odbior');
             $model_klient=$this->getModel('Klient');
-            $id = \Tools\Session::get('idUzytkownik');
-            if( !isset($_POST['imie']) && !isset($_POST['nazwisko'])){
-                if(isset($id)){
-                    $data = $model->add($id, $_POST['numer'], $_POST['data']);
-                }
-            }else {
-                $data = $model_klient->getId($_POST['imie'], $_POST['nazwisko']);
-                //d($data['Klient']['Id_Klient']);
-                $data = $model->add($data['Klient']['Id_Klient'], $_POST['numer'], $_POST['data']);
-            }
 
-            if(isset($data['error']))
-                \Tools\Session::set('error', $data['error']);
-            if(isset($data['message']))
-                \Tools\Session::set('message', $data['message']);
+                $data = $model_klient->getId($_POST['imie'], $_POST['nazwisko']);
+
+                if (!isset ($data['error'])) {
+                    $data = $model->add($data['Klient']['Id_Klient'], $_POST['numer'], $_POST['data']);
+                    if(isset($data['message']))
+                        \Tools\Session::set('message', $data['message']);
+                } else {
+                    if(isset($data['error']))
+                        \Tools\Session::set('error', 'Brak klienta w bazie lub ');
+
+                }
+
             $this->redirect('Odbiory');
         }
 
@@ -64,6 +62,17 @@
 
             $model=$this->getModel('Odbior');
             $data = $model->update($_POST['Id_Odbior'], $_POST['Id_Klient'], $_POST['Data'], $_POST['Numer_Zamowienia'], $_POST['Odebrano']);
+
+            if(isset($data['error']))
+                \Tools\Session::set('error', $data['error']);
+            if(isset($data['message']))
+                \Tools\Session::set('message', $data['message']);
+            $this->redirect('Odbiory');
+        }
+
+        public function changeStatus($id){
+            $model=$this->getModel('Odbior');
+            $data = $model->changeStatus($id);
 
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);

@@ -155,8 +155,7 @@ class Odbior extends Model
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableOdbior.'` SET
                     `'.\Config\Database\DBConfig\Odbior::$idKlient.'`=:idKlient,
                     `'.\Config\Database\DBConfig\Odbior::$data.'`=:data,
-                    `'.\Config\Database\DBConfig\Odbior::$numerZamowienia.'`=:numer,
-                    `'.\Config\Database\DBConfig\Odbior::$odebrano.'`=:odebrano
+                    `'.\Config\Database\DBConfig\Odbior::$numerZamowienia.'`=:numer
                
                  WHERE `'.\Config\Database\DBConfig\Odbior::$id.'`=:id');
 
@@ -164,6 +163,38 @@ class Odbior extends Model
             $stmt->bindValue(':idKlient', $klient, PDO::PARAM_INT);
             $stmt->bindValue(':data', $dataOdbioru, PDO::PARAM_STR);
             $stmt->bindValue(':numer', $numer, PDO::PARAM_STR);
+
+            $result = $stmt->execute();
+            $rows = $stmt->rowCount();
+            if(!$result)
+                $data['error'] = \Config\Database\DBErrorName::$nomatch;
+            else
+                $data['message'] = \Config\Database\DBMessageName::$updateok;
+            $stmt->closeCursor();
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+    public function changeStatus($id){
+        $data = array();
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        if($id == null){
+            $data['error'] = \Config\Database\DBErrorName::$empty;
+            return $data;
+        }
+        try	{
+            $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableOdbior.'` SET
+                    `'.\Config\Database\DBConfig\Odbior::$odebrano.'`=:odebrano
+               
+                 WHERE `'.\Config\Database\DBConfig\Odbior::$id.'`=:id');
+
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':odebrano', 1, PDO::PARAM_INT);
 
             $result = $stmt->execute();

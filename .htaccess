@@ -82,6 +82,7 @@ RewriteRule ^Klient/samochody/(\d+)/?$ index.php?controller=KlientSamochod&actio
 RewriteRule ^Odbiory/?$ index.php?controller=Odbior&action=getAll [L]
 RewriteRule ^Odbior/add?$ index.php?controller=Odbior&action=add [L]
 RewriteRule ^Odbior/edytuj/(\d+)/?$ index.php?controller=odbior&action=update&id=$1 [L]
+RewriteRule ^Odbior/zmien/(\d+)/?$ index.php?controller=odbior&action=changeStatus&id=$1 [L]
 
 RewriteRule ^Odbiory/edit/(\d+)/?$ index.php?controller=odbior&action=editform&id=$1 [L]
 RewriteRule ^Odbiory/update/?$ index.php?controller=odbior&action=update [L]
