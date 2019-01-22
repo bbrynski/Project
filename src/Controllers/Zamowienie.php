@@ -76,7 +76,7 @@ class Zamowienie extends Controller{
             $this->redirect('Zamowienie/');
         }
 
-        d($data);
+       // d($data);
 
         $view = $this->getView('Zamowienie');
         $view->editform($data['Zamowienie'][0]);

@@ -52,7 +52,7 @@
                         <td>{$zamowienie['Statuszamowienia']} </td>
 
                         <td><a class="btn btn-primary"
-                               href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/edit-form/{$zamowienie['IdZamowienie']}">Edytuj</a>
+                               href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/edit-form/{$zamowienie['NumerZamowienia']}">Edytuj</a>
                         </td>
                         <td><a class="btn btn-danger"
                                href="http://{$smarty.server.HTTP_HOST}{$subdir}Zamowienie/delete/{$zamowienie['IdZamowienie']}">Usuń</a>
