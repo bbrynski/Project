@@ -21,7 +21,7 @@
             {foreach $Zamowienie as $key => $zam}
                 <div class="col-sm-6">
                     <center><h2>Numer: {$numer}</h2></center>
-                    <h2 class="text-center">{$zam['Statuszamowienia']}</h2>
+                    <h2 class="text-center">Stan: {$zam['Statuszamowienia']}</h2>
                 </div>
             {/foreach}
         </div>

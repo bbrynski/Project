@@ -61,8 +61,9 @@
             </div>
         </form>
 
-
+            {if isset($cena)}
 <h3>Samochód o wartości {$cena} zł możesz mieć już od {$wynik} zł miesięcznie</h3>
+            {/if}
 
 
 

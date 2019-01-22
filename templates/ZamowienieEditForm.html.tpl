@@ -23,7 +23,7 @@
 
 
 
-        <button type="submit" name="submit" class="btn btn-default">Dodaj</button>
+        <button type="submit" name="submit" class="btn btn-success">Zmień</button>
     </form>
 
 

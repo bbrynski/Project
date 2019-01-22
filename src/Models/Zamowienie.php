@@ -54,7 +54,7 @@ class Zamowienie extends Model{
         $data = array();
         $data['Zamowienie'] = array();
         try	{
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:NumerZamowienia');
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia');
             $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_INT);
             $result = $stmt->execute();
             $Zamowienie = $stmt->fetchAll();
