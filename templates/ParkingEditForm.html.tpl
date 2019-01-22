@@ -3,13 +3,13 @@
     <div class="text-center mt-5">
         <h1>Edytuj pozycje parkingu</h1>
     </div>
-    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/add" method="post">
+    <form id="form_parking" action="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/update" method="post">
 
         <input type="hidden" name="id" value="{$id}">
 
         <div class="form-group">
             <label for="name">Model</label>
-            {html_options name=IdModel options=$Samochody selected="{$Id_Model}" class="form-control"}
+            {html_options  name=IdModel options=$Samochody selected="{$Id_Samochod}" class="form-control" disabled="disabled"}
         </div>
 
         <div class="form-group">

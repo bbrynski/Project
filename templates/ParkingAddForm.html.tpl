@@ -3,7 +3,7 @@
     <div class="text-center mt-5">
         <h1>Dodaj nowy samochód na parking</h1>
     </div>
-    <form action="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/add" method="post">
+    <form id="form_parking" action="http://{$smarty.server.HTTP_HOST}{$subdir}Parking/add" method="post">
 
 
         <div class="form-group">

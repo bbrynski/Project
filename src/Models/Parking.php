@@ -11,7 +11,12 @@
             $data = array();
             $data['parkingi'] = array();
             try	{
-                $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableParking.'`');
+                $stmt = $this->pdo->query('SELECT * FROM `'.\Config\Database\DBConfig::$tableParking.'`
+                INNER JOIN `'.\Config\Database\DBConfig::$tableZbiorModeli.'` 
+                    ON `'.\Config\Database\DBConfig::$tableParking.'`.`'.\Config\Database\DBConfig\Parking::$Id_Samochod.'`=`'.\Config\Database\DBConfig::$tableZbiorModeli.'`.`'.\Config\Database\DBConfig\ZbiorModeli::$id_ZbiorModeli.'`
+                INNER JOIN `'.\Config\Database\DBConfig::$tableWersja.'` 
+                    ON `'.\Config\Database\DBConfig::$tableZbiorModeli.'`.`'.\Config\Database\DBConfig\ZbiorModeli::$id_Wersja.'`=`'.\Config\Database\DBConfig::$tableWersja.'`.`'.\Config\Database\DBConfig\Wersja::$id_Wersja.'`
+                ');
                 $parkingi = $stmt->fetchAll();
                 $stmt->closeCursor();
                 if($parkingi && !empty($parkingi))
@@ -66,13 +71,13 @@
             try	{
                 $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableParking.'` 
                 (
-                    `'.\Config\Database\DBConfig\Parking::$Id_Model.'`,
+                    `'.\Config\Database\DBConfig\Parking::$Id_Samochod.'`,
                     `'.\Config\Database\DBConfig\Parking::$DostepneSztuki.'`
                     
                 ) VALUES (:Id_Model, :DostepneSztuki)');
 
                 $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
-                $stmt->bindValue(':DostepneSztuki', $DostepneSztuki, PDO::PARAM_STR);
+                $stmt->bindValue(':DostepneSztuki', $DostepneSztuki, PDO::PARAM_INT);
 
                 $result = $stmt->execute(); 
                 
@@ -115,7 +120,7 @@
             return $data;
 		}  
         
-        public function update($id, $Id_Model, $DostepneSztuki){
+        public function update($id, $DostepneSztuki){
             $data = array();
             if($this->pdo === null){
                 $data['error'] = \Config\Database\DBErrorName::$connection;
@@ -127,13 +132,10 @@
             }
             try	{
                 $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableParking.'` SET
-                    `'.\Config\Database\DBConfig\Parking::$Id_Model.'`=:Id_Model,
                     `'.\Config\Database\DBConfig\Parking::$DostepneSztuki.'`=:DostepneSztuki
-                    
-                 WHERE `'.\Config\Database\DBConfig\Pracownik::$id.'`=:id');
+                 WHERE `'.\Config\Database\DBConfig\Parking::$id.'`=:id');
                 
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-                $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
                 $stmt->bindValue(':DostepneSztuki', $DostepneSztuki, PDO::PARAM_STR);
 
                 $result = $stmt->execute(); 

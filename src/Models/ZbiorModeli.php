@@ -66,6 +66,20 @@ class ZbiorModeli extends Model
         return $data;
     }
 
+    public function getAllForSelect(){
+        $data = $this->getAll2();
+        $zbiorModeli = array();
+
+        if(!isset($data['error']))
+
+            foreach($data['ZbiorModeli'] as $item) {
+                $opcja = $item['nazwa'] . ' ' . $item['wersja_nazwa'] . ' ' . $item['cena'];
+                $zbiorModeli[$item[\Config\Database\DBConfig\ZbiorModeli::$id_ZbiorModeli]] = $opcja;
+            }
+
+        return $zbiorModeli;
+    }
+
     public function WyborWersji($nazwaModelu)
     {
         if($this->pdo === null)

@@ -39,6 +39,7 @@
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_silnik.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_odbiory.js"></script>
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_odbiory2.js"></script>
+<script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/walidacja_parking.js"></script>
 
 <script src="http://{$smarty.server.HTTP_HOST}{$subdir}js/terminarz.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
