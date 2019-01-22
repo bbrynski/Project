@@ -69,12 +69,17 @@ class Zamowienie extends Controller{
 
         $model=$this->getModel('Zamowienie');
         $data=$model->getOne($id);
+
+
         if(isset($data['error'])){
             \Tools\Session::set('error', $data['error']);
             $this->redirect('Zamowienie/');
         }
+
+        d($data);
+
         $view = $this->getView('Zamowienie');
-        $view->editform($data['zamowienia'][0]);
+        $view->editform($data['Zamowienie'][0]);
     }
     public function update(){
 

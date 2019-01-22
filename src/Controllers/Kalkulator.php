@@ -12,6 +12,21 @@
             $view->get();
 		}
 
+		public function oblicz()
+        {
+            $cena_brutto = $_POST['CenaBrutto'];
+
+            $liczbarat = $_POST['LiczbaRat'];
+
+            $wklatwlasny = $_POST['WkladWlasny'];
+
+            $limit = $_POST['Limit'];
+
+
+            $tmp = $cena_brutto * $wklatwlasny;
+
+        }
+
 
 
 

@@ -33,8 +33,8 @@
                 {else}
                 class="form-control" id="IdModel" name="IdModel">
 
-                {foreach $samochody as $key => $samochod}
-                        <option value="{$samochod['IdModel']}">{$samochod['nazwaModel']} {$samochod['Cena']}</option>
+                {foreach $konfiguracje as $key => $samochod}
+                        <option value="{$samochod['IdKonfigurator']}">{$samochod['numer']} {$samochod['nazwa']}</option>
                 {/foreach}
                 {/if}
             </select>

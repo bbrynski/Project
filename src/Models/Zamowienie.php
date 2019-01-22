@@ -17,8 +17,13 @@ class Zamowienie extends Model{
 				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Klient. ' = ' .\Config\Database\DBConfig::$tableKlient.'.'.\Config\Database\DBConfig\Klient::$id.'
 				INNER JOIN '.\Config\Database\DBConfig::$tablePracownik.'
 				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik. ' = ' .\Config\Database\DBConfig::$tablePracownik.'.'.\Config\Database\DBConfig\Pracownik::$id.'
-            INNER JOIN '.\Config\Database\DBConfig::$tableModel.'
-				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_Model. ' = ' .\Config\Database\DBConfig::$tableModel.'.'.\Config\Database\DBConfig\Model::$id);
+            INNER JOIN '.\Config\Database\DBConfig::$tableZapis.'
+				ON '.\Config\Database\DBConfig::$tableZamowienie.'.'.\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli. ' 
+				= ' .\Config\Database\DBConfig::$tableZapis.'.'.\Config\Database\DBConfig\Zapis::$id
+
+
+            );
+
 
 
             $zamowienia = $stmt->fetchAll();
@@ -49,7 +54,7 @@ class Zamowienie extends Model{
         $data = array();
         $data['Zamowienie'] = array();
         try	{
-            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia');
+            $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableZamowienie.'` WHERE  `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:NumerZamowienia');
             $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_INT);
             $result = $stmt->execute();
             $Zamowienie = $stmt->fetchAll();
@@ -79,7 +84,7 @@ class Zamowienie extends Model{
             $stmt = $this->pdo->prepare('INSERT INTO `'.\Config\Database\DBConfig::$tableZamowienie.'` (
                 `' .\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`,
-                `' .\Config\Database\DBConfig\Zamowienie::$Id_Model.'`,
+                `' .\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$DataZamow.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`,
                 `' .\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`
@@ -146,7 +151,7 @@ class Zamowienie extends Model{
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableZamowienie.'` SET
                 `'.\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`=:Id_Klient, 
                 `'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`=:Id_Pracownik,
-                `'.\Config\Database\DBConfig\Zamowienie::$Id_Model.'`=:Id_Model,
+                `'.\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli.'`=:Id_Model,
                 `'.\Config\Database\DBConfig\Zamowienie::$DataZamow.'`=:DataZamow, 
                 `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia
                 `'.\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`=:StatusZamowienia

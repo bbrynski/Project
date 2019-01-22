@@ -11,6 +11,37 @@ use \PDO;
 
 class Podsumowanie extends Model
 {
+
+    public function getAll(){
+        if($this->pdo === null){
+            $data['error'] = \Config\Database\DBErrorName::$connection;
+            return $data;
+        }
+        $data = array();
+        $data['konfiguracje'] = array();
+        try	{
+            $stmt = $this->pdo->query('SELECT * FROM `' . \Config\Database\DBConfig::$tableZapis . '`
+                INNER JOIN `' . \Config\Database\DBConfig::$tableZbiorModeli . '`
+                    ON `' . \Config\Database\DBConfig::$tableZapis . '`.`' . \Config\Database\DBConfig\Zapis::$id_ZbiorModeli . '`
+                    =`' . \Config\Database\DBConfig::$tableZbiorModeli . '`.`' . \Config\Database\DBConfig\ZbiorModeli::$id_ZbiorModeli . '`
+            
+                ');
+
+
+            $klienci = $stmt->fetchAll();
+            $stmt->closeCursor();
+            if($klienci && !empty($klienci))
+                $data['konfiguracje'] = $klienci;
+
+           // d($data);
+        }
+        catch(\PDOException $e)	{
+            $data['error'] = \Config\Database\DBErrorName::$query;
+        }
+        return $data;
+    }
+
+
     public function add($id_ZbiorModeli, $id_SamochodParametry, $id_SamochodKola, $id_SamochodSwiatla, $id_SamochodWyposazenie, $id_Lakier)
     {
 

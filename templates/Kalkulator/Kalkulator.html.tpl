@@ -30,14 +30,14 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Wkład własny</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="LiczbaRat">
-                        <option>0%</option>
-                        <option>5%</option>
-                        <option>10%</option>
-                        <option>15%</option>
-                        <option>20%</option>
-                        <option>25%</option>
-                        <option>30%</option>
+                    <select class="form-control" name="WkladWlasny">
+                        <option type="" value="1">0%</option>
+                        <option value="0,05">5%</option>
+                        <option value="0,10">10%</option>
+                        <option value="0,15">15%</option>
+                        <option value="0,20">20%</option>
+                        <option value="0,25">25%</option>
+                        <option value="0,30">30%</option>
                     </select>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Roczny limit kilometrów</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="LiczbaRat">
+                    <select class="form-control" name="Limit">
                         <option>20 tysięcy</option>
                         <option>30 tysięcy</option>
                         <option>40 tysięcy</option>

@@ -22,12 +22,13 @@ class Wyposazenie extends Model
             $stmt = $this->pdo->prepare('SELECT * FROM  `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'` 
             
                                             INNER JOIN `'.\Config\Database\DBConfig::$tableWyposazenie.'`
-                                            ON `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'`.`'. \Config\Database\DBConfig\SamochodWyposazenie::$id_SamochodWyposazenie . '`
+                                            ON `'.\Config\Database\DBConfig::$tableSamochodWyposazenie.'`.`'. \Config\Database\DBConfig\SamochodWyposazenie::$id_Wyposazenie . '`
                                             =`' . \Config\Database\DBConfig::$tableWyposazenie . '`.`' . \Config\Database\DBConfig\Wyposazenie::$id_Wyposazenie . '`
                                     
                                             
             
-                                            WHERE  `'.\Config\Database\DBConfig\SamochodParametry::$id_ZbiorModeli.'`=:id');
+                                            WHERE  `'.\Config\Database\DBConfig\SamochodWyposazenie::$id_ZbiorModeli.'`=:id');
+
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
             $result = $stmt->execute();
@@ -38,7 +39,7 @@ class Wyposazenie extends Model
             if($wartosc && !empty($wartosc))
                 $data['SamochodWyposazenie'] = $wartosc;
 
-            // d($data);
+
         }
         catch(\PDOException $e)	{
             $data['error'] = \Config\Database\DBErrorName::$query;

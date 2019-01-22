@@ -19,6 +19,8 @@ class Zamowienie extends View
         $model = $this->getModel('Zamowienie');
         $data = $model->getAll();
         $this->set('zamowienia', $data['zamowienia']);
+
+
         if(isset($data['error']))
             $this->set('error', $data['error']);
         
@@ -32,11 +34,8 @@ class Zamowienie extends View
         $model = $this->getModel('Pracownik');
         $data = $model->getAll();
         $this->set('pracownicy', $data['pracownicy']);
-        
-        $model = $this->getModel('Samochod');
-        $data = $model->getAll(3);  //opcja 3 - pobranie wszystkich modeli konfiguratora i salonu
-        $this->set('samochody', $data['samochody']);
-        
+
+
         
         $this->render('ZamowienieGetAll');
     }
@@ -69,21 +68,13 @@ class Zamowienie extends View
         $data = $model->getAll();
         $this->set('pracownicy', $data['pracownicy']);
 
-        $model = $this->getModel('Samochod');
+        $model = $this->getModel('Podsumowanie');
         $data = $model->getAll();
-        $this->set('samochody', $data['samochody']);
+        $this->set('konfiguracje', $data['konfiguracje']);
 
 
+        d($data);
 
-
-        $v= \Tools\Access::get('idmodel');
-        if(isset($v)){
-            $this->set('idmodel', $v);
-
-
-        $data = $model->getOne($v);
-        $this->set('model', $data['samochody']);
-        }
         $this->render('ZamowienieAddForm');
     }
 
@@ -91,7 +82,7 @@ class Zamowienie extends View
         $this->set('id', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$id]);
         $this->set('Id_Klient', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$Id_Klient]);
         $this->set('Id_Pracownik', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$Id_Pracownik]);
-        $this->set('Id_Model', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$Id_Model]);
+        $this->set('Id_Model', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli]);
         $this->set('DataZamow', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$DataZamow]);
         $this->set('NumerZamowienia', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$NumerZamowienia]);
         $this->set('StatusZamowienia', $Zamowienie[\Config\Database\DBConfig\Zamowienie::$StatusZamowienia]);
@@ -99,7 +90,7 @@ class Zamowienie extends View
 
         $this->set('$klienci', $this->getModel('Klient')->getAll()['$klienci']);
         $this->set('pracownicy', $this->getModel('Pracownik')->getAll()['pracownicy']);
-        $this->set('Modele', $this->getModel('Samochod')->getAll()['samochody']);
+        $this->set('Modele', $this->getModel('Podsumowanie')->getAll()['konfiguracje']);
         $this->set('customScript','Zamowienie');
         $this->render('ZamowienieEditForm');
     }

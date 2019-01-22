@@ -4,7 +4,7 @@ namespace Tools;
 class Access extends Session {
     public static $login = 'user';
     private static $loginTime = 'logintime';
-    private static $sessionTime = 6000;
+    private static $sessionTime = 1800;
 
     //zaloguj
     public static function login($login) {

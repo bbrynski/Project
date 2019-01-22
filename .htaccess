@@ -102,13 +102,16 @@ RewriteRule ^Golf/?$ index.php?controller=Strona&action=Golf [L]
 RewriteRule ^Arteon/?$ index.php?controller=Strona&action=Arteon [L]
 RewriteRule ^Tiguan/?$ index.php?controller=Strona&action=Tiguan [L]
 
-#Kalkulator
 
-RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
 
 
 
 # 7 semestr zmiany
+
+#Kalkulator
+
+RewriteRule ^Kalkulator/?$ index.php?controller=Kalkulator&action=get [L]
+RewriteRule ^Kalkulator/oblicz/?$ index.php?controller=Kalkulator&action=oblicz [L]
 
 
 #KonfiguratorModelu

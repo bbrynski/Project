@@ -35,6 +35,7 @@ class Wyposazenie extends View
         $data = $model->getAll($id_ZbiorModelu);
         $this->set('wyposazenie', $data['SamochodWyposazenie']);
 
+
         $model = $this->getModel('Lakier');
         $data = $model->getAll($id_ZbiorModelu);
         $this->set('lakier', $data['SamochodLakier']);
@@ -58,7 +59,8 @@ class Wyposazenie extends View
         $this->render('Konfigurator/SamochodWyposazenie');
     }
 
-    public function addform(){
+    public function addform()
+    {
         $this->render('Formularze/TapicerkaAdd');
     }
 }
