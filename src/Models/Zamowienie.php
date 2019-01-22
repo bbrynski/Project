@@ -149,23 +149,23 @@ class Zamowienie extends Model{
         }
         try	{
             $stmt = $this->pdo->prepare('UPDATE  `'.\Config\Database\DBConfig::$tableZamowienie.'` SET
-                `'.\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`=:Id_Klient, 
-                `'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`=:Id_Pracownik,
-                `'.\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli.'`=:Id_Model,
-                `'.\Config\Database\DBConfig\Zamowienie::$DataZamow.'`=:DataZamow, 
-                `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:NumerZamowienia
-                `'.\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`=:StatusZamowienia
+                    `'.\Config\Database\DBConfig\Zamowienie::$Id_Klient.'`=:imie,
+                    `'.\Config\Database\DBConfig\Zamowienie::$Id_Pracownik.'`=:nazwisko,
+                    `'.\Config\Database\DBConfig\Zamowienie::$Id_ZbiorModeli.'`=:firma,
+                    `'.\Config\Database\DBConfig\Zamowienie::$DataZamow.'`=:nip,
+                    `'.\Config\Database\DBConfig\Zamowienie::$NumerZamowienia.'`=:kod,
+                    `'.\Config\Database\DBConfig\Zamowienie::$StatusZamowienia.'`=:miejscowosc
                 
-                
-                WHERE `'
-                .\Config\Database\DBConfig\Zamowienie::$id.'`=:IdZamowienie');
+                 WHERE `'.\Config\Database\DBConfig\Zamowienie::$id.'`=:id');
+
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':Id_Klient', $Id_Klient, PDO::PARAM_INT);
-            $stmt->bindValue(':Id_Pracownik', $Id_Pracownik, PDO::PARAM_INT);
-            $stmt->bindValue(':Id_Model', $Id_Model, PDO::PARAM_INT);
-            $stmt->bindValue(':DataZamow', $DataZamow, PDO::PARAM_STR);
-            $stmt->bindValue(':NumerZamowienia', $NumerZamowienia, PDO::PARAM_STR);
-            $stmt->bindValue(':StatusZamowienia', $StatusZamowienia, PDO::PARAM_STR);
+            $stmt->bindValue(':imie', $Id_Klient, PDO::PARAM_STR);
+            $stmt->bindValue(':nazwisko', $Id_Pracownik, PDO::PARAM_STR);
+            $stmt->bindValue(':firma', $Id_Model, PDO::PARAM_STR);
+            $stmt->bindValue(':nip', $DataZamow, PDO::PARAM_STR);
+            $stmt->bindValue(':kod', $NumerZamowienia, PDO::PARAM_STR);
+            $stmt->bindValue(':miejscowosc', $StatusZamowienia, PDO::PARAM_STR);
+
 
 
             $result = $stmt->execute();

@@ -14,4 +14,12 @@ class Kalkulator extends View
     public function get(){
         $this->render('Kalkulator/Kalkulator');
     }
+
+    public function oblicz($cenabrutto, $wynik)
+    {
+        //d($wynik);
+        $this->set('cena', $cenabrutto);
+        $this->set('wynik', $wynik);
+        $this->render('Kalkulator/Kalkulator');
+    }
 }

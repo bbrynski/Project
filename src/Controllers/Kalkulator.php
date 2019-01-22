@@ -14,20 +14,36 @@
 
 		public function oblicz()
         {
-            $cena_brutto = $_POST['CenaBrutto'];
+            $cena_brutto = $this->get_numeric($_POST['CenaBrutto']);
 
-            $liczbarat = $_POST['LiczbaRat'];
+            $liczbarat = $this->get_numeric($_POST['LiczbaRat']);
 
-            $wklatwlasny = $_POST['WkladWlasny'];
+            $wklatwlasny = $this->get_numeric($_POST['WkladWlasny']);
 
-            $limit = $_POST['Limit'];
+            $limit =$this->get_numeric( $_POST['Limit']);
 
 
-            $tmp = $cena_brutto * $wklatwlasny;
+            $tmp = $cena_brutto - ($cena_brutto * $wklatwlasny);
 
+            $tmp2 = $tmp + ($tmp * $limit);
+
+            $wynik = $tmp2 / $liczbarat;
+
+
+
+
+            $view = $this->getView('Kalkulator');
+            $view->oblicz($cena_brutto, $wynik);
+
+        }
+
+        public function get_numeric($val) {
+            if (is_numeric($val)) {
+                return $val + 0;
+            }
+            return 0;
         }
 
 
 
-
-	}
+    }
