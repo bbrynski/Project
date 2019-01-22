@@ -23,6 +23,7 @@ RewriteRule ^access/logout/?$ index.php?controller=Access&action=logout [L]
 RewriteRule ^Zamowienie/?$ index.php?controller=Zamowienie [L]
 RewriteRule ^Zamowienie/add-form/?$ index.php?controller=Zamowienie&action=addform [L]
 RewriteRule ^Zamowienie/edit-form/(\d+)/?$ index.php?controller=Zamowienie&action=editform&id=$1 [L]
+RewriteRule ^Zamowienie/update/?$ index.php?controller=Zamowienie&action=update [L]
 RewriteRule ^Zamowienie/wstaw/?$ index.php?controller=Zamowienie&action=add [L]
 RewriteRule ^Zamowienie/delete/(\d+)/?$ index.php?controller=Zamowienie&action=delete&id=$1 [L]
 
