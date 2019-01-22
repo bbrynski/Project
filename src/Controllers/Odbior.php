@@ -61,7 +61,7 @@
         public function update($id){
 
             $model=$this->getModel('Odbior');
-            $data = $model->update($_POST['Id_Odbior'], $_POST['Id_Klient'], $_POST['Data'], $_POST['Numer_Zamowienia'], $_POST['Odebrano']);
+            $data = $model->update($_POST['Id_Odbior'], $_POST['Id_Klient'], $_POST['data'], $_POST['numer']);
 
             if(isset($data['error']))
                 \Tools\Session::set('error', $data['error']);
